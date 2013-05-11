@@ -1,0 +1,17 @@
+Config { font = "-misc-fixed-*-*-*-*-10-*-*-*-*-*-*-*"
+       , bgColor = "black"
+       , fgColor = "grey"
+       , position = Top
+       , lowerOnStart = True
+       , commands = [ Run Cpu ["-L","3","-H","50","-n","green","-h","red"] 10
+                    , Run CpuFreq ["-t","<cpu0>"] 10
+                    , Run Battery ["-t", "<left>%", "--", "-c", "energy_full"] 60
+                    , Run Memory ["-t","<usedratio>%"] 10
+                    , Run Swap ["-t","<usedratio>%"] 10
+                    , Run Date "%a %_d/%m %H:%M" "date" 10
+                    , Run StdinReader
+                    ]
+       , sepChar = "%"
+       , alignSep = "}{"
+       , template = "%StdinReader% }{ %cpu% / %cpufreq% | M %memory% * S %swap% | Power: %battery% | %date%"
+       }

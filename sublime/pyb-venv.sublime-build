@@ -1,0 +1,5 @@
+{
+    "cmd": [ "/usr/local/bin/pyb-init", "local"],
+    "working_dir": "${project_path}",
+    "path": "/usr/local/bin/:/usr/bin/:$PATH"
+}

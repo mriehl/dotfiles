@@ -4,13 +4,13 @@ Config { font = "-misc-fixed-*-*-*-*-10-*-*-*-*-*-*-*"
        , position = Top
        , lowerOnStart = True
        , commands = [ Run MultiCpu ["-L","3","-H","50","-n","green","-h","red", "-t", "<autototal>%"] 10
-                    , Run Battery ["-t", "<timeleft>h left * AC: <acstatus>", "--", "-c", "energy_full"] 60
                     , Run Memory ["-t","<usedratio>%"] 10
                     , Run Swap ["-t","<usedratio>%"] 10
                     , Run Date "%a %_d/%m %H:%M" "date" 10
+                    , Run Com "acpi" [] "" 60
                     , Run StdinReader
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%StdinReader% }{ CPUs: %multicpu%  |  Mem: %memory% * Swap: %swap%  |  Power: %battery%  |  %date%"
+       , template = "%StdinReader% }{ CPUs: %multicpu%  |  Mem: %memory% * Swap: %swap%  |  %acpi%  |  %date%"
        }

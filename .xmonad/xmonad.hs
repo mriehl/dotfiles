@@ -1,4 +1,5 @@
 import XMonad
+import XMonad.Config.Gnome
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
 import XMonad.Util.Run(spawnPipe)
@@ -8,7 +9,7 @@ import System.IO
 main = do
     xmproc <- spawnPipe "/usr/bin/xmobar ~/.xmobarrc"
 
-    xmonad $ defaultConfig
+    xmonad $ gnomeConfig
         { modMask = mod4Mask
         , manageHook = manageDocks <+> manageHook defaultConfig
         , layoutHook = avoidStruts  $  layoutHook defaultConfig

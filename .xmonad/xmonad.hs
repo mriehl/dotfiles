@@ -19,7 +19,8 @@ main = do
             }
         , terminal = "lxterminal"
         } `additionalKeys`
-        [ ((mod1Mask .|. shiftMask, xK_z), spawn "gnome-screensaver-command -l")
+        [ ((mod4Mask .|. shiftMask, xK_z), spawn "gnome-screensaver-command -l")
         , ((controlMask, xK_Print), spawn "sleep 0.2; scrot -s")
         , ((0, xK_Print), spawn "scrot")
+        , ((mod4Mask .|. shiftMask, xK_p), spawn "exe=`dmenu_path | dmenu` && eval \"exec $exe\"")
         ]

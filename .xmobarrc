@@ -4,13 +4,14 @@ Config { font = "-misc-fixed-*-*-*-*-10-*-*-*-*-*-*-*"
        , position = Top
        , lowerOnStart = True
        , commands = [ Run MultiCpu ["-L","3","-H","50","-n","green","-h","red", "-t", "<autototal>%"] 10
+                    , Run CpuFreq ["-t", "<cpu0>"] 10
                     , Run Memory ["-t","<usedratio>%"] 10
                     , Run Swap ["-t","<usedratio>%"] 10
                     , Run Date "%a %_d/%m %H:%M" "date" 10
-                    , Run Com "acpi" [] "" 60
+                    , Run Com "acpi" [] "" 120
                     , Run StdinReader
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%StdinReader% }{ CPUs: %multicpu%  |  Mem: %memory% * Swap: %swap%  |  %acpi%  |  %date%"
+       , template = "%StdinReader% }{ CPUs: %multicpu% @ %cpufreq%  |  Mem: %memory% * Swap: %swap%  |  %acpi%  |  %date%"
        }

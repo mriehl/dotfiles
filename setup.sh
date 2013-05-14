@@ -41,3 +41,4 @@ install ~/.config/sublime-text-3/Packages/User/python-single-file-with-venv.subl
 
 install /usr/local/bin/statusbar statusbar as_root
 install /usr/local/bin/xmonad-start xmonad-start as_root
+install /usr/local/bin/xmobar-change-screen xmobar-change-screen as_root

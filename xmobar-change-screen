@@ -1,0 +1,3 @@
+#!/bin/bash
+
+pgrep xmobar | xargs kill -SIGUSR1

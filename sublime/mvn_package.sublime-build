@@ -1,0 +1,5 @@
+{
+    "cmd": ["bash", "-c", "mvn package"],
+    "path": "/usr/local/bin/:/bin/:/usr/bin/:$PATH",
+    "working_dir": "${project_path}"
+}

@@ -82,7 +82,7 @@
 	[
 		80
 	],
-	"scroll_past_end": true,
+	"scroll_past_end": false,
 	"shift_tab_unindent": false,
 	"spell_check": false,
 	"tab_completion": true,

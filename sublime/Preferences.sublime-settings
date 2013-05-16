@@ -57,8 +57,8 @@
 		".git",
 		".svn"
 	],
-	"font_face": "SourceCodeProForPowerline",
-	"font_size": 11,
+	"font_face": "SourceCodePro",
+	"font_size": 12,
 	"gutter": true,
 	"highlight_line": true,
 	"ignored_packages":

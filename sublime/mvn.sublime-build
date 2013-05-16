@@ -1,5 +1,5 @@
 {
-    "cmd": ["bash", "-c", "mvn mvn `zenity --entry --text 'Which maven goal do you want to run?'`"],
+    "cmd": ["bash", "-c", "mvn `zenity --entry --text 'Which maven goal do you want to run?'`"],
     "path": "/usr/local/bin/:/bin/:/usr/bin/:$PATH",
     "working_dir": "${project_path}"
 }

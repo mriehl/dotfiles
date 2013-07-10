@@ -22,10 +22,10 @@ function install_source_code_pro() {
 
 function install () {
     TARGET=$1
-    FILE=`realpath $2`
+    FILE=`realpath "$2"`
     AS_ROOT=$3
     echo "Installing $FILE at $TARGET"
-    [[ ! -d `dirname $TARGET` ]] && {
+    [[ ! -d `dirname "$TARGET"` ]] && {
         echo "  creating upper directories.."
         [[ "$AS_ROOT" == "as_root" ]] && sudo mkdir -p `dirname $TARGET`
         [[ "$AS_ROOT" == "as_root" ]] || mkdir -p `dirname $TARGET`
@@ -41,8 +41,8 @@ function install () {
         [[ "$AS_ROOT" == "as_root" ]] || rm -rf $TARGET
     }
 
-    [[ "$AS_ROOT" == "as_root" ]] && sudo ln -s $FILE $TARGET && echo "  Installed $TARGET as root"
-    [[ "$AS_ROOT" == "as_root" ]] || ln -s $FILE $TARGET && echo "  Installed $TARGET"
+    [[ "$AS_ROOT" == "as_root" ]] && sudo ln -s "$FILE" "$TARGET" && echo "  Installed $TARGET as root"
+    [[ "$AS_ROOT" == "as_root" ]] || ln -s "$FILE" "$TARGET" && echo "  Installed $TARGET"
 
 }
 
@@ -57,6 +57,8 @@ install ~/.config/sublime-text-3/Packages/User/coroutine.sublime-snippet sublime
 install ~/.config/sublime-text-3/Packages/User/decorate_coroutine.sublime-snippet sublime/decorate_coroutine.sublime-snippet
 #------settings
 install ~/.config/sublime-text-3/Packages/User/Preferences.sublime-settings sublime/Preferences.sublime-settings
+#------keybindings
+install ~/.config/sublime-text-3/Packages/User/Default\ \(Linux\).sublime-keymap sublime/Default\ \(Linux\).sublime-keymap
 #------build systems
 #---------python
 install ~/.config/sublime-text-3/Packages/User/pyb-venv.sublime-build sublime/pyb-venv.sublime-build

@@ -20,6 +20,8 @@
     "default_encoding": "UTF-8",
     "default_line_ending": "system",
     "detect_indentation": true,
+    "smart_indent": true,
+    "indent_to_bracket": true,
     "draw_indent_guides": true,
     "draw_minimap_border": true,
     "draw_white_space": "all",
@@ -106,4 +108,3 @@
     "copy_with_empty_selection": true,
     "always_show_minimap_viewport": true,
 }
-

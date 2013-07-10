@@ -1,96 +1,109 @@
 {
-	"auto_complete": true,
-	"auto_complete_commit_on_tab": true,
-	"auto_complete_delay": 50,
-	"auto_complete_selector": "source - comment",
-	"auto_complete_size_limit": 4194304,
-	"auto_complete_triggers":
-	[
-		{
-			"characters": "<",
-			"selector": "text.html"
-		}
-	],
-	"auto_complete_with_fields": false,
-	"auto_indent": true,
-	"auto_match_enabled": true,
-	"bold_folder_labels": true,
-	"caret_style": "phase",
-	"color_scheme": "Packages/Color Scheme - Default/Eiffel.tmTheme",
-	"default_encoding": "UTF-8",
-	"default_line_ending": "system",
-	"detect_indentation": true,
-	"draw_indent_guides": true,
-	"draw_minimap_border": true,
-	"draw_white_space": "selection",
-	"ensure_newline_at_eof_on_save": true,
-	"fade_fold_buttons": false,
-	"fallback_encoding": "UTF-8",
-	"file_exclude_patterns":
-	[
-		"*.pyc",
-		"*.pyo",
-		"*.exe",
-		"*.dll",
-		"*.obj",
-		"*.o",
-		"*.a",
-		"*.lib",
-		"*.so",
-		"*.dylib",
-		"*.ncb",
-		"*.sdf",
-		"*.suo",
-		"*.pdb",
-		"*.idb",
-		".DS_Store",
-		"*.class",
-		"*.psd",
-		"*.db"
-	],
-	"find_selected_text": true,
-	"fold_buttons": true,
-	"folder_exclude_patterns":
-	[
-		"target",
-		"venv",
-		".git",
-		".svn",
-		"__pycache__"
-	],
-	"font_face": "SourceCodePro",
-	"font_size": 13,
-	"gutter": true,
-	"highlight_line": true,
-	"ignored_packages":
-	[
-		"Vintage"
-	],
-	"indent_guide_options":
-	[
-		"draw_active"
-	],
-	"indent_subsequent_lines": true,
-	"line_numbers": true,
-	"line_padding_bottom": 1,
-	"line_padding_top": 1,
-	"match_brackets": true,
-	"match_brackets_braces": true,
-	"match_brackets_content": true,
-	"match_brackets_square": true,
-	"match_tags": true,
-	"rulers":
-	[
-		80
-	],
-	"scroll_past_end": false,
-	"shift_tab_unindent": false,
-	"spell_check": false,
-	"tab_completion": true,
-	"tab_size": 4,
-	"translate_tabs_to_spaces": true,
-	"trim_automatic_white_space": true,
-	"trim_trailing_white_space_on_save": true,
-	"use_tab_stops": true,
-	"word_wrap": false
+    "auto_complete": true,
+    "auto_complete_commit_on_tab": true,
+    "auto_complete_delay": 50,
+    "auto_complete_selector": "source - comment",
+    "auto_complete_size_limit": 4194304,
+    "auto_complete_triggers":
+    [
+        {
+            "characters": "<",
+            "selector": "text.html"
+        }
+    ],
+    "auto_complete_with_fields": false,
+    "auto_indent": true,
+    "auto_match_enabled": true,
+    "bold_folder_labels": true,
+    "caret_style": "phase",
+    "color_scheme": "Packages/Color Scheme - Default/Eiffel.tmTheme",
+    "default_encoding": "UTF-8",
+    "default_line_ending": "system",
+    "detect_indentation": true,
+    "draw_indent_guides": true,
+    "draw_minimap_border": true,
+    "draw_white_space": "all",
+    "ensure_newline_at_eof_on_save": true,
+    "fade_fold_buttons": false,
+    "fallback_encoding": "UTF-8",
+    "file_exclude_patterns":
+    [
+        "*.pyc",
+        "*.pyo",
+        "*.exe",
+        "*.dll",
+        "*.obj",
+        "*.o",
+        "*.a",
+        "*.lib",
+        "*.so",
+        "*.dylib",
+        "*.ncb",
+        "*.sdf",
+        "*.suo",
+        "*.pdb",
+        "*.idb",
+        ".DS_Store",
+        "*.class",
+        "*.psd",
+        "*.db"
+    ],
+    "folder_exclude_patterns":
+    [
+        ".svn",
+        ".git",
+        ".hg",
+        "CVS"
+    ],
+    "find_selected_text": true,
+    "fold_buttons": true,
+    "folder_exclude_patterns":
+    [
+        "target",
+        "venv",
+        ".git",
+        ".svn",
+        "__pycache__"
+    ],
+    "font_face": "SourceCodePro",
+    "font_size": 14,
+    "gutter": true,
+    "highlight_line": true,
+    "ignored_packages":
+    [
+        "Vintage"
+    ],
+    "indent_guide_options":
+    [
+        "draw_active"
+    ],
+    "indent_subsequent_lines": true,
+    "line_numbers": true,
+    "line_padding_bottom": 1,
+    "line_padding_top": 1,
+    "match_brackets": true,
+    "match_brackets_braces": true,
+    "match_brackets_content": true,
+    "match_brackets_square": true,
+    "match_tags": true,
+    "rulers":
+    [
+        80
+    ],
+    "scroll_past_end": false,
+    "shift_tab_unindent": false,
+    "spell_check": false,
+    "draw_centered": false,
+    "tab_completion": true,
+    "tab_size": 4,
+    "translate_tabs_to_spaces": true,
+    "trim_automatic_white_space": true,
+    "trim_trailing_white_space_on_save": true,
+    "use_tab_stops": true,
+    "word_wrap": false,
+    "draw_minimap_border": false,
+    "always_prompt_for_file_reload": false,
+    "copy_with_empty_selection": true,
+    "always_show_minimap_viewport": true,
 }
+

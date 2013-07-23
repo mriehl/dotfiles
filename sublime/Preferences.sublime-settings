@@ -9,8 +9,8 @@
 	"auto_complete_triggers":
 	[
 		{
-			"characters": "<",
-			"selector": "text.html"
+			"characters": ".",
+			"selector": "source.python"
 		}
 	],
 	"auto_complete_with_fields": false,

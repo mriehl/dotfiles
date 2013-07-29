@@ -7,6 +7,13 @@
     { "keys": ["ctrl+shift+t"], "command": "reopen_last_file" },
     { "keys": ["alt+o"], "command": "switch_file", "args": {"extensions": ["cpp", "cxx", "cc", "c", "hpp", "hxx", "h", "ipp", "inl", "m", "mm"]} },
     { "keys": ["ctrl+n"], "command": "new_file" },
+    {
+        "keys": ["enter"],
+        "command": "commit_msg",
+        "context": [
+            { "key": "selector", "operator": "equal", "match_all": true, "operand": "text.markdown.irc" }
+        ]
+    },
     { "keys": ["ctrl+s"], "command": "save" },
     { "keys": ["ctrl+shift+s"], "command": "prompt_save_as" },
     { "keys": ["ctrl+f4"], "command": "close_file" },

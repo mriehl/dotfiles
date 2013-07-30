@@ -18,7 +18,6 @@
 	"auto_match_enabled": true,
 	"bold_folder_labels": true,
 	"caret_style": "phase",
-	"theme": "Soda Dark 3.sublime-theme",
 	"copy_with_empty_selection": true,
 	"default_encoding": "UTF-8",
 	"default_line_ending": "system",
@@ -63,7 +62,7 @@
 		"__pycache__"
 	],
 	"font_face": "SourceCodePro",
-	"font_size": 14,
+	"font_size": 12,
 	"gutter": true,
 	"highlight_line": true,
 	"ignored_packages":
@@ -94,6 +93,7 @@
 	"spell_check": false,
 	"tab_completion": true,
 	"tab_size": 4,
+	"theme": "Nil.sublime-theme",
 	"translate_tabs_to_spaces": true,
 	"trim_automatic_white_space": true,
 	"trim_trailing_white_space_on_save": true,

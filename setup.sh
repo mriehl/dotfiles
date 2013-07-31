@@ -50,6 +50,7 @@ function install () {
 install ~/.vimrc .vimrc
 install ~/.xmobarrc .xmobarrc
 install ~/.xmonad .xmonad
+install ~/.gitconfig .gitconfig
 
 #---sublime text
 #------snippets

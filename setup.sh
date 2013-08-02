@@ -67,6 +67,8 @@ install ~/.config/sublime-text-3/Packages/User/python-single-file.sublime-build 
 install ~/.config/sublime-text-3/Packages/User/python-single-file-with-venv.sublime-build sublime/python-single-file-with-venv.sublime-build
 #---------java
 install ~/.config/sublime-text-3/Packages/User/mvn.sublime-build sublime/mvn.sublime-build
+#---------js
+install ~/.config/sublime-text-3/Packages/User/nodejs-single-file.sublime-build sublime/nodejs-single-file.sublime-build
 
 #---scripts
 install /usr/local/bin/statusbar statusbar as_root

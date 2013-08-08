@@ -1,6 +1,7 @@
 {
 	"always_prompt_for_file_reload": false,
 	"always_show_minimap_viewport": true,
+	"pep8_ignore": ["E501"],
 	"auto_complete": true,
 	"auto_complete_commit_on_tab": true,
 	"auto_complete_delay": 50,

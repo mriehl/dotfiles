@@ -59,7 +59,8 @@
 		"venv",
 		".git",
 		".svn",
-		"__pycache__"
+		"__pycache__",
+		"_site"
 	],
 	"font_face": "SourceCodePro",
 	"font_size": 13,

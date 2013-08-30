@@ -24,20 +24,20 @@ function install () {
     TARGET=$1
     FILE=`realpath "$2"`
     AS_ROOT=$3
+    GAINROOT=""
+    [[ "$AS_ROOT" == "as_root" ]] && GAINROOT="sudo "
+    echo "GAINROOT $GAINROOT"
     echo "Installing $FILE at $TARGET"
     [[ ! -d `dirname "$TARGET"` ]] && {
         echo "  creating upper directories.."
-        [[ "$AS_ROOT" == "as_root" ]] && sudo mkdir -p `dirname $TARGET`
-        [[ "$AS_ROOT" == "as_root" ]] || mkdir -p `dirname $TARGET`
+        $GAINROOT mkdir -p `dirname $TARGET`
     }
     [[ -d $TARGET || -L $TARGET || -f $TARGET ]] && {
         echo "  $TARGET exists, removing.."
-        [[ "$AS_ROOT" == "as_root" ]] && sudo rm -rf $TARGET
-        [[ "$AS_ROOT" == "as_root" ]] || rm -rf $TARGET
+        $GAINROOT rm -rf $TARGET
     }
 
-    [[ "$AS_ROOT" == "as_root" ]] && sudo ln -s "$FILE" "$TARGET" && echo "  Installed $TARGET as root"
-    [[ "$AS_ROOT" == "as_root" ]] || ln -s "$FILE" "$TARGET" && echo "  Installed $TARGET"
+    $GAINROOT ln -s "$FILE" "$TARGET" && echo "  Installed $TARGET $AS_ROOT"
 
 }
 

@@ -63,7 +63,7 @@
 		"_site"
 	],
 	"font_face": "SourceCodePro",
-	"font_size": 13,
+	"font_size": 11,
 	"gutter": true,
 	"highlight_line": true,
 	"ignored_packages":

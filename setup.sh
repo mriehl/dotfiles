@@ -30,13 +30,8 @@ function install () {
         [[ "$AS_ROOT" == "as_root" ]] && sudo mkdir -p `dirname $TARGET`
         [[ "$AS_ROOT" == "as_root" ]] || mkdir -p `dirname $TARGET`
     }
-    [[ -f $TARGET ]] && {
+    [[ -d $TARGET || -L $TARGET || -f $TARGET ]] && {
         echo "  $TARGET exists, removing.."
-        [[ "$AS_ROOT" == "as_root" ]] && sudo rm -f $TARGET
-        [[ "$AS_ROOT" == "as_root" ]] || rm -f $TARGET
-    }
-    [[ -d $TARGET ]] && {
-        echo "  $TARGET exists (dir), removing.."
         [[ "$AS_ROOT" == "as_root" ]] && sudo rm -rf $TARGET
         [[ "$AS_ROOT" == "as_root" ]] || rm -rf $TARGET
     }
@@ -47,10 +42,10 @@ function install () {
 }
 
 #---rcfiles
-install ~/.vimrc .vimrc
-install ~/.xmobarrc .xmobarrc
-install ~/.xmonad .xmonad
-install ~/.gitconfig .gitconfig
+install ~/.vimrc rcfiles/.vimrc
+install ~/.xmobarrc rcfiles/.xmobarrc
+install ~/.xmonad rcfiles/.xmonad
+install ~/.gitconfig rcfiles/.gitconfig
 
 #---sublime text
 #------snippets
@@ -58,6 +53,7 @@ install ~/.config/sublime-text-3/Packages/User/coroutine.sublime-snippet sublime
 install ~/.config/sublime-text-3/Packages/User/decorate_coroutine.sublime-snippet sublime/decorate_coroutine.sublime-snippet
 #------settings
 install ~/.config/sublime-text-3/Packages/User/Preferences.sublime-settings sublime/Preferences.sublime-settings
+install ~/.config/sublime-text-3/Packages/User/Anaconda.sublime-settings sublime/Anaconda.sublime-settings
 #------keybindings
 install ~/.config/sublime-text-3/Packages/User/Default\ \(Linux\).sublime-keymap sublime/Default\ \(Linux\).sublime-keymap
 #------build systems

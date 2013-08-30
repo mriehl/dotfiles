@@ -1,7 +1,9 @@
-#!/bin/bash
+#!/usr/bin/env bash
+set -u -e -E -C -o pipefail
 
-command -v realpath >>/dev/null 2>&1 || sudo apt-get install realpath
-
+function install_required_libraries() {
+    command -v realpath >>/dev/null 2>&1 || sudo apt-get install realpath
+}
 
 function install_source_code_pro() {
     find ~/.fonts -name "*SourceCodePro*" | grep -q '.' || {
@@ -23,10 +25,9 @@ function install_source_code_pro() {
 function install () {
     TARGET=$1
     FILE=`realpath "$2"`
-    AS_ROOT=$3
+    AS_ROOT=${3:-''}
     GAINROOT=""
     [[ "$AS_ROOT" == "as_root" ]] && GAINROOT="sudo "
-    echo "GAINROOT $GAINROOT"
     echo "Installing $FILE at $TARGET"
     [[ ! -d `dirname "$TARGET"` ]] && {
         echo "  creating upper directories.."
@@ -34,12 +35,14 @@ function install () {
     }
     [[ -d $TARGET || -L $TARGET || -f $TARGET ]] && {
         echo "  $TARGET exists, removing.."
-        $GAINROOT rm -rf $TARGET
+        $GAINROOT rm -r "$TARGET"
     }
 
     $GAINROOT ln -s "$FILE" "$TARGET" && echo "  Installed $TARGET $AS_ROOT"
 
 }
+
+install_required_libraries
 
 #---rcfiles
 install ~/.vimrc rcfiles/.vimrc

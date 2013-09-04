@@ -54,6 +54,8 @@ install ~/.xmobarrc rcfiles/.xmobarrc
 install ~/.xmonad rcfiles/.xmonad
 echo "---git"
 install ~/.gitconfig rcfiles/.gitconfig
+echo "---tmux"
+install ~/.tmux.conf rcfiles/.tmux.conf
 
 #---sublime text
 echo "--installing ST3 config"

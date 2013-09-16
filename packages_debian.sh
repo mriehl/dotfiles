@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 ## oracle java PPA
 sudo add-apt-repository ppa:webupd8team/java

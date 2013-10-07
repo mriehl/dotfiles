@@ -19,7 +19,23 @@
     { "keys": ["ctrl+f4"], "command": "close_file" },
     { "keys": ["ctrl+w"], "command": "close" },
 
-    { "keys": ["ctrl+shift+-"], "command": "pep8_autoformat" },
+    // Context-dependent autoformatting with ctrl+shift+-
+    {
+        "keys": ["ctrl+shift+-"],
+        "command": "pep8_autoformat", //requires package Anaconda
+        "context": [
+            { "key": "selector", "operator": "equal", "match_all": true, "operand": "source.python" }
+        ]
+    },
+
+    {
+        "keys": ["ctrl+shift+-"],
+        "command": "tag_indent_document", //requires package Tag
+        "context": [
+            { "key": "selector", "operator": "equal", "match_all": true, "operand": "text.html" }
+        ]
+    },
+
 
     { "keys": ["ctrl+k", "ctrl+b"], "command": "toggle_side_bar" },
     { "keys": ["f11"], "command": "toggle_full_screen" },
@@ -43,13 +59,6 @@
     { "keys": ["shift+delete"], "command": "cut" },
     { "keys": ["ctrl+insert"], "command": "copy" },
     { "keys": ["shift+insert"], "command": "paste" },
-
-    // These two key bindings should replace the above three if you'd prefer
-    // the traditional X11 behavior of shift+insert pasting from the primary
-    // selection. The above CUA keys are the default, to match most GTK
-    // applications.
-    //{ "keys": ["shift+insert"], "command": "paste", "args": {"clipboard": "selection"} },
-    //{ "keys": ["shift+delete"], "command": "right_delete" },
 
     { "keys": ["ctrl+x"], "command": "cut" },
     { "keys": ["ctrl+c"], "command": "copy" },

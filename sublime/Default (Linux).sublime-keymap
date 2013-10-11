@@ -22,7 +22,7 @@
     // Context-dependent autoformatting with ctrl+shift+-
     {
         "keys": ["ctrl+shift+-"],
-        "command": "anaconda_auto_format", //requires package Anaconda
+        "command": "anaconda_auto_format", // requires package Anaconda
         "context": [
             { "key": "selector", "operator": "equal", "match_all": true, "operand": "source.python" }
         ]
@@ -30,7 +30,7 @@
 
     {
         "keys": ["ctrl+shift+-"],
-        "command": "tag_indent_document", //requires package Tag
+        "command": "tag_indent_document", // requires package Tag
         "context": [
             { "key": "selector", "operator": "equal", "match_all": true, "operand": "text.html" }
         ]

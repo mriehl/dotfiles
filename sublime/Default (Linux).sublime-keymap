@@ -22,7 +22,7 @@
     // Context-dependent autoformatting with ctrl+shift+-
     {
         "keys": ["ctrl+shift+-"],
-        "command": "pep8_autoformat", //requires package Anaconda
+        "command": "anaconda_auto_format", //requires package Anaconda
         "context": [
             { "key": "selector", "operator": "equal", "match_all": true, "operand": "source.python" }
         ]

@@ -1,56 +1,25 @@
 {
-    // If package install, upgrade and removal info should be submitted to
-    // the channel for aggregated statistics
-    "submit_usage": false,
-
-    // The URL to post install, upgrade and removal notices to
-    "submit_url": "https://sublime.wbond.net/submit",
-
-    // If packages should be automatically upgraded when ST2 starts
-    "auto_upgrade": true,
-
-    // If missing packages should be automatically installed when ST2 starts
-    "install_missing": true,
-
-    // The minimum frequency in hours in which to check for automatic upgrades,
-    // setting this to 0 will always check for automatic upgrades
-    "auto_upgrade_frequency": 1,
-
-    // Packages to not auto upgrade
-    "auto_upgrade_ignore": [],
-
-    // Timeout for downloading channels, repositories and packages. Doesn't
-    // have an effect on Windows due to a bug in WinINet.
-    "timeout": 30,
-
-    // The number of seconds to cache repository and package info for
-    "cache_length": 300,
-
-    // An HTTP proxy server to use for requests. Not used on Windows since the
-    // system proxy configuration is utilized via WinINet.
-    "http_proxy": "",
-    // An HTTPS proxy server to use for requests - this will inherit from
-    // http_proxy if it is set to "" or null and http_proxy has a value. You
-    // can set this to false to prevent inheriting from http_proxy. Not used on
-    // Windows since the system proxy configuration is utilized via WinINet.
-    "https_proxy": "",
-
-    // Username and password for both http_proxy and https_proxy. May be used
-    // with WinINet to set credentials for system-level proxy config.
-    "proxy_username": "",
-    "proxy_password": "",
-
-    // If HTTP responses should be cached to disk
-    "http_cache": true,
-
-    // Number of seconds to cache HTTP responses for, defaults to one week
-    "http_cache_length": 604800,
-
-    "installed_packages":
-    [
-        "Anaconda",
-        "Package Control",
-        "Tag",
-        "Theme - Nil"
-    ]
+	"auto_upgrade": true,
+	"auto_upgrade_frequency": 1,
+	"auto_upgrade_ignore":
+	[
+	],
+	"cache_length": 300,
+	"http_cache": true,
+	"http_cache_length": 604800,
+	"http_proxy": "",
+	"https_proxy": "",
+	"install_missing": true,
+	"installed_packages":
+	[
+		"Anaconda",
+		"Package Control",
+		"Tag",
+		"Theme - Nil"
+	],
+	"proxy_password": "",
+	"proxy_username": "",
+	"submit_url": "https://sublime.wbond.net/submit",
+	"submit_usage": false,
+	"timeout": 30
 }

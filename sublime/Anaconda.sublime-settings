@@ -1,7 +1,13 @@
 /*
-    Anaconda default settings
+    Anaconda user settings
 */
 {
+    "anaconda_debug": false,
+
+    "auto_project_switch": true,
+
+    "jsonserver_debug": false,
+    "jsonserver_debug_port": 9999,
 
     /*
         Default python interpreter.
@@ -11,7 +17,7 @@
     "python_interpreter": "python",
 
     /*
-        Set those aas true if you don't want Sublime Text regular completions
+        Set those as true if you don't want Sublime Text regular completions
     */
     "suppress_word_completions": false,
     "suppress_explicit_completions": false,
@@ -130,5 +136,13 @@
             https://github.com/SublimeText/Issues/issues/127
 
     */
-    "anaconda_debug": false
+
+    /*
+        Enable unsafe changes:
+            https://github.com/hhatto/autopep8#more-advanced-usage
+
+        Set it as 0 if you are unsure here
+    */
+    "aggressive": 0,
+
 }

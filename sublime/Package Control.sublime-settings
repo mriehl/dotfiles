@@ -13,7 +13,9 @@
 	"installed_packages":
 	[
 		"Anaconda",
+		"GoSublime",
 		"Package Control",
+		"Rust",
 		"Tag",
 		"Theme - Nil"
 	],

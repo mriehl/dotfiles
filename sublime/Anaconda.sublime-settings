@@ -32,6 +32,13 @@
     "complete_parameters": true,
     "complete_all_parameters": true,
 
+
+    /*
+        If you set the following option as true, anaconda will display the
+        signatures of the methods you are using while typying
+    */
+    "display_signatures": false,
+
     /*
         Set is a false to deisable Anaconda Linting totally
     */

@@ -69,6 +69,7 @@ echo "---settings"
 install ~/.config/sublime-text-3/Packages/User/Preferences.sublime-settings sublime/Preferences.sublime-settings
 install ~/.config/sublime-text-3/Packages/User/Anaconda.sublime-settings sublime/Anaconda.sublime-settings
 install ~/.config/sublime-text-3/Packages/User/Package\ Control.sublime-settings sublime/Package\ Control.sublime-settings
+install ~/.config/sublime-text-3/Packages/User/GoSublime-Go.sublime-settings sublime/GoSublime-Go.sublime-settings
 echo "---keybindings"
 install ~/.config/sublime-text-3/Packages/User/Default\ \(Linux\).sublime-keymap sublime/Default\ \(Linux\).sublime-keymap
 echo "---build systems"

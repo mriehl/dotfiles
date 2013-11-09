@@ -16,7 +16,6 @@
     pager = less -R
 
 [alias]
-    diverges = !bash -c 'diff -u <(git rev-list --first-parent "${1}") <(git rev-list --first-parent "${2:-HEAD}") | sed -ne \"s/^ //p\" | head -1' -
     st = status -uno -s -b
     ci = commit
     br = branch -va

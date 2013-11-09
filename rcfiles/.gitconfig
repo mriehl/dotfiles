@@ -37,7 +37,10 @@
     ls = ls-files
 
 [help]
-  autocorrect = 1
+    autocorrect = 1
+
+[rerere]
+    enabled = 1
 
 [web]
 browser = chromium-browser

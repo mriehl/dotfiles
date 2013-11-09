@@ -17,17 +17,23 @@
 
 [alias]
     diverges = !bash -c 'diff -u <(git rev-list --first-parent "${1}") <(git rev-list --first-parent "${2:-HEAD}") | sed -ne \"s/^ //p\" | head -1' -
-    st = status
+    st = status -uno -s -b
     ci = commit
-    br = branch
+    br = branch -va
     co = checkout
+    go = checkout -b
     df = diff
     cdf = diff --cached
+    sdf = diff --staged
     lg = log -p
+    logs = log --stat -p --decorate
     destroy = reset --hard
     up = !sh -c 'git pull --rebase --prune && git log --pretty=format:\"%Cred%ae %Creset- %C(yellow)%s %Creset(%ar)\" HEAD@{1}..'
     lol = log --graph --decorate --pretty=oneline --abbrev-commit
     lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
+    hist = log --graph --pretty=format:'%Cred%h%Creset -%C(bold yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+    todo =  grep --line-number -I -i --word-regexp TODO
+    today = !git log --author=$(git config user.email) --since=yesterday
     ls = ls-files
 
 [branch "master"]

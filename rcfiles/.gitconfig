@@ -36,6 +36,11 @@
     today = !git log --author=$(git config user.email) --since=yesterday
     ls = ls-files
 
+[help]
+  autocorrect = 1
+
+[web]
+browser = chromium-browser
 [branch "master"]
     remote = w
     merge = refs/heads/master

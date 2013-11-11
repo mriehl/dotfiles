@@ -16,7 +16,7 @@
     pager = less -R
 
 [alias]
-    st = status -uno -s -b
+    st = status -uall -s -b
     ci = commit
     br = branch -va
     co = checkout

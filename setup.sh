@@ -89,6 +89,7 @@ install /usr/local/bin/statusbar statusbar as_root
 install /usr/local/bin/xmonad-start xmonad-start as_root
 install /usr/local/bin/xmobar-change-screen xmobar-change-screen as_root
 install /usr/local/bin/pip-upgrade-all pip-upgrade-all as_root
+install /usr/local/bin/go-upgrade go-upgrade as_root
 
 #---fonts
 install_source_code_pro

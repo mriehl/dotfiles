@@ -1,0 +1,11 @@
+#!/bin/bash
+GITPKGS=$(cd $GOPATH/src; find . -name ".git" | xargs dirname | sed -r 's/^.{2}//')
+HGPKGS=$(cd $GOPATH/src; find . -name ".hg" | xargs dirname | sed -r 's/^.{2}//')
+PKGS="$GITPKGS $HGPKGS"
+echo $PKGS
+
+for PKG in $PKGS; do
+    echo -n "Trying to upgrade $PKG..."
+    RETCODE=$(go get -u $PKG >/dev/null 2>&1; echo $?)
+    echo "...exit $RETCODE"
+done

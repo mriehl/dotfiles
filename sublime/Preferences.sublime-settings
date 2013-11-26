@@ -18,7 +18,7 @@
 	"auto_match_enabled": true,
 	"bold_folder_labels": true,
 	"caret_style": "phase",
-	"color_scheme": "Packages/Color Scheme - Default/Monokai.tmTheme",
+	"color_scheme": "Packages/Color Scheme - Default/Pastels on Dark.tmTheme",
 	"copy_with_empty_selection": true,
 	"default_encoding": "UTF-8",
 	"default_line_ending": "system",
@@ -64,7 +64,7 @@
 		"_site"
 	],
 	"font_face": "SourceCodePro",
-	"font_size": 10,
+	"font_size": 12,
 	"gutter": true,
 	"highlight_line": true,
 	"ignored_packages":

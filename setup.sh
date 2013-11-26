@@ -18,7 +18,7 @@ function install_source_code_pro() {
         wget ${URL} -O ${FONT_NAME}.zip
         unzip -o -j ${FONT_NAME}.zip
         mkdir -p ~/.fonts
-        cp *.otf ~/.fonts
+        cp *.otf.woff ~/.fonts
         fc-cache -f -v
     }
 }

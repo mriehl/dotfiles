@@ -47,6 +47,9 @@ echo "-installing dotfiles"
 
 #---rcfiles
 echo "--installing rcfiles"
+echo "---zsh"
+install ~/.zshrc rcfiles/.zshrc
+install ~/.zshrc.local rcfiles/.zshrc.local
 echo "---vim"
 install ~/.vimrc rcfiles/.vimrc
 echo "---xmonad"

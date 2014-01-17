@@ -583,7 +583,7 @@ MAILCHECK=30
 
 # report about cpu-/system-/user-time of command if running longer than
 # 5 seconds
-REPORTTIME=5
+REPORTTIME=1
 
 # watch for everyone but me and root
 watch=(notme root)

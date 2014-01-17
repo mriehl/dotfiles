@@ -319,6 +319,9 @@ stty erase "^?"
 
 # Pimp colours
 # -----------
+
+## vcs info
+
 if [[ "$TERM" == dumb ]] ; then
     zstyle ':vcs_info:*' actionformats "(%s%)-[%b|%a] " "zsh: %r"
     zstyle ':vcs_info:*' formats       "(%s%)-[%b] "    "zsh: %r"
@@ -331,6 +334,51 @@ else
     zstyle ':vcs_info:(sv[nk]|bzr):*' branchformat "%b${RED}:${BLACK}%r"
 fi
 
+## prompt related
+
+grml_prompt_pre_default=(
+    at                ''
+    battery           ' '
+    change-root       ''
+    date              '%F{blue}'
+    grml-chroot       '%F{red}'
+    history           '%F{green}'
+    host              ''
+    jobs              '%F{cyan}'
+    newline           ''
+    path              '%B'
+    percent           ''
+    dollar            ''
+    rc                '%B%F{red}'
+    rc-always         ''
+    sad-smiley        ''
+    shell-level       '%F{red}'
+    time              '%F{blue}'
+    user              ''
+    vcs               ''
+)
+
+grml_prompt_post_default=(
+    at                ''
+    battery           ''
+    change-root       ''
+    date              '%f'
+    grml-chroot       '%f '
+    history           '%f'
+    host              ''
+    jobs              '%f'
+    newline           ''
+    path              '%b'
+    percent           ''
+    dollar            ''
+    rc                '%f%b'
+    rc-always         ''
+    sad-smiley        ''
+    shell-level       '%f'
+    time              '%f'
+    user              ''
+    vcs               ''
+)
 
 # Aliases
 # -------

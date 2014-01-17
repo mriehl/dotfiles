@@ -165,10 +165,6 @@ fi
 ## translate
 #alias u='translate -i'
 
-## ignore ~/.ssh/known_hosts entries
-#alias insecssh='ssh -o "StrictHostKeyChecking=no" -o "UserKnownHostsFile=/dev/null" -o "PreferredAuthentications=keyboard-interactive"'
-
-
 ## global aliases (for those who like them) ##
 
 #alias -g '...'='../..'
@@ -306,17 +302,23 @@ fi
 #check_com zsh-mime-setup || { autoload zsh-mime-setup && zsh-mime-setup }
 #alias -s pl='perl -S'
 
-## ctrl-s will no longer freeze the terminal.
-#stty erase "^?"
-
 ## you want to automatically use a bigger font on big terminals?
 #if [[ "$TERM" == "xterm" ]] && [[ "$LINES" -ge 50 ]] && [[ "$COLUMNS" -ge 100 ]] && [[ -z "$SSH_CONNECTION" ]] ; then
 #    large
 #fi
 
 
-##
 
+
+
+# Misc settings
+# -------------
+## ctrl-s will no longer freeze the terminal.
+stty erase "^?"
+
+
+# Pimp colours
+# -----------
 if [[ "$TERM" == dumb ]] ; then
     zstyle ':vcs_info:*' actionformats "(%s%)-[%b|%a] " "zsh: %r"
     zstyle ':vcs_info:*' formats       "(%s%)-[%b] "    "zsh: %r"
@@ -330,8 +332,11 @@ else
 fi
 
 
-## Aliases
-
+# Aliases
+# -------
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+
+alias insecssh='ssh -o "StrictHostKeyChecking=no" -o "UserKnownHostsFile=/dev/null" -o "PreferredAuthentications=keyboard-interactive"'
+
 
 ## END OF FILE #################################################################

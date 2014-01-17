@@ -1854,6 +1854,7 @@ grml_prompt_pre_default=(
     newline           ''
     path              '%B'
     percent           ''
+    dollar            ''
     rc                '%B%F{red}'
     rc-always         ''
     sad-smiley        ''
@@ -1875,6 +1876,7 @@ grml_prompt_post_default=(
     newline           ''
     path              '%b'
     percent           ''
+    dollar            ''
     rc                '%f%b'
     rc-always         ''
     sad-smiley        ''
@@ -1896,6 +1898,7 @@ grml_prompt_token_default=(
     newline           $'\n'
     path              '%40<..<%~%<< '
     percent           '%# '
+    dollar            '$ '
     rc                '%(?..%? )'
     rc-always         '%?'
     sad-smiley        '%(?..:()'
@@ -2089,7 +2092,7 @@ function prompt_grml_precmd () {
     emulate -L zsh
     local grmltheme=grml
     local -a left_items right_items
-    left_items=(rc change-root user at host path vcs percent)
+    left_items=(rc change-root user at host path vcs dollar)
     right_items=(sad-smiley)
 
     prompt_grml_precmd_worker

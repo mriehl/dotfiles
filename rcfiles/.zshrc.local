@@ -314,24 +314,24 @@ fi
 #    large
 #fi
 
-## Some quick Perl-hacks aka /useful/ oneliner
-#bew() { perl -le 'print unpack "B*","'$1'"' }
-#web() { perl -le 'print pack "B*","'$1'"' }
-#hew() { perl -le 'print unpack "H*","'$1'"' }
-#weh() { perl -le 'print pack "H*","'$1'"' }
-#pversion()    { perl -M$1 -le "print $1->VERSION" } # i. e."pversion LWP -> 5.79"
-#getlinks ()   { perl -ne 'while ( m/"((www|ftp|http):\/\/.*?)"/gc ) { print $1, "\n"; }' $* }
-#gethrefs ()   { perl -ne 'while ( m/href="([^"]*)"/gc ) { print $1, "\n"; }' $* }
-#getanames ()  { perl -ne 'while ( m/a name="([^"]*)"/gc ) { print $1, "\n"; }' $* }
-#getforms ()   { perl -ne 'while ( m:(\</?(input|form|select|option).*?\>):gic ) { print $1, "\n"; }' $* }
-#getstrings () { perl -ne 'while ( m/"(.*?)"/gc ) { print $1, "\n"; }' $*}
-#getanchors () { perl -ne 'while ( m/«([^«»\n]+)»/gc ) { print $1, "\n"; }' $* }
-#showINC ()    { perl -e 'for (@INC) { printf "%d %s\n", $i++, $_ }' }
-#vimpm ()      { vim `perldoc -l $1 | sed -e 's/pod$/pm/'` }
-#vimhelp ()    { vim -c "help $1" -c on -c "au! VimEnter *" }
 
+##
+
+if [[ "$TERM" == dumb ]] ; then
+    zstyle ':vcs_info:*' actionformats "(%s%)-[%b|%a] " "zsh: %r"
+    zstyle ':vcs_info:*' formats       "(%s%)-[%b] "    "zsh: %r"
+else
+    # these are the same, just with a lot of colors:
+    zstyle ':vcs_info:*' actionformats "${MAGENTA}(${NO_COLOR}%s${MAGENTA})${BLACK}-${MAGENTA}[${BLUE}%b${BLACK}|${RED}%a${MAGENTA}]${NO_COLOR} " \
+                                       "zsh: %r"
+    zstyle ':vcs_info:*' formats       "${MAGENTA}(${NO_COLOR}%s${MAGENTA})${BLACK}-${MAGENTA}[${BLUE}%b${MAGENTA}]${NO_COLOR}%} " \
+                                       "zsh: %r"
+    zstyle ':vcs_info:(sv[nk]|bzr):*' branchformat "%b${RED}:${BLACK}%r"
+fi
+
+
+## Aliases
 
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
-
 
 ## END OF FILE #################################################################

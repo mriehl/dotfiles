@@ -1,7 +1,7 @@
 dotfiles
 ========
 
-Setup up local machine configuration. Installs symlinks so that changes I make can be pushed back to the repo.
+Set up local machine configuration. Installs symlinks so that changes I make can be pushed back to the repo.
 
 There is no globbing, everything is explicited by design, e.G. installing a symlink is done with
 

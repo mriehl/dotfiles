@@ -2112,7 +2112,7 @@ function prompt_grml-large_precmd () {
     emulate -L zsh
     local grmltheme=grml-large
     local -a left_items right_items
-    left_items=(rc jobs history shell-level change-root time date newline
+    left_items=(rc jobs shell-level change-root time date newline
                 user at host path vcs dollar)
     right_items=(sad-smiley)
 

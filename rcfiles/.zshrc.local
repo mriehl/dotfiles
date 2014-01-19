@@ -394,7 +394,7 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 alias insecssh='ssh -o "StrictHostKeyChecking=no" -o "UserKnownHostsFile=/dev/null" -o "PreferredAuthentications=keyboard-interactive"'
 
 # pstop -- ps with top-like output
-# from http://chneukirchen.org/dotfiles/.zshrc 
+# from http://chneukirchen.org/dotfiles/.zshrc
 pstop() {
   ps -eo pid,user,pri,ni,vsz,rsz,stat,pcpu,pmem,time,comm --sort -pcpu |
     head "${@:--n 20}"
@@ -403,7 +403,7 @@ pstop() {
 # n -- fast note taker
 # also from http://chneukirchen.org/dotfiles/.zshrc
 n() {
-  [[ $# == 0 ]] && tail ~/.n || echo "$(date +'%F %R'): $*" >>~/.n
+  [[ $# == 0 ]] && tail ~/Dropbox/notes || echo "$(date +'%F %R'): $*" >>~/Dropbox/notes
 }
 alias n=' noglob n'
 

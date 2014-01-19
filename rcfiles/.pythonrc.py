@@ -11,8 +11,8 @@ else:
 import inspect
 
 
-def what(stuff):
-    for k, v in inspect.getmembers(stuff):
+def what(stuff, predicate=None):
+    for k, v in inspect.getmembers(stuff, predicate):
         print("* %s" % k)
         for line in str(v).splitlines():
             print("\t%s" % line)

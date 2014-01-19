@@ -22,9 +22,6 @@
 #    umask 022
 #fi
 
-## Now, we'll give a few examples of what you might want to use in your
-## .zshrc.local file (just copy'n'paste and uncomment it there):
-
 ## Prompt theme extension ##
 
 # Virtualenv support
@@ -38,10 +35,10 @@ zstyle ':prompt:grml:left:setup' items rc virtual-env change-root user at host p
 ## ZLE tweaks ##
 
 ## use the vi navigation keys (hjkl) besides cursor keys in menu completion
-#bindkey -M menuselect 'h' vi-backward-char        # left
-#bindkey -M menuselect 'k' vi-up-line-or-history   # up
-#bindkey -M menuselect 'l' vi-forward-char         # right
-#bindkey -M menuselect 'j' vi-down-line-or-history # bottom
+bindkey -M menuselect 'h' vi-backward-char        # left
+bindkey -M menuselect 'k' vi-up-line-or-history   # up
+bindkey -M menuselect 'l' vi-forward-char         # right
+bindkey -M menuselect 'j' vi-down-line-or-history # bottom
 
 ## set command prediction from history, see 'man 1 zshcontrib'
 #is4 && zrcautoload predict-on && \

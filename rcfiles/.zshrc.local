@@ -365,4 +365,10 @@ n() {
 }
 alias n=' noglob n'
 
+# Environment
+# -------------
+
+PYTHONSTARTUP=~/.pythonrc.py
+export PYTHONSTARTUP
+
 ## END OF FILE #################################################################

@@ -61,6 +61,8 @@ echo "---tmux"
 install ~/.tmux.conf rcfiles/.tmux.conf
 echo "---conky"
 install ~/.conkyrc rcfiles/.conkyrc
+echo "---python"
+install ~/.pythonrc.py rcfiles/.pythonrc.py
 
 #---sublime text
 echo "--installing ST3 config"

@@ -371,4 +371,6 @@ alias n=' noglob n'
 PYTHONSTARTUP=~/.pythonrc.py
 export PYTHONSTARTUP
 
+export GOPATH=~/go
+
 ## END OF FILE #################################################################

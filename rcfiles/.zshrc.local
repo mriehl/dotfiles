@@ -400,5 +400,11 @@ pstop() {
     head "${@:--n 20}"
 }
 
+# n -- fast note taker
+# also from http://chneukirchen.org/dotfiles/.zshrc
+n() {
+  [[ $# == 0 ]] && tail ~/.n || echo "$(date +'%F %R'): $*" >>~/.n
+}
+alias n=' noglob n'
 
 ## END OF FILE #################################################################

@@ -260,10 +260,6 @@ bindkey -M menuselect 'j' vi-down-line-or-history # bottom
 #    TMOUT=1800
 #fi
 
-## associate types and extensions (be aware with perl scripts and anwanted behaviour!)
-#check_com zsh-mime-setup || { autoload zsh-mime-setup && zsh-mime-setup }
-#alias -s pl='perl -S'
-
 ## you want to automatically use a bigger font on big terminals?
 #if [[ "$TERM" == "xterm" ]] && [[ "$LINES" -ge 50 ]] && [[ "$COLUMNS" -ge 100 ]] && [[ -z "$SSH_CONNECTION" ]] ; then
 #    large

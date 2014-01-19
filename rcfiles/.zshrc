@@ -2102,7 +2102,7 @@ function prompt_grml-chroot_precmd () {
     emulate -L zsh
     local grmltheme=grml-chroot
     local -a left_items right_items
-    left_items=(grml-chroot user at host path percent)
+    left_items=(grml-chroot user at host path dollar)
     right_items=()
 
     prompt_grml_precmd_worker
@@ -2113,7 +2113,7 @@ function prompt_grml-large_precmd () {
     local grmltheme=grml-large
     local -a left_items right_items
     left_items=(rc jobs history shell-level change-root time date newline
-                user at host path vcs percent)
+                user at host path vcs dollar)
     right_items=(sad-smiley)
 
     prompt_grml_precmd_worker

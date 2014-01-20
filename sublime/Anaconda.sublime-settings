@@ -7,7 +7,6 @@
     "auto_project_switch": true,
 
     "jsonserver_debug": false,
-    "jsonserver_debug_port": 9999,
 
     /*
         Default python interpreter.

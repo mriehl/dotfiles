@@ -85,7 +85,7 @@
         'simple'. To see icons that will be used for each theme check
         gutter_icon_themes folder in Anaconda package.
     */
-    "anaconda_gutter_theme": "simple",
+    "anaconda_gutter_theme": "bright",
 
     /*
         If 'outline' (default) anaconda will outline error lines

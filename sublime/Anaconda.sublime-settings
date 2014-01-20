@@ -74,7 +74,18 @@
     "anaconda_linter_delay": 10,
 
     // If true, anaconda draws gutter marks on line with errors
-    "anaconda_gutter_marks": false,
+    "anaconda_gutter_marks": true,
+
+    /*
+
+        If anaconda_gutter_marks is true, this determines what theme is used.
+        Theme 'basic' only adds dots and circles to gutter.
+
+        Other available themes are 'alpha', 'bright', 'dark', 'hard' and
+        'simple'. To see icons that will be used for each theme check
+        gutter_icon_themes folder in Anaconda package.
+    */
+    "anaconda_gutter_theme": "simple",
 
     /*
         Use PyLint instead of PyFlakes and PEP-8

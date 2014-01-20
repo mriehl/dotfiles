@@ -36,7 +36,7 @@
         If you set the following option as true, anaconda will display the
         signatures of the methods you are using while typying
     */
-    "display_signatures": false,
+    "display_signatures": true,
 
     /*
         Set is a false to deisable Anaconda Linting totally

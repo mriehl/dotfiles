@@ -358,6 +358,8 @@ pstop() {
     head "${@:--n 20}"
 }
 
+alias ex='simple-extract'
+
 # n -- fast note taker
 # also from http://chneukirchen.org/dotfiles/.zshrc
 n() {

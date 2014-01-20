@@ -44,6 +44,17 @@
     "anaconda_linting": true,
 
     /*
+        Autoformat files on save
+
+        This option is disabled by default, AutoPEP8 is really slow and it get
+        the file buffer read only while its working in the background.
+
+        Use this at your risk
+    */
+    "auto_formatting": false,
+
+
+    /*
         Sets the linting behaviour for anaconda:
 
         "always" - Linting works always even while you are writting (in the background)

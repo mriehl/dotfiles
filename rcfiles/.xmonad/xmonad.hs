@@ -24,5 +24,5 @@ main = do
         , ((controlMask, xK_Print), spawnHere "sleep 0.2; scrot -s")
         , ((0, xK_Print), spawnHere "scrot")
         , ((mod4Mask .|. shiftMask, xK_s), spawnHere "synapse")
-        , ((mod4Mask .|. shiftMask, xK_p), spawnHere "exe=`dmenu_run` && eval \"exec $exe\"")
+        , ((mod4Mask .|. shiftMask, xK_p), spawnHere "dmenu_run")
         ]

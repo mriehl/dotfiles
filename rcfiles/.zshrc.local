@@ -294,6 +294,28 @@ fi
 
 ## prompt related
 
+grml_prompt_token_default=(
+    at                '@'
+    battery           'PERCENT'
+    change-root       'debian_chroot'
+    date              '%D{%Y-%m-%d}'
+    grml-chroot       'GRML_CHROOT'
+    history           '{history#%!} '
+    host              '%m '
+    jobs              '[%j running job(s)] '
+    newline           $'\n'
+    path              '%c '
+    percent           '%# '
+    dollar            '$ '
+    rc                '%(?..%? )'
+    rc-always         '%?'
+    sad-smiley        '%(?..FAIL)'
+    shell-level       '%(3L.+ .)'
+    time              '%D{%H:%M:%S} '
+    user              '%n'
+    vcs               '0'
+)
+
 grml_prompt_pre_default=(
     at                ''
     battery           ' '

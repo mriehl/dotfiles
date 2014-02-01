@@ -53,6 +53,15 @@
     */
     "auto_formatting": false,
 
+    /*
+        Do not fix the errors listed here:
+        E501 - Try to make lines fit within --max-line-length characters.
+
+    */
+    "autoformat_ignore":
+    [ 
+        "E501"
+    ],
 
     /*
         Sets the linting behaviour for anaconda:

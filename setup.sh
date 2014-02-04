@@ -6,24 +6,6 @@ function install_required_libraries() {
     command -v realpath >>/dev/null 2>&1 || sudo apt-get install realpath
 }
 
-function install_source_code_pro() {
-    echo "-checking SourceCodePro installation"
-    find ~/.fonts -name "*SourceCodePro*" | grep -q '.' || {
-        echo "--SourceCodePro not installed, installing"
-        FONT_NAME="SourceCodePro"
-        URL="http://sourceforge.net/projects/sourcecodepro.adobe/files/latest/download"
-
-        mkdir /tmp/adodefont
-        cd /tmp/adodefont
-        wget ${URL} -O ${FONT_NAME}.zip
-        unzip -o -j ${FONT_NAME}.zip
-        mkdir -p ~/.fonts
-        cp *.otf.woff ~/.fonts
-        fc-cache -f -v
-    }
-}
-
-
 function install () {
     TARGET=$1
     FILE=`realpath "$2"`
@@ -96,6 +78,3 @@ install /usr/local/bin/xmobar-change-screen bin/xmobar-change-screen as_root
 install /usr/local/bin/pip-upgrade-all bin/pip-upgrade-all as_root
 install /usr/local/bin/go-upgrade bin/go-upgrade as_root
 install /usr/local/bin/pycharm bin/pycharm as_root
-
-#---fonts
-install_source_code_pro

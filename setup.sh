@@ -78,3 +78,4 @@ install /usr/local/bin/xmobar-change-screen bin/xmobar-change-screen as_root
 install /usr/local/bin/pip-upgrade-all bin/pip-upgrade-all as_root
 install /usr/local/bin/go-upgrade bin/go-upgrade as_root
 install /usr/local/bin/pycharm bin/pycharm as_root
+install /usr/local/bin/pwn-docker bin/pwn-docker as_root

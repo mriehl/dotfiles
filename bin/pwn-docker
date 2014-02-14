@@ -1,0 +1,10 @@
+#!/bin/bash
+
+echo "This command may be dangerous... see http://www.unix.com/linux/119194-umount-l-dangerous.html"
+
+for container in $(docker ps -a --no-trunc | grep Exit | awk '{print $1}');
+do
+        fs=$(cat /proc/mounts | grep $container | awk '{print $2}')
+        echo "Lazy unmounting $fs for container $container"
+        sudo umount -l $fs
+done

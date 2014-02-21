@@ -273,8 +273,8 @@ zrcautoload is-at-least || is-at-least() { return 1 }
 # because it's required for share_history.
 setopt append_history
 
-# import new commands from the history file also in other zsh-session
-is4 && setopt share_history
+# DISABLED : import new commands from the history file also in other zsh-session
+# is4 && setopt share_history
 
 # save each command's beginning timestamp and the duration to the history file
 setopt extended_history

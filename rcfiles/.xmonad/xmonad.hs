@@ -16,7 +16,8 @@ main = do
         , layoutHook = avoidStruts  $  layoutHook defaultConfig
         , logHook = dynamicLogWithPP xmobarPP
         	{ ppOutput = hPutStrLn xmproc
-            , ppTitle = xmobarColor "green" "" . shorten 50
+            , ppTitle = xmobarColor "white" "" . shorten 50
+            , ppUrgent = xmobarColor "yellow" "red" . xmobarStrip
             }
         , terminal = "lxterminal"
         } `additionalKeys`

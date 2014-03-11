@@ -3,15 +3,12 @@ Config { font = "-misc-fixed-*-*-*-*-13-*-*-*-*-*-*-*"
        , fgColor = "grey"
        , position = Top
        , lowerOnStart = True
-       , commands = [ Run MultiCpu ["-L","3","-H","50","-n","green","-h","red", "-t", "<autototal>%"] 50
-                    , Run CpuFreq ["-t", "<cpu0>"] 50
-                    , Run Memory ["-t","<usedratio>%"] 50
-                    , Run Swap ["-t","<usedratio>%"] 50
+       , commands = [ Run Com "acpi" [] "" 1800
                     , Run Date "%a %_d/%m %H:%M" "date" 600
-                    , Run Com "acpi" [] "" 1800
+                    , Run Com "/usr/local/bin/render-wireless" [] "wifi" 600
                     , Run StdinReader
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%StdinReader% }{ CPUs: %multicpu% @ %cpufreq%  |  Mem: %memory% * Swap: %swap%  |  %acpi%  |  %date%"
+       , template = "%StdinReader% }{ %wifi%  |  %acpi%  |  %date%"
        }

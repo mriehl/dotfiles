@@ -41,7 +41,7 @@
     /*
         Set is a false to deisable Anaconda Linting totally
     */
-    "anaconda_linting": true,
+    "anaconda_linting": false,
 
     /*
         Autoformat files on save
@@ -59,7 +59,7 @@
 
     */
     "autoformat_ignore":
-    [ 
+    [
         "E501"
     ],
 

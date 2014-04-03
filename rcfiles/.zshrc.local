@@ -389,7 +389,6 @@ n() {
 }
 alias n=' noglob n'
 
-alias ffs='sudo !!'
 
 # Environment
 # -------------

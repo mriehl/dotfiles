@@ -389,6 +389,8 @@ n() {
 }
 alias n=' noglob n'
 
+alias pacman-autoremove='sudo pacman -Rns $(pacman -Qqtd)'
+
 
 # Environment
 # -------------

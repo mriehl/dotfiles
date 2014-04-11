@@ -399,5 +399,6 @@ PYTHONSTARTUP=~/.pythonrc.py
 export PYTHONSTARTUP
 
 export GOPATH=~/go
+export GOROOT=/usr/local/go
 
 ## END OF FILE #################################################################

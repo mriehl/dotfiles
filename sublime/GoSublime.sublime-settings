@@ -124,6 +124,7 @@
     //  "env": "", // an object mapping keys to string values that will be added to the default env
     //             // you could, e.g. set {"GOBIN": "/tmp"} in order to avoid installing potentially
     //             // broken commands into your GOPATH*/bin
+    "env": {"GOROOT": "/usr/local/go"},
     //
     //  "kind": "", // a string that identifies the linter, e.g. `go.vet'
     //              // this is useful to be able to identify what kind of error you're seeing,

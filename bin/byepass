@@ -1,0 +1,13 @@
+#!/bin/bash
+
+function require(){
+    PROGRAM="$1"
+    command -v $PROGRAM >/dev/null 2>&1 || {
+        echo "Missing required program: $PROGRAM"
+        exit 1
+    }
+}
+
+require xsel
+
+echo -n "Your password is in another castle" | xsel -b

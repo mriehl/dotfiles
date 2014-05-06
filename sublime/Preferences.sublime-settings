@@ -104,6 +104,7 @@
 	"tab_size": 4,
 	"theme": "Soda Light 3.sublime-theme",
 	"soda_folder_icons": true,
+	"soda_classic_tabs": true,
 	"translate_tabs_to_spaces": true,
 	"trim_automatic_white_space": true,
 	"trim_trailing_white_space_on_save": true,

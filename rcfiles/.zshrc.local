@@ -366,6 +366,9 @@ grml_prompt_post_default=(
 [[ -f /usr/bin/virtualenvwrapper.sh ]] && {
     source /usr/bin/virtualenvwrapper.sh
 }
+[[ -f /usr/local/bin/virtualenvwrapper.sh ]] && {
+    source /usr/local/bin/virtualenvwrapper.sh
+}
 
 # Aliases
 # -------

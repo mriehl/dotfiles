@@ -66,7 +66,7 @@
 		"_site"
 	],
 	"font_face": "SourceCodePro",
-	"font_size": 12,
+	"font_size": 13,
 	"gutter": true,
 	"highlight_line": true,
 	"ignored_packages":
@@ -99,12 +99,12 @@
 	"scroll_past_end": false,
 	"shift_tab_unindent": false,
 	"smart_indent": true,
+	"soda_classic_tabs": true,
+	"soda_folder_icons": true,
 	"spell_check": false,
 	"tab_completion": true,
 	"tab_size": 4,
 	"theme": "Soda Light 3.sublime-theme",
-	"soda_folder_icons": true,
-	"soda_classic_tabs": true,
 	"translate_tabs_to_spaces": true,
 	"trim_automatic_white_space": true,
 	"trim_trailing_white_space_on_save": true,

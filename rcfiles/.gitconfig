@@ -42,7 +42,8 @@
     enabled = 1
 
 [web]
-browser = chromium-browser
+    browser = firefox
+
 [branch "master"]
     remote = w
     merge = refs/heads/master

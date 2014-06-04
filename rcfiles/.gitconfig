@@ -34,6 +34,7 @@
     todo =  grep --line-number -I -i --word-regexp TODO
     today = !git log --author=$(git config user.email) --since=yesterday
     ls = ls-files
+    pulr = pull --rebase
 
 [help]
     autocorrect = 1

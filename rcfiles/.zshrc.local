@@ -394,6 +394,10 @@ alias n=' noglob n'
 
 alias pacman-autoremove='sudo pacman -Rns $(pacman -Qqtd)'
 
+alias targzlook='tar -ztvf'
+
+alias targzcomp='tar -zcvf'
+
 
 # Environment
 # -------------

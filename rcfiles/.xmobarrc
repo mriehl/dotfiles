@@ -5,10 +5,9 @@ Config { font = "-misc-fixed-*-*-*-*-13-*-*-*-*-*-*-*"
        , lowerOnStart = True
        , commands = [ Run Com "acpi" [] "" 1800
                     , Run Date "%a %_d/%m %H:%M" "date" 600
-                    , Run Com "/usr/local/bin/render-wireless" [] "wifi" 50
                     , Run StdinReader
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%StdinReader% }{ %wifi%  |  %acpi%  |  %date%"
+       , template = "%StdinReader% }{%acpi%  |  %date%"
        }

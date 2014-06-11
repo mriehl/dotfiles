@@ -45,7 +45,7 @@ echo "---conky"
 install ~/.conkyrc rcfiles/.conkyrc
 echo "---python"
 install ~/.pythonrc.py rcfiles/.pythonrc.py
-install ~/.ipython/ipy_user_conf.py rcfiles/ipythonrc.py
+install ~/.config/ipython/profile_default/ipython_config.py rcfiles/ipythonrc.py
 
 #---sublime text
 echo "--installing ST3 config"

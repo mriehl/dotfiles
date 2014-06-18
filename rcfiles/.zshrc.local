@@ -399,6 +399,12 @@ alias targzlook='tar -ztvf'
 alias targzcomp='tar -zcvf'
 
 
+# Environment-specific config
+# ---------------------------
+
+[[ -f ~/.is24rc ]] && source ~/.is24rc
+
+
 # Environment
 # -------------
 

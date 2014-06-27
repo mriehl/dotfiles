@@ -35,6 +35,12 @@
     today = !git log --author=$(git config user.email) --since=yesterday
     ls = ls-files
     pulr = pull --rebase
+    ru = remote update
+    rup = remote update --prune
+    ffm = merge --ff-only
+
+[merge]
+defaultToUpstream = 1
 
 [help]
     autocorrect = 1

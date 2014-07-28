@@ -23,3 +23,19 @@ def what(stuff, predicate=None):
         print("* %s" % k)
         for line in str(v).splitlines():
             print("\t%s" % line)
+
+
+# http://jedidjah.ch/code/2013/9/8/wrong_dir_function/
+
+NotDefined = object()
+old_dir = dir
+
+
+def dir(obj=NotDefined):
+    if obj is NotDefined:
+        return old_dir()
+
+    if isinstance(obj, type):
+        return sorted(set(old_dir(obj)) | set(old_dir(obj.__class__)))
+    else:
+        return old_dir(object)

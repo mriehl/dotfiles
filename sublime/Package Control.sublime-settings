@@ -13,6 +13,7 @@
 	"installed_packages":
 	[
 		"Anaconda",
+		"Elixir",
 		"GoSublime",
 		"Keymaps",
 		"MarkdownEditing",

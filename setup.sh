@@ -61,6 +61,7 @@ install ~/.config/sublime-text-3/Packages/User/Anaconda.sublime-settings sublime
 install ~/.config/sublime-text-3/Packages/User/Package\ Control.sublime-settings sublime/Package\ Control.sublime-settings
 install ~/.config/sublime-text-3/Packages/User/GoSublime-Go.sublime-settings sublime/GoSublime-Go.sublime-settings
 install ~/.config/sublime-text-3/Packages/User/GoSublime.sublime-settings sublime/GoSublime.sublime-settings
+install ~/.config/sublime-text-3/Packages/User/RustAutoComplete.sublime-settings sublime/RustAutoComplete.sublime-settings
 echo "---keybindings"
 install ~/.config/sublime-text-3/Packages/User/Default\ \(Linux\).sublime-keymap sublime/Default\ \(Linux\).sublime-keymap
 echo "---build systems"

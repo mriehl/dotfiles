@@ -368,20 +368,20 @@ HOST_TRIPLE="${CFG_CPUTYPE}-${CFG_OSTYPE}"
 # Is this a triple we have nightlies for?
 case $HOST_TRIPLE in
 
-	x86_64-unknown-linux-gnu)
-		;;
+    x86_64-unknown-linux-gnu)
+        ;;
 
-	i686-unknown-linux-gnu)
-		;;
+    i686-unknown-linux-gnu)
+        ;;
 
-	x86_64-apple-darwin)
-		;;
+    x86_64-apple-darwin)
+        ;;
 
-	i686-apple-darwin)
-		;;
+    i686-apple-darwin)
+        ;;
 
-	*)
-		err "rustup.sh doesn't work for host $HOST_TRIPLE"
+    *)
+        err "rustup.sh doesn't work for host $HOST_TRIPLE"
 
 esac
 
@@ -390,7 +390,7 @@ msg "host triple: ${HOST_TRIPLE}"
 PACKAGE_NAME=rust-nightly
 PACKAGE_NAME_AND_TRIPLE="${PACKAGE_NAME}-${HOST_TRIPLE}"
 TARBALL_NAME="${PACKAGE_NAME_AND_TRIPLE}.tar.gz"
-REMOTE_TARBALL="http://static.rust-lang.org/dist/${TARBALL_NAME}"
+REMOTE_TARBALL="https://static.rust-lang.org/dist/${TARBALL_NAME}"
 TMP_DIR="./rustup-tmp-install"
 LOCAL_TARBALL="${TMP_DIR}/${TARBALL_NAME}"
 LOCAL_INSTALL_DIR="${TMP_DIR}/${PACKAGE_NAME_AND_TRIPLE}"
@@ -399,7 +399,7 @@ LOCAL_INSTALL_SCRIPT="${LOCAL_INSTALL_DIR}/install.sh"
 CARGO_PACKAGE_NAME=cargo-nightly
 CARGO_PACKAGE_NAME_AND_TRIPLE="${CARGO_PACKAGE_NAME}-${HOST_TRIPLE}"
 CARGO_TARBALL_NAME="${CARGO_PACKAGE_NAME_AND_TRIPLE}.tar.gz"
-CARGO_REMOTE_TARBALL="http://static.rust-lang.org/cargo-dist/${CARGO_TARBALL_NAME}"
+CARGO_REMOTE_TARBALL="https://static.rust-lang.org/cargo-dist/${CARGO_TARBALL_NAME}"
 CARGO_LOCAL_TARBALL="${TMP_DIR}/${CARGO_TARBALL_NAME}"
 CARGO_LOCAL_INSTALL_DIR="${TMP_DIR}/${CARGO_PACKAGE_NAME_AND_TRIPLE}"
 CARGO_LOCAL_INSTALL_SCRIPT="${CARGO_LOCAL_INSTALL_DIR}/install.sh"
@@ -414,8 +414,8 @@ msg "downloading rust installer"
 "${CFG_CURL}" "${REMOTE_TARBALL}" > "${LOCAL_TARBALL}"
 if [ $? -ne 0 ]
 then
-	rm -Rf "${TMP_DIR}"
-	err "failed to download installer"
+    rm -Rf "${TMP_DIR}"
+    err "failed to download installer"
 fi
 
 if [ -z "${CFG_DISABLE_CARGO}" ]; then
@@ -432,27 +432,27 @@ fi
 (cd "${TMP_DIR}" && tar xzf "${TARBALL_NAME}")
 if [ $? -ne 0 ]
 then
-	rm -Rf "${TMP_DIR}"
-	err "failed to unpack installer"
+    rm -Rf "${TMP_DIR}"
+    err "failed to unpack installer"
 fi
 
 MAYBE_UNINSTALL=
 if [ -n "${CFG_UNINSTALL}" ]
 then
-	MAYBE_UNINSTALL="--uninstall"
+    MAYBE_UNINSTALL="--uninstall"
 fi
 
 MAYBE_PREFIX=
 if [ -n "${CFG_PREFIX}" ]
 then
-	MAYBE_PREFIX="--prefix=${CFG_PREFIX}"
+    MAYBE_PREFIX="--prefix=${CFG_PREFIX}"
 fi
 
 sh "${LOCAL_INSTALL_SCRIPT}" "${MAYBE_UNINSTALL}" "${MAYBE_PREFIX}"
 if [ $? -ne 0 ]
 then
-	rm -Rf "${TMP_DIR}"
-	err "failed to install Rust"
+    rm -Rf "${TMP_DIR}"
+    err "failed to install Rust"
 fi
 
 if [ -z "${CFG_DISABLE_CARGO}" ]; then

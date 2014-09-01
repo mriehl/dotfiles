@@ -12,7 +12,7 @@
     default = matching
 
 [core]
-    editor = vim
+    editor = subl -w
     pager = less -R
 
 [alias]

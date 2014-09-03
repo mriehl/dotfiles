@@ -50,6 +50,9 @@
 		".DS_Store",
 		"*.class",
 		"*.psd",
+		"*.beam",
+		".eunit",
+		".*.swp",
 		"*.db"
 	],
 	"find_selected_text": true,
@@ -63,10 +66,14 @@
 		".git",
 		".svn",
 		"__pycache__",
-		"_site"
+		"_site",
+		"deps",
+		"relx",
+		"_rel",
+		"ebin",
 	],
 	"font_face": "SourceCodePro",
-	"font_size": 12,
+	"font_size": 13,
 	"gutter": true,
 	"highlight_line": true,
 	"ignored_packages":

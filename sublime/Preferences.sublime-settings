@@ -67,7 +67,6 @@
 		".svn",
 		"__pycache__",
 		"_site",
-		"deps",
 		"relx",
 		"_rel",
 		"ebin",

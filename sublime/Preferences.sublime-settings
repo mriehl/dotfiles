@@ -1,6 +1,8 @@
 {
 	"always_prompt_for_file_reload": false,
 	"always_show_minimap_viewport": true,
+	"aprosopo_light_blue": true,
+	"aprosopo_light_dirty_red": true,
 	"auto_complete": true,
 	"auto_complete_commit_on_tab": true,
 	"auto_complete_delay": 50,
@@ -69,7 +71,7 @@
 		"_site",
 		"relx",
 		"_rel",
-		"ebin",
+		"ebin"
 	],
 	"font_face": "SourceCodePro",
 	"font_size": 13,
@@ -110,7 +112,7 @@
 	"spell_check": false,
 	"tab_completion": true,
 	"tab_size": 4,
-	"theme": "Soda Light 3.sublime-theme",
+	"theme": "Aprosopo Light@st3.sublime-theme",
 	"translate_tabs_to_spaces": true,
 	"trim_automatic_white_space": true,
 	"trim_trailing_white_space_on_save": true,

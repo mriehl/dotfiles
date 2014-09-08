@@ -48,6 +48,7 @@ install ~/.pythonrc.py rcfiles/.pythonrc.py
 install ~/.config/ipython/profile_default/ipython_config.py rcfiles/ipythonrc.py
 echo "---gpg"
 install ~/.gnupg/gpg-agent.conf rcfiles/gpg-agent.conf
+install ~/.gnupg/gpg.conf rcfiles/gpg.conf
 
 #---sublime text
 echo "--installing ST3 config"

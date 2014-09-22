@@ -38,6 +38,7 @@
     ru = remote update
     rup = remote update --prune
     ffm = merge --ff-only
+    uff = !sh -c 'git rup && git ffm'
 
 [merge]
 defaultToUpstream = 1

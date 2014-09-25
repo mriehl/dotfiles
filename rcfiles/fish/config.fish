@@ -20,8 +20,13 @@ alias targzcomp='tar -zcvf'
 
 
 # Environment
-# -------------
+# -----------
 
 set PYTHONSTARTUP ~/.pythonrc.py
 
 set GOPATH ~/go
+
+# Fish config
+# -----------
+
+set fish_greeting

@@ -1,6 +1,7 @@
 syntax on
 set expandtab
 set tabstop=4
+se switchbuf=usetab,newtab
 
 let mapleader=","
 

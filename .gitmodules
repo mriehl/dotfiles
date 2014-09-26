@@ -4,3 +4,6 @@
 [submodule "rcfiles/.vim/bundle/nerdtree"]
 	path = rcfiles/.vim/bundle/nerdtree
 	url = https://github.com/scrooloose/nerdtree
+[submodule "rcfiles/.vim/bundle/ctrlp.vim"]
+	path = rcfiles/.vim/bundle/ctrlp.vim
+	url = https://github.com/kien/ctrlp.vim

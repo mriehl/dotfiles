@@ -41,6 +41,7 @@ install ~/.vim/autoload/pathogen.vim rcfiles/.vim/autoload/pathogen.vim
 echo "----pathogen plugins"
 install ~/.vim/bundle/jedi-vim rcfiles/.vim/bundle/jedi-vim/
 install ~/.vim/bundle/nerdtree rcfiles/.vim/bundle/nerdtree/
+install ~/.vim/bundle/ctrlp.vim rcfiles/.vim/bundle/ctrlp.vim/
 echo "---xmonad"
 install ~/.xmobarrc rcfiles/.xmobarrc
 install ~/.xmonad rcfiles/.xmonad

@@ -18,6 +18,12 @@ let g:jedi#completions_command = "<C-Space>"
 let g:jedi#rename_command = "<leader>r"
 let g:jedi#show_call_signatures = "1"
 
+" Ctrlp
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v[\/](target|venv|ve|ve2|ve3|__pycache__)$',
+  \ 'file': '\v\.(exe|so|dll|pyc|pyo|a)$',
+  \ }
+
 " Nerdtree
 nnoremap <C-k> :NERDTree<CR>
 
@@ -33,3 +39,4 @@ nnoremap <A-Up> :wincmd k<CR>
 nnoremap <A-Down> :wincmd j<CR>
 nnoremap <A-Left>  :wincmd h<CR>
 nnoremap <A-Right>  :wincmd l<CR>
+

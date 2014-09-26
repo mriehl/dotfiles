@@ -23,6 +23,10 @@ function install () {
 
 }
 
+echo "-pulling in dependencies"
+git submodule init
+git submodule update
+
 install_required_libraries
 
 echo "-installing dotfiles"

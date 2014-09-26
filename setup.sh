@@ -38,7 +38,6 @@ install ~/.zshrc rcfiles/.zshrc
 install ~/.zshrc.local rcfiles/.zshrc.local
 echo "---fish"
 install ~/.config/fish/config.fish rcfiles/fish/config.fish
-install ~/.config/fish/functions/fish_prompt.fish rcfiles/fish/fish_prompt.fish
 echo "---vim"
 install ~/.vimrc rcfiles/.vimrc
 install ~/.vim/autoload/pathogen.vim rcfiles/.vim/autoload/pathogen.vim

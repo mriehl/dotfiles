@@ -38,6 +38,8 @@ install ~/.config/fish/functions/fish_prompt.fish rcfiles/fish/fish_prompt.fish
 echo "---vim"
 install ~/.vimrc rcfiles/.vimrc
 install ~/.vim/autoload/pathogen.vim rcfiles/.vim/autoload/pathogen.vim
+echo "----pathogen plugins"
+install ~/.vim/bundle/jedi-vim rcfiles/.vim/bundle/jedi-vim/
 echo "---xmonad"
 install ~/.xmobarrc rcfiles/.xmobarrc
 install ~/.xmonad rcfiles/.xmonad

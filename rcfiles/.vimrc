@@ -19,7 +19,7 @@ let g:jedi#rename_command = "<leader>r"
 let g:jedi#show_call_signatures = "1"
 
 " Nerdtree
-autocmd vimenter * NERDTree
+nnoremap <C-k> :NERDTree<CR>
 
 " Keybindings
 nnoremap <C-h> :tabprevious<CR>

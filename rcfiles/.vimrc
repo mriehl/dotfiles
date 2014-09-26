@@ -35,9 +35,3 @@ nnoremap <C-t> :tabnew<CR>
 inoremap <C-h> <Esc>:tabprevious<CR>i
 inoremap <C-l> <Esc>:tabnext<CR>i
 inoremap <C-t> <Esc>:tabnew<CR>
-
-nnoremap <A-Up> :wincmd k<CR>
-nnoremap <A-Down> :wincmd j<CR>
-nnoremap <A-Left>  :wincmd h<CR>
-nnoremap <A-Right>  :wincmd l<CR>
-

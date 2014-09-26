@@ -26,8 +26,9 @@ set PYTHONSTARTUP ~/.pythonrc.py
 
 set GOPATH ~/go
 
+export LD_LIBRARY_PATH /usr/local/lib
+
 # Fish config
 # -----------
 
 set fish_greeting
-

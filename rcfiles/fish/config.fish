@@ -26,7 +26,7 @@ set PYTHONSTARTUP ~/.pythonrc.py
 
 set GOPATH ~/go
 
-set LD_LIBRARY_PATH /usr/local/lib
+set -gx LD_LIBRARY_PATH /usr/local/lib
 
 # Fish config
 # -----------

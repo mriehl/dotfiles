@@ -36,3 +36,6 @@ nnoremap <C-t> :tabnew<CR>
 inoremap <C-h> <Esc>:tabprevious<CR>i
 inoremap <C-l> <Esc>:tabnext<CR>i
 inoremap <C-t> <Esc>:tabnew<CR>
+
+" Environment
+let $RUST_SRC_PATH="/opt/rust-src/src"

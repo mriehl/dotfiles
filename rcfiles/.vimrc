@@ -37,5 +37,10 @@ inoremap <C-h> <Esc>:tabprevious<CR>i
 inoremap <C-l> <Esc>:tabnext<CR>i
 inoremap <C-t> <Esc>:tabnew<CR>
 
+" Racer
+let g:racer_experimental_completer = 1
+let g:racer_cmd = "/usr/local/bin/racer"
+
+
 " Environment
 let $RUST_SRC_PATH="/opt/rust-src/src"

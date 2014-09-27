@@ -1,5 +1,5 @@
 syntax on
-set list
+set nolist
 set expandtab
 set tabstop=4
 se switchbuf=usetab,newtab

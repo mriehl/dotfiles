@@ -79,8 +79,7 @@
 	"highlight_line": true,
 	"ignored_packages":
 	[
-		"Vintage",
-		"Markdown"
+		"Markdown",
 	],
 	"indent_guide_options":
 	[

@@ -30,7 +30,7 @@ floating_modifier $mod
 bindsym $mod+Return exec lxterminal
 
 # lock the screen
-bindsym $mod+z exec gnome-screensaver-command -l
+bindsym $mod+z exec /usr/local/bin/i3lock.sh
 
 # kill focused window
 bindsym $mod+Shift+c kill

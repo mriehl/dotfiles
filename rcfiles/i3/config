@@ -151,5 +151,6 @@ bindsym $mod+r mode "resize"
 # finds out, if available)
 bar {
         mode hide
+        position top
         status_command i3status
 }

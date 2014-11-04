@@ -152,6 +152,16 @@ bindsym $mod+r mode "resize"
 bar {
         position top
         status_command i3status
+
+        colors {
+                background #000000
+                statusline #ffffff
+                separator #666666
+                focused_workspace #008fff #007fff #ffffff
+                active_workspace #333333 #5f676a #ffffff
+                inactive_workspace #333333 #222222 #888888
+                urgent_workspace #aa0000 #990000 #ffffff
+        }
 }
 
 

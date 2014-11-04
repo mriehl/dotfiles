@@ -68,6 +68,8 @@ install ~/.vim/plugin/racer.vim rcfiles/.vim/bundle/racer/editors/racer.vim
 echo "---xmonad"
 install ~/.xmobarrc rcfiles/.xmobarrc
 install ~/.xmonad rcfiles/.xmonad
+echo "---i3"
+install ~/.i3 rcfiles/i3
 echo "---git"
 install ~/.gitconfig rcfiles/.gitconfig
 echo "---tmux"

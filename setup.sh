@@ -43,7 +43,7 @@ function install () {
 
 echo "-pulling in dependencies"
 git submodule init
-git submodule update
+git submodule update --remote
 
 install_required_libraries
 

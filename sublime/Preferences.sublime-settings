@@ -104,6 +104,7 @@
 		80
 	],
 	"scroll_past_end": false,
+	"scroll_speed": 0,
 	"shift_tab_unindent": false,
 	"smart_indent": true,
 	"soda_classic_tabs": true,

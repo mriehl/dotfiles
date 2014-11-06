@@ -9,3 +9,5 @@ sudo pip install --upgrade virtualenv
 
 # avoid clashing keybindings with parcellite by removing it
 sudo pacman -R parcellite
+
+sudo archlinux-java set java-8-openjdk

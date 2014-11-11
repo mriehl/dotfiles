@@ -29,6 +29,9 @@ floating_modifier $mod
 # start a terminal
 bindsym $mod+Return exec lxterminal
 
+# launch a pad
+bindsym $mod+p exec xpad
+
 # lock the screen
 bindsym $mod+z exec /usr/local/bin/i3lock.sh
 

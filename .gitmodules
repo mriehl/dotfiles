@@ -13,3 +13,6 @@
 [submodule "rcfiles/.vim/bundle/racer"]
 	path = rcfiles/.vim/bundle/racer
 	url = https://github.com/phildawes/racer
+[submodule "rcfiles/.vim/bundle/vim-airline"]
+	path = rcfiles/.vim/bundle/vim-airline
+	url = https://github.com/bling/vim-airline

@@ -60,11 +60,7 @@ echo "---vim"
 install ~/.vimrc rcfiles/.vimrc
 install ~/.vim/autoload/pathogen.vim rcfiles/.vim/autoload/pathogen.vim
 echo "----pathogen plugins"
-install ~/.vim/bundle/jedi-vim rcfiles/.vim/bundle/jedi-vim/
-install ~/.vim/bundle/nerdtree rcfiles/.vim/bundle/nerdtree/
-install ~/.vim/bundle/ctrlp.vim rcfiles/.vim/bundle/ctrlp.vim/
-install ~/.vim/bundle/rust.vim rcfiles/.vim/bundle/rust.vim/
-install ~/.vim/plugin/racer.vim rcfiles/.vim/bundle/racer/editors/racer.vim
+install ~/.vim/bundle rcfiles/.vim/bundle
 echo "---xmonad"
 install ~/.xmobarrc rcfiles/.xmobarrc
 install ~/.xmonad rcfiles/.xmonad

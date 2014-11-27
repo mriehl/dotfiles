@@ -376,6 +376,8 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 
 alias insecssh='ssh -o "StrictHostKeyChecking=no" -o "UserKnownHostsFile=/dev/null" -o "PreferredAuthentications=keyboard-interactive"'
 
+alias lst='tyls -m'
+
 # pstop -- ps with top-like output
 # from http://chneukirchen.org/dotfiles/.zshrc
 pstop() {

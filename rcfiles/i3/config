@@ -27,7 +27,7 @@ font pango:DejaVu Sans Mono 9
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec lxterminal
+bindsym $mod+Return exec terminology
 
 # launch a pad
 bindsym $mod+p exec xpad

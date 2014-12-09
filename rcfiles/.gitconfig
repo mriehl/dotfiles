@@ -39,6 +39,7 @@
     rup = remote update --prune
     ffm = merge --ff-only
     uff = !sh -c 'git rup && git ffm'
+    sur = submodule update --remote
 
 [merge]
 defaultToUpstream = 1

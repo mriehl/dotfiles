@@ -29,8 +29,8 @@ floating_modifier $mod
 # start a terminal
 bindsym $mod+Return exec terminology
 
-# launch a pad
-bindsym $mod+p exec xpad
+## launch a pad
+#bindsym $mod+p exec xpad
 
 # lock the screen
 bindsym $mod+z exec /usr/local/bin/i3lock.sh
@@ -199,5 +199,5 @@ bar {
 
 # start some stuff
 exec --no-startup-id nm-applet
-exec --no-startup-id xpad
+#exec --no-startup-id xpad
 exec --no-startup-id feh --bg-scale ~/Dropbox/Photos/city.jpg

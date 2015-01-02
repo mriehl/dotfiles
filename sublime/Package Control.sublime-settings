@@ -10,6 +10,12 @@
 	"http_proxy": "",
 	"https_proxy": "",
 	"install_missing": true,
+	"installed_dependencies":
+	[
+		"0_package_control_loader",
+		"bz2",
+		"ssl-linux"
+	],
 	"installed_packages":
 	[
 		"Anaconda",

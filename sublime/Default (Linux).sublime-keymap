@@ -22,7 +22,7 @@
 
     {"command": "anaconda_rename", "keys": ["ctrl+shift+r"]},
 
-    {"command": "anaconda_doc", "keys": ["super+shift+k"]},
+    {"command": "anaconda_doc", "keys": ["super+shift+d"]},
 
 
     // Context-dependent autoformatting with ctrl+shift+-

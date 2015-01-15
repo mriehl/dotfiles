@@ -9,6 +9,9 @@
 	"http_cache_length": 604800,
 	"http_proxy": "",
 	"https_proxy": "",
+	"in_process_packages":
+	[
+	],
 	"install_missing": true,
 	"installed_dependencies":
 	[
@@ -19,7 +22,6 @@
 	"installed_packages":
 	[
 		"Anaconda",
-		"Elixir",
 		"Keymaps",
 		"MarkdownEditing",
 		"Package Control",

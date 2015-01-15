@@ -1,0 +1,3 @@
+#!/bin/bash
+
+nohup ~/programs/LightTable/LightTable >/dev/null 2>&1 &

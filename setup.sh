@@ -79,6 +79,10 @@ echo "---gpg"
 install ~/.gnupg/gpg-agent.conf rcfiles/gpg-agent.conf
 install ~/.gnupg/gpg.conf rcfiles/gpg.conf
 
+echo "--installing light table config"
+install ~/.config/LightTable/User/user.behaviors light-table/user.behaviors
+install ~/.config/LightTable/User/user.keymap light-table/user.keymap
+
 #---sublime text
 echo "--installing ST3 config"
 #------snippets

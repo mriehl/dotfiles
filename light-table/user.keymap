@@ -11,6 +11,8 @@
 ;; want to do in between the square brackets (e.g. type "editor").
 
 [
+ [:app "ctrl-shift-c" :toggle-console]
+
  [:editor "alt-w" :editor.watch.watch-selection]
  [:editor "alt-shift-w" :editor.watch.unwatch]
  [:editor "ctrl-shift-up" :editor.sublime.swapLineUp]

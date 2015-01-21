@@ -40,7 +40,20 @@
     ffm = merge --ff-only
     uff = !sh -c 'git rup && git ffm'
     sur = submodule update --remote
-    remote-difflog = "!sh -c 'current_branch=$(git rev-parse --abbrev-ref HEAD); for remote in $(git remote); do echo \"$remote:\"; [[ -z $(git log --oneline $remote/$current_branch..$current_branch) ]] && echo \"  uptodate\" || echo \"$(git log --oneline $remote/$current_branch..$current_branch)\" | sed \"s/^/  /\"; done'"
+    remote-difflog = "!current_branch=\"$(git rev-parse --abbrev-ref HEAD)\" ;\
+                       f() { remote=\"$1\" ;\
+                             echo \"$remote:\" ;\
+                             log=\"$(git log --format=\" %h %s\" \
+                                     $remote/$current_branch..$current_branch)\" ;\
+                             if [ -z \"$log\" ] ; then\
+                                 echo \" uptodate\" ;\
+                             else \
+                                 echo \"$log\" ;\
+                             fi \
+                       } ;\
+                       for remote in $(git remote) ; do \
+                           f $remote ;\
+                       done;"
     rdf = !git remote-difflog
 
 [merge]

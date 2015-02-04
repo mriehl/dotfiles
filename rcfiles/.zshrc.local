@@ -378,7 +378,8 @@ alias insecssh='ssh -o "StrictHostKeyChecking=no" -o "UserKnownHostsFile=/dev/nu
 
 alias lst='tyls -m'
 
-alias ll='exa -haligS -s name'
+alias ll='exa -hligS -s name'
+alias lla='exa -haligS -s name'
 
 # pstop -- ps with top-like output
 # from http://chneukirchen.org/dotfiles/.zshrc

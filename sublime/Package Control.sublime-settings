@@ -22,10 +22,12 @@
 	"installed_packages":
 	[
 		"Anaconda",
+		"ChannelRepositoryTools",
 		"Keymaps",
 		"MarkdownEditing",
 		"Package Control",
 		"Project Manager",
+		"PyBuilder",
 		"Rust",
 		"RustAutoComplete",
 		"Tag",

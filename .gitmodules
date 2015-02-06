@@ -19,3 +19,6 @@
 [submodule "rcfiles/.vim/bundle/vimerl"]
 	path = rcfiles/.vim/bundle/vimerl
 	url = https://github.com/jimenezrick/vimerl
+[submodule "rcfiles/.vim/bundle/calendar.vim"]
+	path = rcfiles/.vim/bundle/calendar.vim
+	url = https://github.com/itchyny/calendar.vim

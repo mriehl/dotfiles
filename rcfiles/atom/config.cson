@@ -1,0 +1,30 @@
+"*":
+  editor:
+    fontFamily: "Source Code Pro"
+    showInvisibles: true
+    tabLength: 4
+    fontSize: 14
+    invisibles: {}
+  core:
+    themes: [
+      "atom-light-ui"
+      "atom-light-syntax"
+    ]
+    audioBeep: false
+    ignoredNames: [
+      ".git"
+      ".hg"
+      ".svn"
+      "target"
+      "venv"
+      "build"
+      "*.out"
+    ]
+    useReactEditor: true
+    disabledPackages: [
+      "metrics"
+    ]
+  welcome:
+    showOnStartup: false
+  racer:
+    rustSrcPath: "/opt/rust-src/src"

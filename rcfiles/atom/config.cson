@@ -24,6 +24,7 @@
     disabledPackages: [
       "metrics"
     ]
+    autoHideMenuBar: true
   welcome:
     showOnStartup: false
   racer:

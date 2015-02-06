@@ -19,6 +19,7 @@
       "venv"
       "build"
       "*.out"
+      "__pycache__"
     ]
     useReactEditor: true
     disabledPackages: [

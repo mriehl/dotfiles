@@ -24,6 +24,7 @@
     useReactEditor: true
     disabledPackages: [
       "metrics"
+      "background-tips"
     ]
     autoHideMenuBar: true
   welcome:

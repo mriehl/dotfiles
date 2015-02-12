@@ -1,6 +1,6 @@
 {
   "name": "autocomplete-plus",
-  "version": "2.1.0",
+  "version": "2.1.3",
   "main": "./lib/main",
   "description": "Display possible completions in the editor while typing",
   "repository": {
@@ -38,10 +38,10 @@
     "url": "https://github.com/atom-community/autocomplete-plus/issues"
   },
   "homepage": "https://github.com/atom-community/autocomplete-plus",
-  "_id": "autocomplete-plus@2.1.0",
-  "_shasum": "40c6cda24d3a5a89b980079f2a62956065d5de2a",
-  "_resolved": "file:../d-11516-20202-1x5n9p2/package.tgz",
-  "_from": "../d-11516-20202-1x5n9p2/package.tgz",
+  "_id": "autocomplete-plus@2.1.3",
+  "_shasum": "183fe1fefd8f738d6b7aa30e9a3b368bc9fc9587",
+  "_resolved": "file:../d-11519-21822-q6bmdd/package.tgz",
+  "_from": "../d-11519-21822-q6bmdd/package.tgz",
   "_atomModuleCache": {
     "version": 1,
     "dependencies": [

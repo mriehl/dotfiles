@@ -6,11 +6,13 @@ class SuggestionListElement extends HTMLElement
 
   createdCallback: ->
     @subscriptions = new CompositeDisposable
-    @classList.add('popover-list', 'select-list', 'autocomplete-plus', 'autocomplete-suggestion-list')
+    @classList.add('popover-list', 'select-list', 'autocomplete-suggestion-list')
     @subscriptions.add(atom.config.observe('autocomplete-plus.maxSuggestions', => @maxItems = atom.config.get('autocomplete-plus.maxSuggestions')))
     @registerMouseHandling()
 
   attachedCallback: ->
+    # TODO: Fix overlay decorator to in atom to apply class attribute correctly, then move this to overlay creation point.
+    @parentElement.classList.add('autocomplete-plus')
     @addActiveClassToEditor()
     @renderList() unless @ol
     @itemsChanged()
@@ -48,11 +50,11 @@ class SuggestionListElement extends HTMLElement
 
   addActiveClassToEditor: ->
     editorElement = atom.views.getView(atom.workspace.getActiveTextEditor())
-    editorElement.classList.add 'autocomplete-active'
+    editorElement?.classList?.add 'autocomplete-active'
 
   removeActiveClassFromEditor: ->
     editorElement = atom.views.getView(atom.workspace.getActiveTextEditor())
-    editorElement.classList.add 'autocomplete-active'
+    editorElement?.classList?.remove 'autocomplete-active'
 
   moveSelectionUp: ->
     unless @selectedIndex <= 0
@@ -82,6 +84,7 @@ class SuggestionListElement extends HTMLElement
   # Private: Confirms the currently selected item or cancels the list view
   # if no item has been selected
   confirmSelection: ->
+    return unless @model.isActive()
     item = @getSelectedItem()
     if item?
       @model.confirm(item)

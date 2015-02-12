@@ -3,8 +3,8 @@
     fontFamily: "Source Code Pro"
     showInvisibles: true
     tabLength: 4
-    fontSize: 14
     invisibles: {}
+    fontSize: 15
   core:
     themes: [
       "atom-light-ui"

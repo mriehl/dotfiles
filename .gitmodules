@@ -22,3 +22,6 @@
 [submodule "rcfiles/.vim/bundle/calendar.vim"]
 	path = rcfiles/.vim/bundle/calendar.vim
 	url = https://github.com/itchyny/calendar.vim
+[submodule "rcfiles/.vim/bundle/clang_complete"]
+	path = rcfiles/.vim/bundle/clang_complete
+	url = https://github.com/Rip-Rip/clang_complete

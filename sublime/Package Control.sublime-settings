@@ -21,12 +21,12 @@
 		"MarkdownEditing",
 		"Package Control",
 		"Project Manager",
-		"PyBuilder",
 		"Rust",
-		"RustAutoComplete",
 		"Tag",
 		"Theme - Aprosopo",
-		"Theme - Soda"
+		"Theme - Nil",
+		"Theme - Soda",
+		"TOML"
 	],
 	"proxy_password": "",
 	"proxy_username": "",

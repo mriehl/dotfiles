@@ -3,16 +3,15 @@
 */
 {
     "anaconda_debug": false,
+    "jsonserver_debug": false,
+
+    "anaconda_tooltip_theme": "light",  // possible options "light" or "dark"
+    "enable_signatures_tooltip": true,
+    "enable_docstrings_tooltip": true,
+    "merge_signatures_and_doc": true,
 
     "auto_project_switch": true,
 
-    "jsonserver_debug": false,
-
-    /*
-        Default python interpreter.
-
-        This can (an should) be overriden byb project settings
-    */
     "python_interpreter": "python",
 
     /*

@@ -15,8 +15,11 @@
     editor = vim
     pager = less -R
 
+[status]
+    submoduleSummary = true
+
 [alias]
-    st = status -uall -s -b
+    st = status -uall -b
     ci = commit
     br = branch -va
     co = checkout

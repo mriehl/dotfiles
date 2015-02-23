@@ -8,7 +8,7 @@
   'block_doc_comment': {
     'comment': 'Block documentation comment'
     'name': 'comment.block.documentation.rust'
-    'begin': '/\\*[!\\*][^\\*]'
+    'begin': '/\\*[\\*!](?![\\*/])'
     'end': '\\*/'
     'patterns': [
       { 'include': '#block_doc_comment' }
@@ -206,6 +206,11 @@
     'comment': 'Static storage modifier'
     'name': 'storage.modifier.static.rust'
     'match': '\\bstatic\\b'
+  }
+  {
+    'comment': 'Const storage modifier'
+    'name': 'storage.modifier.const.rust'
+    'match': '\\bconst\\b'
   }
   {
     'comment': 'Visibility modifier'

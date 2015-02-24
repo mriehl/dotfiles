@@ -33,3 +33,4 @@
     rustSrcPath: "/opt/rust-src/src"
   "exception-reporting":
     userId: "4921a71e-1702-9cd6-ee48-3e15ac94b0ac"
+  "autocomplete-plus": {}

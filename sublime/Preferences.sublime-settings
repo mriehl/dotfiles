@@ -73,8 +73,8 @@
 		"_rel",
 		"ebin"
 	],
-	"font_face": "SourceCodePro",
-	"font_size": 13,
+	"font_face": "SourceCodePro-Regular",
+	"font_size": 17,
 	"gutter": true,
 	"highlight_line": true,
 	"ignored_packages":

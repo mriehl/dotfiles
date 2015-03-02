@@ -168,7 +168,7 @@ class SymbolProvider
     # Will be between 1 and ~2.75
     1 + Math.max(-Math.pow(.2 * rowDifference - 3, 3) / 25 + .5, 0)
 
-  settingsForScopeDescriptor: (scopeDescriptor, keyPath) =>
+  settingsForScopeDescriptor: (scopeDescriptor, keyPath) ->
     atom.config.getAll(keyPath, scope: scopeDescriptor)
 
   builtinCompletionsForCursorScope: =>

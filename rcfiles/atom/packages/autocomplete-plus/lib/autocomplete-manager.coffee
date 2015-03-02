@@ -1,10 +1,12 @@
 {Range, TextEditor, CompositeDisposable, Disposable}  = require('atom')
 _ = require('underscore-plus')
-minimatch = require('minimatch')
 path = require('path')
 ProviderManager = require('./provider-manager')
 SuggestionList = require('./suggestion-list')
 SuggestionListElement = require('./suggestion-list-element')
+
+# Deferred requires
+minimatch = null
 
 module.exports =
 class AutocompleteManager
@@ -36,6 +38,8 @@ class AutocompleteManager
     @handleCommands()
     @subscriptions.add(@suggestionList) # We're adding this last so it is disposed after events
     @ready = true
+
+  setSnippetsManager: (@snippetsManager) ->
 
   updateCurrentEditor: (currentPaneItem) =>
     return if not currentPaneItem? or currentPaneItem is @editor
@@ -167,6 +171,8 @@ class AutocompleteManager
 
     @replaceTextWithMatch(match)
 
+    # FIXME: move this to the snippet provider's onDidInsertSuggestion() method
+    # when the API has been updated.
     if match.isSnippet
       setTimeout =>
         atom.commands.dispatch(atom.views.getView(@editor), 'snippets:expand')
@@ -205,14 +211,19 @@ class AutocompleteManager
         @editor.selectLeft(match.prefix.length)
         @editor.delete()
 
-      @editor.insertText(match.word)
+      if match.snippet? and @snippetsManager?
+        @snippetsManager.insertSnippet(match.snippet, @editor)
+      else
+        @editor.insertText(match.word ? match.snippet)
 
   # Private: Checks whether the current file is blacklisted.
   #
   # Returns {Boolean} that defines whether the current file is blacklisted
   isCurrentFileBlackListed: =>
     blacklist = atom.config.get('autocomplete-plus.fileBlacklist')?.map((s) -> s.trim())
-    return false unless blacklist? and blacklist.length
+    return false unless blacklist?.length > 0
+
+    minimatch ?= require('minimatch')
     fileName = path.basename(@buffer.getPath())
     for blacklistGlob in blacklist
       return true if minimatch(fileName, blacklistGlob)

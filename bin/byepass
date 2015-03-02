@@ -8,6 +8,6 @@ function require(){
     }
 }
 
-require xsel
+require pbcopy
 
-echo -n "Your password is in another castle" | xsel -b
+echo -n "Your password is in another castle" | pbcopy

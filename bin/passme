@@ -9,8 +9,8 @@ function require(){
 }
 
 require vault
-require xsel
+require pbcopy
 
 SERVICE=${1:? "Usage: $0 SERVICE_NAME"}
 
-vault -p $SERVICE | xsel -b
+vault -p $SERVICE | pbcopy

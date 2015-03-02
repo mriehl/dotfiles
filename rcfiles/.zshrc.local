@@ -412,4 +412,6 @@ export PYTHONSTARTUP
 
 export GOPATH=~/go
 
+export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
+
 ## END OF FILE #################################################################

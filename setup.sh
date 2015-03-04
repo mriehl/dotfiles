@@ -1,9 +1,14 @@
 #!/usr/bin/env bash
 set -u -e -E -C -o pipefail
 
+function fatal() {
+    echo "$1"
+    exit 1
+}
+
 function install_required_libraries() {
     echo "-checking availability of required libraries"
-    command -v realpath >>/dev/null 2>&1 || sudo apt-get install realpath
+    command -v grealpath >>/dev/null 2>&1 || fatal "Please install (g)realpath"
 }
 
 function install_source_code_pro() {
@@ -23,10 +28,9 @@ function install_source_code_pro() {
     }
 }
 
-
 function install () {
     TARGET=$1
-    FILE=`realpath "$2"`
+    FILE=`grealpath "$2"`
     AS_ROOT=${3:-''}
     GAINROOT=""
     [[ "$AS_ROOT" == "as_root" ]] && GAINROOT="sudo "
@@ -129,4 +133,8 @@ install /usr/local/bin/i3lock.sh bin/i3lock.sh as_root
 install /usr/local/bin/lein bin/lein as_root
 
 #---fonts
-install_source_code_pro
+if [[ $(uname) == 'Linux' ]]; then
+    install_source_code_pro
+else
+    echo "Please install source code pro yourself"
+fi

@@ -13,24 +13,33 @@ grid.GRIDHEIGHT = 2
 
 local prefix = {"ctrl", "shift"}
 
+
 local focus = function(w, s, n, e)
    return function()
        cur_window = window:focusedwindow()
-       if w then cur_window:focuswindow_west() end
-       if s then cur_window:focuswindow_south() end
-       if n then cur_window:focuswindow_north() end
-       if e then cur_window:focuswindow_east() end
+       if cur_window then
+               if w then cur_window:focuswindow_west() end
+               if s then cur_window:focuswindow_south() end
+               if n then cur_window:focuswindow_north() end
+               if e then cur_window:focuswindow_east() end
+       else
+               alert.show("No current window")
+       end
    end
 end
 
 local gridset = function(x, y, w, h)
     return function()
         cur_window = window.focusedwindow()
-        grid.set(
-            cur_window,
-            {x=x, y=y, w=w, h=h},
-            cur_window:screen()
-        )
+        if cur_window then
+                grid.set(
+                    cur_window,
+                    {x=x, y=y, w=w, h=h},
+                    cur_window:screen()
+                )
+        else
+                alert.show("No current window")
+        end
     end
 end
 

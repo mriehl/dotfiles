@@ -55,6 +55,8 @@ echo "-installing dotfiles"
 
 #---rcfiles
 echo "--installing rcfiles"
+echo "---mjolnir"
+install ~/.mjolnir rcfiles/mjolnir
 echo "---zsh"
 install ~/.zshrc rcfiles/.zshrc
 install ~/.zshrc.local rcfiles/.zshrc.local

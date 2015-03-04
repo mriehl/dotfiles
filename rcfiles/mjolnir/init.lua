@@ -47,6 +47,7 @@ end
 
 hotkey.bind(prefix, "R", function()
           mjolnir.reload()
+          alert.show("Mjolnir config reload successful!")
         end)
 
 -- Tiling

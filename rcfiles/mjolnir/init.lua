@@ -62,7 +62,7 @@ hotkey.bind(prefix, 'D', gridset(1, 0, 1, 2)) -- full right half
 hotkey.bind(prefix, 'S', grid.maximize_window)
 
 -- Navigation
---
+-- TODO - Need some kind of dynamic dispatch here
 hotkey.bind(prefix, "H", focus(true))
 hotkey.bind(prefix, "J", focus(nil, true))
 hotkey.bind(prefix, "K", focus(nil, nil, true))

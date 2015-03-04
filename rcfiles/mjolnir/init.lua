@@ -4,6 +4,7 @@ local hotkey = require "mjolnir.hotkey"
 local window = require "mjolnir.window"
 local fnutils = require "mjolnir.fnutils"
 local hotkey = require "mjolnir.hotkey"
+local hints = require "mjolnir.th.hints"
 
 local grid = require "mjolnir.sd.grid"
 grid.MARGINX = 0
@@ -76,3 +77,5 @@ hotkey.bind(prefix, "H", focus(true))
 hotkey.bind(prefix, "J", focus(nil, true))
 hotkey.bind(prefix, "K", focus(nil, nil, true))
 hotkey.bind(prefix, "L", focus(nil, nil, nil, true))
+
+hotkey.bind(prefix, "E", hints.windowHints)

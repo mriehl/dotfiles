@@ -80,4 +80,18 @@ hotkey.bind(prefix, "J", focus(nil, true))
 hotkey.bind(prefix, "K", focus(nil, nil, true))
 hotkey.bind(prefix, "L", focus(nil, nil, nil, true))
 
+hotkey.bind(prefix, "I", function()
+    cur_window = window.focusedwindow()
+    if cur_window then
+        cur_app = cur_window:application()
+        if cur_app then
+            cur_app:hide()
+        else
+            alert.show("No current app!")
+        end
+    else
+        alert.show("No current window!")
+    end
+end)
+
 hotkey.bind(prefix, "F", hints.windowHints)

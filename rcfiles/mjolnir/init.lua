@@ -64,11 +64,13 @@ hotkey.bind(prefix, "R", function()
 --
 hotkey.bind(prefix, 'N', grid.pushwindow_nextscreen)
 hotkey.bind(prefix, 'Y', gridset(0, 1, 1, 1)) -- low left
-hotkey.bind(prefix, 'X', gridset(1, 1, 1, 1)) -- low right
+hotkey.bind(prefix, 'C', gridset(1, 1, 1, 1)) -- low right
 hotkey.bind(prefix, 'Q', gridset(0, 0, 1, 1)) -- upper left
-hotkey.bind(prefix, 'W', gridset(1, 0, 1, 1)) -- upper right
-hotkey.bind(prefix, 'A', gridset(0, 0, 1, 2)) -- full left half
-hotkey.bind(prefix, 'D', gridset(1, 0, 1, 2)) -- full right half
+hotkey.bind(prefix, 'E', gridset(1, 0, 1, 1)) -- upper right
+hotkey.bind(prefix, 'A', gridset(0, 0, 1, 2)) -- full left
+hotkey.bind(prefix, 'D', gridset(1, 0, 1, 2)) -- full right
+hotkey.bind(prefix, 'W', gridset(0, 0, 2, 1)) -- full upper
+hotkey.bind(prefix, 'X', gridset(0, 1, 2, 1)) -- full lower
 hotkey.bind(prefix, 'S', grid.maximize_window)
 
 -- Navigation
@@ -78,4 +80,4 @@ hotkey.bind(prefix, "J", focus(nil, true))
 hotkey.bind(prefix, "K", focus(nil, nil, true))
 hotkey.bind(prefix, "L", focus(nil, nil, nil, true))
 
-hotkey.bind(prefix, "E", hints.windowHints)
+hotkey.bind(prefix, "F", hints.windowHints)

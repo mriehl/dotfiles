@@ -15,18 +15,13 @@ grid.GRIDHEIGHT = 2
 local prefix = {"ctrl", "shift"}
 
 local gridset = function(x, y, w, h)
-    return function()
-        cur_window = window.focusedwindow()
-        if cur_window then
-                grid.set(
-                    cur_window,
-                    {x=x, y=y, w=w, h=h},
-                    cur_window:screen()
-                )
-        else
-                alert.show("No current window")
-        end
-    end
+    return callBackWithWindow(function(cur_window)
+        grid.set(
+            cur_window,
+            {x=x, y=y, w=w, h=h},
+            cur_window:screen()
+        )
+     end)
 end
 
 function spawnAndCaptureStdout(command, raw)

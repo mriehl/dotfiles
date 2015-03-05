@@ -63,7 +63,9 @@ hotkey.bind(prefix, 'A', gridset(0, 0, 1, 2)) -- full left
 hotkey.bind(prefix, 'D', gridset(1, 0, 1, 2)) -- full right
 hotkey.bind(prefix, 'W', gridset(0, 0, 2, 1)) -- full upper
 hotkey.bind(prefix, 'X', gridset(0, 1, 2, 1)) -- full lower
-hotkey.bind(prefix, 'S', grid.maximize_window)
+hotkey.bind(prefix, 'S', callBackWithWindow(function(_)
+    grid.maximize_window()
+end))
 
 -- Navigation
 hotkey.bind(prefix, "H", callBackWithWindow(function(cur_window)

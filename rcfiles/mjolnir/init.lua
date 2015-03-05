@@ -14,21 +14,6 @@ grid.GRIDHEIGHT = 2
 
 local prefix = {"ctrl", "shift"}
 
-
-local focus = function(w, s, n, e)
-   return function()
-       cur_window = window:focusedwindow()
-       if cur_window then
-               if w then cur_window:focuswindow_west() end
-               if s then cur_window:focuswindow_south() end
-               if n then cur_window:focuswindow_north() end
-               if e then cur_window:focuswindow_east() end
-       else
-               alert.show("No current window")
-       end
-   end
-end
-
 local gridset = function(x, y, w, h)
     return function()
         cur_window = window.focusedwindow()
@@ -55,10 +40,22 @@ function spawnAndCaptureStdout(command, raw)
   return s
 end
 
+function callBackWithWindow(callback)
+    return function()
+            current_window = window.focusedwindow()
+            if current_window then
+                callback(current_window)
+            else
+                alert.show("No current window!")
+            end
+    end
+end
+
 hotkey.bind(prefix, "R", function()
           mjolnir.reload()
           alert.show("Mjolnir config reload successful!")
         end)
+
 
 -- Tiling
 --
@@ -74,24 +71,27 @@ hotkey.bind(prefix, 'X', gridset(0, 1, 2, 1)) -- full lower
 hotkey.bind(prefix, 'S', grid.maximize_window)
 
 -- Navigation
--- TODO - Need some kind of dynamic dispatch here
-hotkey.bind(prefix, "H", focus(true))
-hotkey.bind(prefix, "J", focus(nil, true))
-hotkey.bind(prefix, "K", focus(nil, nil, true))
-hotkey.bind(prefix, "L", focus(nil, nil, nil, true))
+hotkey.bind(prefix, "H", callBackWithWindow(function(cur_window)
+    cur_window:focuswindow_west()
+end))
+hotkey.bind(prefix, "J", callBackWithWindow(function(cur_window)
+    cur_window:focuswindow_south()
+end))
+hotkey.bind(prefix, "K", callBackWithWindow(function(cur_window)
+    cur_window:focuswindow_north()
+end))
+hotkey.bind(prefix, "L", callBackWithWindow(function(cur_window)
+    cur_window:focuswindow_east()
+end))
 
-hotkey.bind(prefix, "I", function()
-    cur_window = window.focusedwindow()
-    if cur_window then
-        cur_app = cur_window:application()
-        if cur_app then
-            cur_app:hide()
-        else
-            alert.show("No current app!")
-        end
+hotkey.bind(prefix, "I", callBackWithWindow(function(cur_window)
+    cur_app = cur_window:application()
+    if cur_app then
+        cur_app:hide()
     else
-        alert.show("No current window!")
+        alert.show("No current app!")
     end
-end)
+end))
 
 hotkey.bind(prefix, "F", hints.windowHints)
+

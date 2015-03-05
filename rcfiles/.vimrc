@@ -26,6 +26,8 @@ let g:ctrlp_custom_ignore = {
   \ 'file': '\v\.(exe|so|dll|pyc|pyo|a)$',
   \ }
 
+let g:NERDTreeIgnore = ['\v\.(exe|so|dll|pyc|pyo|a)$']
+
 " Nerdtree
 nnoremap <C-k> :NERDTree<CR>
 

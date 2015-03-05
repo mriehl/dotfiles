@@ -7,3 +7,4 @@ node_modules
 rcfiles/atom/nohup.out
 rcfiles/atom/projects.cson
 rcfiles/atom/.apm
+*.swp

@@ -41,6 +41,8 @@ inoremap <C-t> <Esc>:tabnew<CR>
 let g:racer_experimental_completer = 1
 let g:racer_cmd = "/usr/local/bin/racer"
 
+" Airline all the time
+set laststatus=2
 
 " Environment
 let $RUST_SRC_PATH="/opt/rust-src/src"

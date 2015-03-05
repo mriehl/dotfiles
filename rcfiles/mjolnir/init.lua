@@ -54,7 +54,6 @@ hotkey.bind(prefix, "R", function()
 
 -- Tiling
 --
-hotkey.bind(prefix, 'N', grid.pushwindow_nextscreen)
 hotkey.bind(prefix, 'Y', gridset(0, 1, 1, 1)) -- low left
 hotkey.bind(prefix, 'C', gridset(1, 1, 1, 1)) -- low right
 hotkey.bind(prefix, 'Q', gridset(0, 0, 1, 1)) -- upper left

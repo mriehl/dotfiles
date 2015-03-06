@@ -360,6 +360,12 @@ grml_prompt_post_default=(
     vcs               ''
 )
 
+if check_com vim && [[ -f /usr/local/bin/vim ]]; then
+    vim() {
+        VIM_PLEASE_SET_TITLE='yes' /usr/local/bin/vim ${VIM_OPTIONS} "$@"
+    }
+fi
+
 # Shell extensions
 # ----------------
 ## Activate virtualenvwrapper if possible

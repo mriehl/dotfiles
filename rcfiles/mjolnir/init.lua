@@ -15,7 +15,7 @@ grid.GRIDHEIGHT = 2
 
 local prefix = {"ctrl", "shift"}
 
-local gridset = function(x, y, w, h)
+local snapCurrentWindowToGrid = function(x, y, w, h)
     return callBackWithWindow(function(cur_window)
         grid.set(
             cur_window,
@@ -65,17 +65,18 @@ hotkey.bind(prefix, "R", function()
 
 -- Tiling
 --
-hotkey.bind(prefix, 'Y', gridset(0, 1, 1, 1)) -- low left
-hotkey.bind(prefix, 'C', gridset(1, 1, 1, 1)) -- low right
-hotkey.bind(prefix, 'Q', gridset(0, 0, 1, 1)) -- upper left
-hotkey.bind(prefix, 'E', gridset(1, 0, 1, 1)) -- upper right
-hotkey.bind(prefix, 'A', gridset(0, 0, 1, 2)) -- full left
-hotkey.bind(prefix, 'D', gridset(1, 0, 1, 2)) -- full right
-hotkey.bind(prefix, 'W', gridset(0, 0, 2, 1)) -- full upper
-hotkey.bind(prefix, 'X', gridset(0, 1, 2, 1)) -- full lower
+hotkey.bind(prefix, 'Y', snapCurrentWindowToGrid(0, 1, 1, 1)) -- low left
+hotkey.bind(prefix, 'C', snapCurrentWindowToGrid(1, 1, 1, 1)) -- low right
+hotkey.bind(prefix, 'Q', snapCurrentWindowToGrid(0, 0, 1, 1)) -- upper left
+hotkey.bind(prefix, 'E', snapCurrentWindowToGrid(1, 0, 1, 1)) -- upper right
+hotkey.bind(prefix, 'A', snapCurrentWindowToGrid(0, 0, 1, 2)) -- full left
+hotkey.bind(prefix, 'D', snapCurrentWindowToGrid(1, 0, 1, 2)) -- full right
+hotkey.bind(prefix, 'W', snapCurrentWindowToGrid(0, 0, 2, 1)) -- full upper
+hotkey.bind(prefix, 'X', snapCurrentWindowToGrid(0, 1, 2, 1)) -- full lower
 hotkey.bind(prefix, 'S', callBackWithWindow(function(_)
     grid.maximize_window()
 end))
+
 
 -- Navigation
 hotkey.bind(prefix, "H", callBackWithWindow(function(cur_window)

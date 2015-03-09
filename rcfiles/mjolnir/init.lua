@@ -101,3 +101,7 @@ hotkey.bind(prefix, "U", function() tiling.cycle(1) end)
 hotkey.bind(prefix, "O", function() tiling.cycle(-1) end)
 hotkey.bind(prefix, "space", function() tiling.promote() end)
 
+
+tiling.set('layouts', {
+  'main-horizontal', 'main-vertical', 'gp-vertical', 'gp-horizontal'
+})

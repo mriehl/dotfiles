@@ -80,14 +80,5 @@ hotkey.bind(prefix, "L", callBackWithWindow(function(cur_window)
     cur_window:focuswindow_east()
 end))
 
-hotkey.bind(prefix, "I", callBackWithWindow(function(cur_window)
-    cur_app = cur_window:application()
-    if cur_app then
-        cur_app:hide()
-    else
-        alert.show("No current app!")
-    end
-end))
-
 hotkey.bind(prefix, "F", hints.windowHints)
 

@@ -5,6 +5,7 @@ local window = require "mjolnir.window"
 local fnutils = require "mjolnir.fnutils"
 local hotkey = require "mjolnir.hotkey"
 local hints = require "mjolnir.th.hints"
+local tiling = require "mjolnir.tiling"
 
 local grid = require "mjolnir.sd.grid"
 grid.MARGINX = 0
@@ -46,6 +47,16 @@ function callBackWithWindow(callback)
     end
 end
 
+local function center(window)
+  frame = window:screen():frame()
+  frame.x = (frame.w / 2) - (frame.w / 4)
+  frame.y = (frame.h / 2) - (frame.h / 4)
+  frame.w = frame.w / 2
+  frame.h = frame.h / 2
+  window:setframe(frame)
+end
+
+
 hotkey.bind(prefix, "R", function()
           mjolnir.reload()
           alert.show("Mjolnir config reload successful!")
@@ -81,4 +92,12 @@ hotkey.bind(prefix, "L", callBackWithWindow(function(cur_window)
 end))
 
 hotkey.bind(prefix, "F", hints.windowHints)
+
+
+-- Automatic tiling
+hotkey.bind(prefix, "I", function() tiling.cyclelayout() end)
+hotkey.bind(prefix, "T", function() tiling.togglefloat(center) end)
+hotkey.bind(prefix, "U", function() tiling.cycle(1) end)
+hotkey.bind(prefix, "O", function() tiling.cycle(-1) end)
+hotkey.bind(prefix, "space", function() tiling.promote() end)
 

@@ -101,6 +101,7 @@ hotkey.bind(prefix, "T", function() tiling.togglefloat(center) end)
 hotkey.bind(prefix, "U", function() tiling.cycle(1) end)
 hotkey.bind(prefix, "O", function() tiling.cycle(-1) end)
 hotkey.bind(prefix, "space", function() tiling.promote() end)
+hotkey.bind(prefix, "-", function() tiling.retile() end)
 
 
 tiling.set('layouts', {

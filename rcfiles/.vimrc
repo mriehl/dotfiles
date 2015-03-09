@@ -2,7 +2,8 @@ syntax on
 set nolist
 set expandtab
 set tabstop=4
-se switchbuf=usetab,newtab
+set switchbuf=usetab,newtab
+set backspace=indent,eol,start
 
 let mapleader=","
 

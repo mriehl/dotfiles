@@ -133,6 +133,7 @@ install /usr/local/bin/rustup bin/rustup.sh as_root
 install /usr/local/bin/drm bin/drm as_root
 install /usr/local/bin/i3lock.sh bin/i3lock.sh as_root
 install /usr/local/bin/lein bin/lein as_root
+install /usr/local/bin/pyb-vim bin/pyb-vim as_root
 
 #---fonts
 if [[ $(uname) == 'Linux' ]]; then

@@ -34,3 +34,6 @@
 [submodule "rcfiles/.vim/bundle/vim-go"]
 	path = rcfiles/.vim/bundle/vim-go
 	url = https://github.com/fatih/vim-go.git
+[submodule "rcfiles/.vim/bundle/YouCompleteMe"]
+	path = rcfiles/.vim/bundle/YouCompleteMe
+	url = https://github.com/Valloric/YouCompleteMe

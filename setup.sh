@@ -46,8 +46,7 @@ function install () {
 }
 
 echo "-pulling in dependencies"
-git submodule init
-git submodule update --remote
+git submodule update --remote --init --recursive
 
 install_required_libraries
 

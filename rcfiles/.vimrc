@@ -15,6 +15,11 @@ execute pathogen#infect()
 " Easymotion
 map <Leader> <Plug>(easymotion-prefix)
 
+map  / <Plug>(easymotion-sn)
+omap / <Plug>(easymotion-tn)
+map  n <Plug>(easymotion-next)
+map  N <Plug>(easymotion-prev)
+
 " Jedi plugin
 let g:jedi#goto_assignments_command = "<leader>g"
 let g:jedi#goto_definitions_command = "<leader>d"

@@ -12,6 +12,9 @@ filetype plugin indent on
 
 execute pathogen#infect()
 
+" Easymotion
+map <Leader> <Plug>(easymotion-prefix)
+
 " Jedi plugin
 let g:jedi#goto_assignments_command = "<leader>g"
 let g:jedi#goto_definitions_command = "<leader>d"

@@ -86,6 +86,8 @@ install ~/.gnupg/gpg-agent.conf rcfiles/gpg-agent.conf
 install ~/.gnupg/gpg.conf rcfiles/gpg.conf
 echo "---atom"
 install ~/.atom rcfiles/atom
+echo "---emacs"
+install ~/.emacs.d rcfiles/emacs.d
 
 echo "--installing light table config"
 install ~/.config/LightTable/User/user.behaviors light-table/user.behaviors

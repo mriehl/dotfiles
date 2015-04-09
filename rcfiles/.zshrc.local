@@ -419,7 +419,7 @@ export PYTHONSTARTUP
 export GOPATH=~/go
 export PATH=$PATH:$GOPATH/bin/
 
-export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
+[[ -f /usr/libexec/java_home ]] && export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
 
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8

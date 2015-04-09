@@ -1,13 +1,21 @@
 #!/bin/bash
 
-function require(){
+function require(){            
     PROGRAM="$1"
-    command -v $PROGRAM >/dev/null 2>&1 || {
-        echo "Missing required program: $PROGRAM"
-        exit 1
-    }
+    ALTERNATIVE="$2"           
+    if command -v $PROGRAM >/dev/null 2>&1; then
+        echo $PROGRAM          
+        return
+    else
+        if command -v $ALTERNATIVE >/dev/null 2>&1; then
+            echo $ALTERNATIVE; 
+        else
+            echo "Missing required program: $PROGRAM"
+            exit 1             
+        fi
+    fi
 }
 
-require pbcopy
+COPY=$(require pbcopy "xsel -b")
 
-echo -n "Your password is in another castle" | pbcopy
+echo -n "Your password is in another castle" | $COPY

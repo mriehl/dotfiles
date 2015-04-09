@@ -2,15 +2,23 @@
 
 function require(){
     PROGRAM="$1"
-    command -v $PROGRAM >/dev/null 2>&1 || {
-        echo "Missing required program: $PROGRAM"
-        exit 1
-    }
+    ALTERNATIVE="$2"
+    if command -v $PROGRAM >/dev/null 2>&1; then
+        echo $PROGRAM
+        return
+    else
+        if command -v $ALTERNATIVE >/dev/null 2>&1; then
+            echo $ALTERNATIVE;
+        else
+            echo "Missing required program: $PROGRAM"
+            exit 1
+        fi
+    fi
 }
 
-require vault
-require pbcopy
+VAULT=$(require vault)
+COPY=$(require pbcopy "xsel -b")
 
 SERVICE=${1:? "Usage: $0 SERVICE_NAME"}
 
-vault -p $SERVICE | pbcopy
+$VAULT -p $SERVICE | $COPY

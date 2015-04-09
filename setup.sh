@@ -6,9 +6,14 @@ function fatal() {
     exit 1
 }
 
-function install_required_libraries() {
+function check_required_libraries() {
     echo "-checking availability of required libraries"
-    command -v grealpath >>/dev/null 2>&1 || fatal "Please install (g)realpath"
+    command -v grealpath >>/dev/null && REALPATH="grealpath"
+    command -v realpath >>/dev/null && REALPATH="realpath"
+    if [ -z REALPATH ]; then
+        fatal "Please install (g)realpath"
+    fi
+
 }
 
 function install_source_code_pro() {
@@ -30,7 +35,8 @@ function install_source_code_pro() {
 
 function install () {
     TARGET=$1
-    FILE=`grealpath "$2"`
+    FILE=$($REALPATH "$2")
+    echo $FILE
     AS_ROOT=${3:-''}
     GAINROOT=""
     [[ "$AS_ROOT" == "as_root" ]] && GAINROOT="sudo "
@@ -48,7 +54,7 @@ function install () {
 echo "-pulling in dependencies"
 git submodule update --remote --init --recursive
 
-install_required_libraries
+check_required_libraries
 
 echo "-installing dotfiles"
 

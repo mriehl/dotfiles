@@ -36,7 +36,6 @@ function install_source_code_pro() {
 function install () {
     TARGET=$1
     FILE=$($REALPATH "$2")
-    echo $FILE
     AS_ROOT=${3:-''}
     GAINROOT=""
     [[ "$AS_ROOT" == "as_root" ]] && GAINROOT="sudo "

@@ -8,6 +8,9 @@ set backspace=indent,eol,start
 let mapleader=","
 
 au FileType gitcommit set tw=72
+
+au FileType python setlocal formatprg=autopep8\ -
+
 filetype plugin indent on
 
 execute pathogen#infect()

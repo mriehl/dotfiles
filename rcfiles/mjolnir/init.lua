@@ -1,6 +1,5 @@
 local application = require "mjolnir.application"
 local alert = require "mjolnir.alert"
-local hotkey = require "mjolnir.hotkey"
 local window = require "mjolnir.window"
 local fnutils = require "mjolnir.fnutils"
 local hotkey = require "mjolnir.hotkey"

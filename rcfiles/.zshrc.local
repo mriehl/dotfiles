@@ -409,6 +409,9 @@ alias targzlook='tar -ztvf'
 
 alias targzcomp='tar -zcvf'
 
+# https://github.com/nvbn/thefuck
+alias fuck='eval $(thefuck $(fc -ln -1))'
+
 
 # Environment
 # -------------

@@ -80,6 +80,7 @@ echo "---git"
 install ~/.gitconfig rcfiles/.gitconfig
 echo "---tmux"
 install ~/.tmux.conf rcfiles/.tmux.conf
+install ~/.tmux/plugins/tpm deps/tpm
 echo "---conky"
 install ~/.conkyrc rcfiles/.conkyrc
 echo "---python"

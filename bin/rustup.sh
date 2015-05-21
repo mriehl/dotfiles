@@ -59,63 +59,63 @@
 set -u # Undefined variables are errors
 
 main() {
-assert_cmds
-set_globals
-handle_command_line_args "$@"
+    assert_cmds
+    set_globals
+    handle_command_line_args "$@"
 }
 
 set_globals() {
-# Environment sanity checks
-assert_nz "$HOME" "\$HOME is undefined"
-assert_nz "$0" "\$0 is undefined"
+    # Environment sanity checks
+    assert_nz "$HOME" "\$HOME is undefined"
+    assert_nz "$0" "\$0 is undefined"
 
-# Some constants
-version=0.0.1
-metadata_version=1
+    # Some constants
+    version=0.0.1
+    metadata_version=1
 
-# Find the location of the distribution server
-default_dist_server="https://static.rust-lang.org"
-insecure_dist_server="http://static-rust-lang-org.s3-website-us-west-1.amazonaws.com"
-dist_server="${RUSTUP_DIST_SERVER-$default_dist_server}"
-using_insecure_dist_server=false
+    # Find the location of the distribution server
+    default_dist_server="https://static.rust-lang.org"
+    insecure_dist_server="http://static-rust-lang-org.s3-website-us-west-1.amazonaws.com"
+    dist_server="${RUSTUP_DIST_SERVER-$default_dist_server}"
+    using_insecure_dist_server=false
 
-# Check to see if GNUPG version 2 is installed, falling back to using version 1 by default
-gpg_exe=gpg
-if command -v gpg2 > /dev/null 2>&1; then
-gpg_exe=gpg2
-fi
+    # Check to see if GNUPG version 2 is installed, falling back to using version 1 by default
+    gpg_exe=gpg
+    if command -v gpg2 > /dev/null 2>&1; then
+        gpg_exe=gpg2
+    fi
 
-# Disable https if we can gpg because cloudfront often gets our files out of sync
-if [ "$dist_server" = "$default_dist_server" ]; then
-if command -v "$gpg_exe" > /dev/null 2>&1; then
-dist_server="$insecure_dist_server"
-using_insecure_dist_server=true
-fi
-fi
+    # Disable https if we can gpg because cloudfront often gets our files out of sync
+    if [ "$dist_server" = "$default_dist_server" ]; then
+	if command -v "$gpg_exe" > /dev/null 2>&1; then
+	    dist_server="$insecure_dist_server"
+	    using_insecure_dist_server=true
+	fi
+    fi
 
-# The directory on the server containing the dist artifacts
-rust_dist_dir=dist
+    # The directory on the server containing the dist artifacts
+    rust_dist_dir=dist
 
-default_channel="beta"
+    default_channel="stable"
 
-# Set up the rustup data dir
-rustup_dir="${RUSTUP_HOME-$HOME/.rustup}"
-assert_nz "$rustup_dir" "rustup_dir"
+    # Set up the rustup data dir
+    rustup_dir="${RUSTUP_HOME-$HOME/.rustup}"
+    assert_nz "$rustup_dir" "rustup_dir"
 
-# Install prefix can be set by the environment
-default_prefix="${RUSTUP_PREFIX-/usr/local}"
-default_save=false
-if [ -n "${RUSTUP_SAVE-}" ]; then
-default_save=true
-fi
+    # Install prefix can be set by the environment
+    default_prefix="${RUSTUP_PREFIX-/usr/local}"
+    default_save=false
+    if [ -n "${RUSTUP_SAVE-}" ]; then
+	default_save=true
+    fi
 
-# Data locations
-version_file="$rustup_dir/rustup-version"
-temp_dir="$rustup_dir/tmp"
-dl_dir="$rustup_dir/dl"
+    # Data locations
+    version_file="$rustup_dir/rustup-version"
+    temp_dir="$rustup_dir/tmp"
+    dl_dir="$rustup_dir/dl"
 
-# Set up the GPG key
-official_rust_gpg_key="
+    # Set up the GPG key
+    official_rust_gpg_key="
 -----BEGIN PGP PUBLIC KEY BLOCK-----
 Version: GnuPG v1
 
@@ -204,763 +204,871 @@ Mve696B5tlHyc1KxjHR6w9GRsh4=
 -----END PGP PUBLIC KEY BLOCK-----
 "
 
-if [ -n "${RUSTUP_GPG_KEY-}" ]; then
-gpg_key=$(cat "$RUSTUP_GPG_KEY")
-else
-gpg_key="$official_rust_gpg_key"
-fi
+    if [ -n "${RUSTUP_GPG_KEY-}" ]; then
+	gpg_key=$(cat "$RUSTUP_GPG_KEY")
+    else
+	gpg_key="$official_rust_gpg_key"
+    fi
 
-# This is just used by test.sh for testing sha256sum fallback to shasum
-sha256sum_cmd="${__RUSTUP_MOCK_SHA256SUM-sha256sum}"
+    # This is just used by test.sh for testing sha256sum fallback to shasum
+    sha256sum_cmd="${__RUSTUP_MOCK_SHA256SUM-sha256sum}"
 
-flag_verbose=false
-#flag_yes=false
+    flag_verbose=false
+    flag_yes=false
 
-if [ -n "${RUSTUP_VERBOSE-}" ]; then
-flag_verbose=true
-fi
+    if [ -n "${RUSTUP_VERBOSE-}" ]; then
+	flag_verbose=true
+    fi
 }
 
 # Ensuresthat ~/.rustup exists and uses the correct format
 initialize_metadata() {
-verbose_say "checking metadata version"
+    local _disable_sudo="$1"
 
-if [ "$rustup_dir" = "$HOME" ]; then
-err "RUSTUP_HOME is the same as HOME. this cannot be correct. aborting"
-fi
+    verbose_say "checking metadata version"
 
-# This tries to guard against dumb values of RUSTUP_HOME like ~/ since
-# rustup will delete the entire directory.
-if [ -e "$rustup_dir" -a ! -e "$version_file" ]; then
-say "rustup home dir exists at $rustup_dir but version file $version_file does not."
-say "this may be old rustup metadata, in which case it can be deleted."
-err "this is very suspicous. aborting."
-fi
+    if [ "$rustup_dir" = "$HOME" ]; then
+	err "RUSTUP_HOME is the same as HOME. this cannot be correct. aborting"
+    fi
 
-ensure mkdir -p "$rustup_dir"
-rustup_dir="$(abs_path "$rustup_dir")"
-assert_nz "$rustup_dir" "rustup_dir"
+    # This tries to guard against dumb values of RUSTUP_HOME like ~/ since
+    # rustup will delete the entire directory.
+    if [ -e "$rustup_dir" -a ! -e "$version_file" ]; then
+	say "rustup home dir exists at $rustup_dir but version file $version_file does not."
+	say "this may be old rustup metadata, in which case it can be deleted."
+	err "this is very suspicous. aborting."
+    fi
 
-if [ ! -e "$version_file" ]; then
-verbose_say "writing metadata version $metadata_version"
-echo "$metadata_version" > "$version_file"
-need_ok "failed to write metadata version"
-else
-local _current_version="$(ensure cat "$version_file")"
-assert_nz "$_current_version"
-verbose_say "got metadata version $_current_version"
-if [ "$_current_version" != "$metadata_version" ]; then
-# Wipe the out of date metadata.
-say "metadata is out of date. deleting."
-ensure rm -R "$rustup_dir"
-ensure mkdir -p "$rustup_dir"
-echo "$metadata_version" > "$version_file"
-need_ok "failed to write metadata version"
-fi
-fi
+    # Oh, my. We used to encourage people running this script as root,
+    # and that resulted in users' ~/.rustup directories being owned by
+    # root (running `sudo sh` doesn't change $HOME apparently). Now
+    # that we're not running as root, we can't touch our ~/.rustup
+    # directory. Try to fix that.
+    if [ -e "$version_file" ]; then
+	local _can_write=true
+	local _probe_file="$rustup_dir/write-probe"
+	ignore touch "$_probe_file" 2> /dev/null
+	if [ $? != 0 ]; then
+	    _can_write=false
+	else
+	    ensure rm "$_probe_file"
+	fi
+
+	if [ "$_can_write" = false ]; then
+	    say "$rustup_dir is unwritable. it was likely created by a previous rustup run under sudo"
+	    if [ "$_disable_sudo" = false ]; then
+		say "deleting it with sudo"
+		run sudo rm -R "$rustup_dir"
+		if [ $? != 0 ]; then
+		    err "unable to delete unwritable $rustup_dir"
+		fi
+	    else
+		say_err "not deleting it because of --disable-sudo"
+		err "delete $rustup_dir to continue. aborting"
+	    fi
+	fi
+    fi
+
+    ensure mkdir -p "$rustup_dir"
+    rustup_dir="$(abs_path "$rustup_dir")"
+    assert_nz "$rustup_dir" "rustup_dir"
+
+    if [ ! -e "$version_file" ]; then
+	verbose_say "writing metadata version $metadata_version"
+	echo "$metadata_version" > "$version_file"
+	need_ok "failed to write metadata version"
+    else
+	local _current_version="$(ensure cat "$version_file")"
+	assert_nz "$_current_version"
+	verbose_say "got metadata version $_current_version"
+	if [ "$_current_version" != "$metadata_version" ]; then
+	    # Wipe the out of date metadata.
+	    say "metadata is out of date. deleting."
+	    ensure rm -R "$rustup_dir"
+	    ensure mkdir -p "$rustup_dir"
+	    echo "$metadata_version" > "$version_file"
+	    need_ok "failed to write metadata version"
+	fi
+    fi
 }
 
 handle_command_line_args() {
-local _save="$default_save"
-local _date=""
-local _prefix="$default_prefix"
-local _uninstall=false
-local _channel=""
-local _help=false
-local _revision=""
-local _spec=""
-local _update_hash_file=""
-local _disable_ldconfig=false
+    local _save="$default_save"
+    local _date=""
+    local _prefix="$default_prefix"
+    local _uninstall=false
+    local _channel=""
+    local _help=false
+    local _revision=""
+    local _spec=""
+    local _update_hash_file=""
+    local _disable_ldconfig=false
+    local _disable_sudo=false
 
-for arg in "$@"; do
-case "$arg" in
---save )
-_save=true
-;;
---uninstall )
-_uninstall=true
-;;
---help )
-_help=true
-;;
+    for arg in "$@"; do
+	case "$arg" in
+	    --save )
+		_save=true
+		;;
+	    --uninstall )
+		_uninstall=true
+		;;
+	    --help )
+		_help=true
+		;;
 
---verbose)
-# verbose is a global flag
-flag_verbose=true
-;;
+	    --verbose)
+		# verbose is a global flag
+		flag_verbose=true
+		;;
 
---disable-ldconfig)
-_disable_ldconfig=true
-;;
+	    --disable-ldconfig)
+		_disable_ldconfig=true
+		;;
 
--y | --yes)
-# yes is a global flag
-#flag_yes=true
-;;
+	    --disable-sudo)
+		_disable_sudo=true
+		;;
 
---version)
-echo "rustup.sh $version"
-exit 0
-;;
+	    -y | --yes)
+		# yes is a global flag
+		flag_yes=true
+		;;
 
-esac
+	    --version)
+		echo "rustup.sh $version"
+		exit 0
+		;;
 
-if is_value_arg "$arg" "prefix"; then
-_prefix="$(get_value_arg "$arg")"
-elif is_value_arg "$arg" "channel"; then
-_channel="$(get_value_arg "$arg")"
-elif is_value_arg "$arg" "date"; then
-_date="$(get_value_arg "$arg")"
-elif is_value_arg "$arg" "revision"; then
-_revision="$(get_value_arg "$arg")"
-elif is_value_arg "$arg" "spec"; then
-_spec="$(get_value_arg "$arg")"
-elif is_value_arg "$arg" "update-hash-file"; then
-# This option is used by multirust to short-circuit reinstalls
-# when the channel has not been updated by examining a content
-# hash in the update-hash-file
-_update_hash_file="$(get_value_arg "$arg")"
-fi
-done
+	esac
 
-if [ "$_help" = true ]; then
-print_help
-exit 0
-fi
+	if is_value_arg "$arg" "prefix"; then
+	    _prefix="$(get_value_arg "$arg")"
+	elif is_value_arg "$arg" "channel"; then
+	    _channel="$(get_value_arg "$arg")"
+	elif is_value_arg "$arg" "date"; then
+	    _date="$(get_value_arg "$arg")"
+	elif is_value_arg "$arg" "revision"; then
+	    _revision="$(get_value_arg "$arg")"
+	elif is_value_arg "$arg" "spec"; then
+	    _spec="$(get_value_arg "$arg")"
+	elif is_value_arg "$arg" "update-hash-file"; then
+	    # This option is used by multirust to short-circuit reinstalls
+	    # when the channel has not been updated by examining a content
+	    # hash in the update-hash-file
+	    _update_hash_file="$(get_value_arg "$arg")"
+	fi
+    done
 
-# Make sure either rust256sum or shasum exists
-need_shasum_cmd
+    if [ "$_help" = true ]; then
+	print_help
+	exit 0
+    fi
 
-# All work is done in the ~/.rustup dir, which will be deleted
-# afterward if the user doesn't pass --save. *If* ~/.rustup
-# already exists and they *did not* pass --save, we'll pretend
-# they did anyway to avoid deleting their data.
-local _preserve_rustup_dir="$_save"
-if [ "$_save" = false -a -e "$version_file" ]; then
-verbose_say "rustup home exists but not asked to save. saving anyway"
-_preserve_rustup_dir=true
-fi
+    # Make sure either rust256sum or shasum exists
+    need_shasum_cmd
 
-if [ -n "$_revision" ]; then
-if [ -n "$_channel" ]; then
-err "the --revision flag may not be combined with --channel"
-fi
-if [ -n "$_date" ]; then
-err "the --revision flag may not be combined with --date"
-fi
-fi
+    # Check that the various toolchain-specifying flags don't conflict
+    if [ -n "$_revision" ]; then
+	if [ -n "$_channel" ]; then
+	    err "the --revision flag may not be combined with --channel"
+	fi
+	if [ -n "$_date" ]; then
+	    err "the --revision flag may not be combined with --date"
+	fi
+    fi
 
-if [ -n "$_spec" ]; then
-if [ -n "$_channel" ]; then
-err "the --spec flag may not be combined with --channel"
-fi
-if [ -n "$_revision" ]; then
-err "the --spec flag may not be combined with --revision"
-fi
-fi
+    if [ -n "$_spec" ]; then
+	if [ -n "$_channel" ]; then
+	    err "the --spec flag may not be combined with --channel"
+	fi
+	if [ -n "$_revision" ]; then
+	    err "the --spec flag may not be combined with --revision"
+	fi
+    fi
 
-if [ -z "$_channel" -a -z "$_revision" -a -z "$_spec" ]; then
-_channel="$default_channel"
-fi
+    if [ -z "$_channel" -a -z "$_revision" -a -z "$_spec" ]; then
+	_channel="$default_channel"
+    fi
 
-# Toolchain can be either a channel, channel + date, or an explicit version
-local _toolchain=""
-if [ -n "$_channel" ]; then
-validate_channel "$_channel"
-_toolchain="$_channel"
-if [ -n "$_date" ]; then
-validate_date "$_date"
-_toolchain="$_toolchain-$_date"
-fi
-elif [ -n "$_revision" ]; then
-_toolchain="$_revision"
-elif [ -n "$_spec" ]; then
-_toolchain="$_spec"
-fi
-assert_nz "$_toolchain" "toolchain"
+    # Toolchain can be either a channel, channel + date, or an explicit version
+    local _toolchain=""
+    if [ -n "$_channel" ]; then
+	validate_channel "$_channel"
+	_toolchain="$_channel"
+	if [ -n "$_date" ]; then
+	    validate_date "$_date"
+	    _toolchain="$_toolchain-$_date"
+	fi
+    elif [ -n "$_revision" ]; then
+	_toolchain="$_revision"
+    elif [ -n "$_spec" ]; then
+	_toolchain="$_spec"
+    fi
+    assert_nz "$_toolchain" "toolchain"
 
-# Make sure our data directory exists and is the right format
-initialize_metadata
+    if [ "$flag_yes" = false ]; then
+	# Running in interactive mode, check that a tty exists
+	check_tty
 
-# OK, time to do the things
-local _succeeded=true
-if [ "$_uninstall" = false ]; then
-install_toolchain_from_dist "$_toolchain" "$_prefix" "$_save" "$_update_hash_file" "$_disable_ldconfig"
-if [ $? != 0 ]; then
-_succeeded=false
-fi
-else
-remove_toolchain "$_prefix"
-if [ $? != 0 ]; then
-_succeeded=false
-fi
-fi
+	# Print the welcome / warning message and wait for confirmation
+	print_welcome_message "$_prefix" "$_uninstall" "$_disable_sudo"
 
-# Remove the temporary directory.
-# This will not happen if we hit certain hard errors earlier.
-if [ "$_preserve_rustup_dir" = false ]; then
-verbose_say "removing rustup home $rustup_dir"
-ensure rm -R "$rustup_dir"
-else
-verbose_say "leaving rustup home $rustup_dir"
-fi
+	get_tty_confirmation
+    fi
 
-if [ "$_succeeded" = false ]; then
-exit 1
-fi
+    # All work is done in the ~/.rustup dir, which will be deleted
+    # afterward if the user doesn't pass --save. *If* ~/.rustup
+    # already exists and they *did not* pass --save, we'll pretend
+    # they did anyway to avoid deleting their data.
+    local _preserve_rustup_dir="$_save"
+    if [ "$_save" = false -a -e "$version_file" ]; then
+	verbose_say "rustup home exists but not asked to save. saving anyway"
+	_preserve_rustup_dir=true
+    fi
+
+    # Make sure our data directory exists and is the right format
+    initialize_metadata "$_disable_sudo"
+
+    # OK, time to do the things
+    local _succeeded=true
+    if [ "$_uninstall" = false ]; then
+	install_toolchain_from_dist "$_toolchain" "$_prefix" "$_save" "$_update_hash_file" \
+				    "$_disable_ldconfig" "$_disable_sudo"
+	if [ $? != 0 ]; then
+	    _succeeded=false
+	fi
+    else
+	remove_toolchain "$_prefix" "$_disable_sudo"
+	if [ $? != 0 ]; then
+	    _succeeded=false
+	fi
+    fi
+
+    # Remove the temporary directory.
+    # This will not happen if we hit certain hard errors earlier.
+    if [ "$_preserve_rustup_dir" = false ]; then
+	verbose_say "removing rustup home $rustup_dir"
+	ensure rm -R "$rustup_dir"
+    else
+	verbose_say "leaving rustup home $rustup_dir"
+    fi
+
+    if [ "$_succeeded" = false ]; then
+	exit 1
+    fi
 }
 
 is_value_arg() {
-local _arg="$1"
-local _name="$2"
+    local _arg="$1"
+    local _name="$2"
 
-echo "$arg" | grep -q -- "--$_name="
-return $?
+    echo "$arg" | grep -q -- "--$_name="
+    return $?
 }
 
 get_value_arg() {
-local _arg="$1"
+    local _arg="$1"
 
-echo "$_arg" | cut -f2 -d=
+    echo "$_arg" | cut -f2 -d=
 }
 
 validate_channel() {
-local _channel="$1"
+    local _channel="$1"
 
-case "$_channel" in
-stable | beta | nightly )
-;;
-* )
-err "channel must be either 'stable', 'beta', or 'nightly'"
-;;
-esac
+    case "$_channel" in
+	stable | beta | nightly )
+	    ;;
+	* )
+	    err "channel must be either 'stable', 'beta', or 'nightly'"
+	    ;;
+    esac
 }
 
 validate_date() {
-local _date="$1"
+    local _date="$1"
 
-case "$_date" in
-[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9] )
-;;
-* )
-err "date must be in YYYY-MM-DD format"
-;;
-esac
+    case "$_date" in
+	[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9] )
+	    ;;
+	* )
+	    err "date must be in YYYY-MM-DD format"
+	    ;;
+    esac
 }
+
+print_welcome_message() {
+    local _prefix="$1"
+    local _uninstall="$2"
+    local _disable_sudo="$3"
+
+    cat <<EOF
+
+Welcome to Rust.
+EOF
+
+    if [ "$_disable_sudo" = false ]; then
+	if [ "$(id -u)" = 0 ]; then
+	    cat <<EOF
+
+WARNING: This script appears to be running as root. While it will work
+correctly, it is no longer necessary for rustup.sh to run as root.
+EOF
+	fi
+    fi
+
+    
+    if [ "$_uninstall" = false ]; then
+	cat <<EOF
+
+This script will download the Rust compiler and its package manager, Cargo, and
+install them to $_prefix. You may install elsewhere by running this script
+with the --prefix=<path> option.
+EOF
+    else
+	cat <<EOF
+
+This script will uninstall the existing Rust installation at $_prefix.
+EOF
+    fi
+
+    if [ "$_disable_sudo" = false ]; then
+	cat <<EOF
+
+The installer will run under 'sudo' and may ask you for your password. If you do
+not want the script to run 'sudo' then pass it the --disable-sudo flag.
+EOF
+    fi
+
+    if [ "$_uninstall" = false ]; then
+	cat <<EOF
+
+You may uninstall later by running $_prefix/lib/rustlib/uninstall.sh,
+or by running this script again with the --uninstall flag.
+EOF
+    fi
+
+    echo
+}
+
 
 # Updating toolchains
 
 # Returns 0 on success, 1 on error
 install_toolchain_from_dist() {
-local _toolchain="$1"
-local _prefix="$2"
-local _save="$3"
-local _update_hash_file="$4"
-local _disable_ldconfig="$5"
+    local _toolchain="$1"
+    local _prefix="$2"
+    local _save="$3"
+    local _update_hash_file="$4"
+    local _disable_ldconfig="$5"
+    local _disable_sudo="$6"
 
-# FIXME: Right now installing rust over top of multirust will
-# result in a broken multirust installation.
-# This hack tries to avoid that by detecting if multirust is installed,
-# but I'd rather fix this by having the installers understand negative
-# dependencies.
-local _potential_multirust_bin="$_prefix/bin/multirust"
-if [ -e "$_potential_multirust_bin" ]; then
-say_err "multirust appears to be installed at the destination, $_potential_multirust_bin"
-say_err "installing rust over multirust will result in breakage."
-local _potential_uninstaller="$_prefix/lib/rustlib/uninstall.sh"
-if [ -e "$_potential_uninstaller" ]; then
-say_err "consider uninstalling multirust first by running $_potential_uninstaller"
-fi
-err "aborting"
-fi
+    # FIXME: Right now installing rust over top of multirust will
+    # result in a broken multirust installation.
+    # This hack tries to avoid that by detecting if multirust is installed,
+    # but I'd rather fix this by having the installers understand negative
+    # dependencies.
+    local _potential_multirust_bin="$_prefix/bin/multirust"
+    if [ -e "$_potential_multirust_bin" ]; then
+	say_err "multirust appears to be installed at the destination, $_potential_multirust_bin"
+	say_err "installing rust over multirust will result in breakage."
+	local _potential_uninstaller="$_prefix/lib/rustlib/uninstall.sh"
+	if [ -e "$_potential_uninstaller" ]; then
+	    say_err "consider uninstalling multirust first by running $_potential_uninstaller"
+	fi
+	err "aborting"
+    fi
 
-if [ "$using_insecure_dist_server" = "true" ]; then
-# disabling https avoids rust#21293
-say "gpg available. signatures will be verified"
-else
-say "gpg not available. signatures will not be verified"
-fi
+    if [ "$using_insecure_dist_server" = "true" ]; then
+	# disabling https avoids rust#21293
+	say "gpg available. signatures will be verified"
+    else
+	say "gpg not available. signatures will not be verified"
+    fi
 
-determine_remote_rust_installer_location "$_toolchain" || return 1
-local _remote_rust_installer="$RETVAL"
-assert_nz "$_remote_rust_installer" "remote rust installer"
-verbose_say "remote rust installer location: $_remote_rust_installer"
+    determine_remote_rust_installer_location "$_toolchain" || return 1
+    local _remote_rust_installer="$RETVAL"
+    assert_nz "$_remote_rust_installer" "remote rust installer"
+    verbose_say "remote rust installer location: $_remote_rust_installer"
 
-local _rust_installer_name="$(basename "$_remote_rust_installer")"
-assert_nz "$_rust_installer_name" "rust installer name"
+    local _rust_installer_name="$(basename "$_remote_rust_installer")"
+    assert_nz "$_rust_installer_name" "rust installer name"
 
-# Download and install toolchain
-say "downloading toolchain for '$_toolchain'"
-download_and_check "$_remote_rust_installer" false "$_update_hash_file"
-# Hey! I need to check $? twice here, so it has to be
-# assigned to a named variable, otherwise the second
-# check against $? will not be what I expect.
-local _retval=$?
-if [ "$_retval" = 20 ]; then
-say "'$_toolchain' is already up to date"
-# Successful short-circuit using the update-hash
-return 0
-fi
-if [ "$_retval" != 0 ]; then
-return 1
-fi
-local _installer_file="$RETVAL"
-local _installer_cache="$RETVAL_CACHE"
-local _update_hash="$RETVAL_UPDATE_HASH"
-assert_nz "$_installer_file" "installer_file"
-assert_nz "$_installer_cache" "installer_cache"
-assert_nz "$_update_hash" "update_hash"
+    # Download and install toolchain
+    say "downloading toolchain for '$_toolchain'"
+    download_and_check "$_remote_rust_installer" false "$_update_hash_file"
+    # Hey! I need to check $? twice here, so it has to be
+    # assigned to a named variable, otherwise the second
+    # check against $? will not be what I expect.
+    local _retval=$?
+    if [ "$_retval" = 20 ]; then
+	say "'$_toolchain' is already up to date"
+	# Successful short-circuit using the update-hash
+	return 0
+    fi
+    if [ "$_retval" != 0 ]; then
+	return 1
+    fi
+    local _installer_file="$RETVAL"
+    local _installer_cache="$RETVAL_CACHE"
+    local _update_hash="$RETVAL_UPDATE_HASH"
+    assert_nz "$_installer_file" "installer_file"
+    assert_nz "$_installer_cache" "installer_cache"
+    assert_nz "$_update_hash" "update_hash"
 
-# Create a temp directory to put the downloaded toolchain
-make_temp_dir
-local _workdir="$RETVAL"
-assert_nz "$_workdir" "workdir"
-verbose_say "install work dir: $_workdir"
+    # Create a temp directory to put the downloaded toolchain
+    make_temp_dir
+    local _workdir="$RETVAL"
+    assert_nz "$_workdir" "workdir"
+    verbose_say "install work dir: $_workdir"
 
-# There next few statements may all fail independently.
-local _failing=false
+    # There next few statements may all fail independently.
+    local _failing=false
 
-install_toolchain "$_toolchain" "$_installer_file" "$_workdir" "$_prefix" "$_disable_ldconfig"
-if [ $? != 0 ]; then
-say_err "failed to install toolchain"
-_failing=true
-fi
+    install_toolchain "$_toolchain" "$_installer_file" "$_workdir" "$_prefix" \
+		      "$_disable_ldconfig" "$_disable_sudo"
+    if [ $? != 0 ]; then
+	say_err "failed to install toolchain"
+	_failing=true
+    fi
 
-run rm -R "$_workdir"
-if [ $? != 0 ]; then
-say_err "couldn't delete workdir"
-_failing=true
-fi
+    run rm -R "$_workdir"
+    if [ $? != 0 ]; then
+	say_err "couldn't delete workdir"
+	_failing=true
+    fi
 
-# Throw away the cache if not --save
-if [ "$_save" = false ]; then
-verbose_say "discarding cache '$_installer_cache'"
-run rm -R "$_installer_cache"
-if [ $? != 0 ]; then
-say_err "couldn't delete cache dir"
-_failing=true
-fi
-fi
+    # Throw away the cache if not --save
+    if [ "$_save" = false ]; then
+	verbose_say "discarding cache '$_installer_cache'"
+	run rm -R "$_installer_cache"
+	if [ $? != 0 ]; then
+	    say_err "couldn't delete cache dir"
+	    _failing=true
+	fi
+    fi
 
-# Write the update hash to file
-if [ -n "$_update_hash_file" ]; then
-echo "$_update_hash" > "$_update_hash_file"
-if [ $? != 0 ]; then
-say_err "failed to write update hash to file"
-_failing=true
-fi
-fi
+    # Write the update hash to file
+    if [ -n "$_update_hash_file" ]; then
+	echo "$_update_hash" > "$_update_hash_file"
+	if [ $? != 0 ]; then
+	    say_err "failed to write update hash to file"
+	    _failing=true
+	fi
+    fi
 
-if [ "$_failing" = true ]; then
-return 1
-fi
+    if [ "$_failing" = true ]; then
+	return 1
+    fi
 }
 
 install_toolchain() {
-local _toolchain="$1"
-local _installer="$2"
-local _workdir="$3"
-local _prefix="$4"
-local _disable_ldconfig="$5"
+    local _toolchain="$1"
+    local _installer="$2"
+    local _workdir="$3"
+    local _prefix="$4"
+    local _disable_ldconfig="$5"
+    local _disable_sudo="$6"
 
-local _installer_dir="$_workdir/$(basename "$_installer" | sed s/.tar.gz$//)"
+    local _installer_dir="$_workdir/$(basename "$_installer" | sed s/.tar.gz$//)"
 
-# Extract the toolchain
-say "extracting installer"
-run tar xzf "$_installer" -C "$_workdir"
-if [ $? != 0 ]; then
-verbose_say "failed to extract installer"
-return 1
-fi
+    # Extract the toolchain
+    say "extracting installer"
+    run tar xzf "$_installer" -C "$_workdir"
+    if [ $? != 0 ]; then
+	verbose_say "failed to extract installer"
+	return 1
+    fi
 
-# Install the toolchain
-local _toolchain_dir="$_prefix"
-verbose_say "installing toolchain to '$_toolchain_dir'"
-say "installing toolchain for '$_toolchain'"
+    # Install the toolchain
+    local _toolchain_dir="$_prefix"
+    verbose_say "installing toolchain to '$_toolchain_dir'"
+    say "installing toolchain for '$_toolchain'"
 
-if [ "$_disable_ldconfig" = false ]; then
-run sh "$_installer_dir/install.sh" --prefix="$_toolchain_dir"
-else
-run sh "$_installer_dir/install.sh" --prefix="$_toolchain_dir" --disable-ldconfig
-fi
-if [ $? != 0 ]; then
-verbose_say "failed to install toolchain"
-return 1
-fi
+    if [ "$_disable_ldconfig" = false ]; then
+	maybe_sudo "$_disable_sudo" sh "$_installer_dir/install.sh" --prefix="$_toolchain_dir"
+    else
+	maybe_sudo "$_disable_sudo" sh "$_installer_dir/install.sh" --prefix="$_toolchain_dir" --disable-ldconfig
+    fi
+    if [ $? != 0 ]; then
+	verbose_say "failed to install toolchain"
+	return 1
+    fi
 
 }
 
 remove_toolchain() {
-local _prefix="$1"
-local _uninstall_script="$_prefix/lib/rustlib/uninstall.sh"
+    local _prefix="$1"
+    local _disable_sudo="$2"
+    local _uninstall_script="$_prefix/lib/rustlib/uninstall.sh"
 
-if [ -e "$_uninstall_script" ]; then
-verbose_say "uninstalling from '$_uninstall_script'"
-sh "$_uninstall_script"
-if [ $? != 0 ]; then
-say_err "failed to remove toolchain"
-return 1;
-fi
-say "toolchain '$_toolchain' uninstalled"
-else
-say "no toolchain installed at '$_prefix'"
-fi
+    if [ -e "$_uninstall_script" ]; then
+	verbose_say "uninstalling from '$_uninstall_script'"
+	maybe_sudo "$_disable_sudo" sh "$_uninstall_script"
+	if [ $? != 0 ]; then
+	    say_err "failed to remove toolchain"
+	    return 1;
+	fi
+	say "toolchain '$_toolchain' uninstalled"
+    else
+	say "no toolchain installed at '$_prefix'"
+    fi
 }
 
 # Manifest interface
 
 determine_remote_rust_installer_location() {
-local _toolchain="$1"
+    local _toolchain="$1"
 
-verbose_say "determining remote rust installer for '$_toolchain'"
+    verbose_say "determining remote rust installer for '$_toolchain'"
 
-case "$_toolchain" in
-nightly | beta | stable | nightly-* | beta-* | stable-* )
-download_rust_manifest "$_toolchain" || return 1
-local _manifest_file="$RETVAL"
-assert_nz "$_manifest_file" "manifest file"
-local _manifest_cache="$RETVAL_CACHE"
-assert_nz "$_manifest_cache" "manifest cache"
-get_remote_installer_location_from_manifest "$_toolchain" "$_manifest_file" rust "$rust_dist_dir" || return 1
-RETVAL="$RETVAL"
-verbose_say "deleting cache dir $_manifest_cache"
-run rm -R "$_manifest_cache" || return 1
-;;
+    case "$_toolchain" in
+	nightly | beta | stable | nightly-* | beta-* | stable-* )
+	    download_rust_manifest "$_toolchain" || return 1
+	    local _manifest_file="$RETVAL"
+	    assert_nz "$_manifest_file" "manifest file"
+	    local _manifest_cache="$RETVAL_CACHE"
+	    assert_nz "$_manifest_cache" "manifest cache"
+	    get_remote_installer_location_from_manifest "$_toolchain" "$_manifest_file" rust "$rust_dist_dir" || return 1
+	    RETVAL="$RETVAL"
+	    verbose_say "deleting cache dir $_manifest_cache"
+	    run rm -R "$_manifest_cache" || return 1
+	    ;;
 
-* )
-verbose_say "interpreting toolchain spec as explicit version"
-get_architecture || return 1
-local _arch="$RETVAL"
-assert_nz "$_arch" "arch"
+	* )
+	    verbose_say "interpreting toolchain spec as explicit version"
+	    get_architecture || return 1
+	    local _arch="$RETVAL"
+	    assert_nz "$_arch" "arch"
 
-local _file_name="rust-$_toolchain-$_arch.tar.gz"
-RETVAL="$dist_server/$rust_dist_dir/$_file_name"
-;;
-esac
+	    local _file_name="rust-$_toolchain-$_arch.tar.gz"
+	    RETVAL="$dist_server/$rust_dist_dir/$_file_name"
+	    ;;
+    esac
 }
 
 # Returns 0 on success.
 # Returns the manifest file in RETVAL and it's cache dir in RETVAL_CACHE.
 download_rust_manifest() {
-local _toolchain="$1"
+    local _toolchain="$1"
 
-case "$_toolchain" in
-nightly | beta | stable )
-local _remote_rust_manifest="$dist_server/$rust_dist_dir/channel-rust-$_toolchain"
-;;
+    case "$_toolchain" in
+	nightly | beta | stable )
+	    local _remote_rust_manifest="$dist_server/$rust_dist_dir/channel-rust-$_toolchain"
+	    ;;
 
-nightly-* | beta-* | stable-* )
-extract_channel_and_date_from_toolchain "$_toolchain" || return 1
-local _channel="$RETVAL_CHANNEL"
-local _date="$RETVAL_DATE"
-assert_nz "$_channel" "channel"
-assert_nz "$_date" "date"
-local _remote_rust_manifest="$dist_server/$rust_dist_dir/$_date/channel-rust-$_channel"
-;;
+	nightly-* | beta-* | stable-* )
+	    extract_channel_and_date_from_toolchain "$_toolchain" || return 1
+	    local _channel="$RETVAL_CHANNEL"
+	    local _date="$RETVAL_DATE"
+	    assert_nz "$_channel" "channel"
+	    assert_nz "$_date" "date"
+	    local _remote_rust_manifest="$dist_server/$rust_dist_dir/$_date/channel-rust-$_channel"
+	    ;;
 
-*)
-err "unrecognized toolchain spec: $_toolchain"
-;;
+	*)
+	    err "unrecognized toolchain spec: $_toolchain"
+	    ;;
 
-esac
+    esac
 
-download_manifest "$_toolchain" "rust" "$_remote_rust_manifest" || return 1
-RETVAL="$RETVAL"
-RETVAL_CACHE="$RETVAL_CACHE"
+    download_manifest "$_toolchain" "rust" "$_remote_rust_manifest" || return 1
+    RETVAL="$RETVAL"
+    RETVAL_CACHE="$RETVAL_CACHE"
 }
 
 download_manifest()  {
-local _toolchain="$1"
-local _name="$2"
-local _remote_manifest="$3"
+    local _toolchain="$1"
+    local _name="$2"
+    local _remote_manifest="$3"
 
-verbose_say "remote $_name manifest: $_remote_manifest"
+    verbose_say "remote $_name manifest: $_remote_manifest"
 
-say "downloading manifest for '$_toolchain'"
-# It's not possible for $? = 20 here, because the update_hash_file
-# param is empty
-download_and_check "$_remote_manifest" true "" || return 1
-RETVAL="$RETVAL"
-RETVAL_CACHE="$RETVAL_CACHE"
+    say "downloading manifest for '$_toolchain'"
+    # It's not possible for $? = 20 here, because the update_hash_file
+    # param is empty
+    download_and_check "$_remote_manifest" true "" || return 1
+    RETVAL="$RETVAL"
+    RETVAL_CACHE="$RETVAL_CACHE"
 }
 
 get_remote_installer_location_from_manifest() {
-local _toolchain="$1"
-local _manifest_file="$2"
-local _package_name="$3"
-local _dist_dir="$4"
+    local _toolchain="$1"
+    local _manifest_file="$2"
+    local _package_name="$3"
+    local _dist_dir="$4"
 
-if [ ! -e "$_manifest_file" ]; then
-err "manifest file '$_manifest_file' does not exist"
-fi
+    if [ ! -e "$_manifest_file" ]; then
+	err "manifest file '$_manifest_file' does not exist"
+    fi
 
-get_architecture
-local _arch="$RETVAL"
-assert_nz "$_arch" "arch"
+    get_architecture
+    local _arch="$RETVAL"
+    assert_nz "$_arch" "arch"
 
-while read _line; do
-# This regex checks for the version in addition to the package name because there
-# are package names that are substrings of other packages, 'rust-docs' vs. 'rust'.
-echo "$_line" | egrep "^$_package_name-(nightly|beta|alpha|[0-9]).*$_arch\.tar\.gz" > /dev/null
-if [ $? = 0 ]; then
-case "$_toolchain" in
-nightly | beta | stable )
-RETVAL="$dist_server/$_dist_dir/$_line"
-;;
+    while read _line; do
+	# This regex checks for the version in addition to the package name because there
+	# are package names that are substrings of other packages, 'rust-docs' vs. 'rust'.
+	echo "$_line" | egrep "^$_package_name-(nightly|beta|alpha|[0-9]).*$_arch\.tar\.gz" > /dev/null
+	if [ $? = 0 ]; then
+	    case "$_toolchain" in
+		nightly | beta | stable )
+		    RETVAL="$dist_server/$_dist_dir/$_line"
+		    ;;
 
-nightly-* | beta-* | stable-* )
-extract_channel_and_date_from_toolchain "$_toolchain" || return 1
-local _channel="$RETVAL_CHANNEL"
-local _date="$RETVAL_DATE"
-assert_nz "$_channel" "channel"
-assert_nz "$_date" "date"
-RETVAL="$dist_server/$_dist_dir/$_date/$_line"
-;;
+		nightly-* | beta-* | stable-* )
+		    extract_channel_and_date_from_toolchain "$_toolchain" || return 1
+		    local _channel="$RETVAL_CHANNEL"
+		    local _date="$RETVAL_DATE"
+		    assert_nz "$_channel" "channel"
+		    assert_nz "$_date" "date"
+		    RETVAL="$dist_server/$_dist_dir/$_date/$_line"
+		    ;;
 
-*)
-err "unrecognized toolchain spec: $_toolchain"
-;;
-esac
-return
-fi
-done < "$_manifest_file"
+		*)
+		    err "unrecognized toolchain spec: $_toolchain"
+		    ;;
+	    esac
+	    return
+	fi
+    done < "$_manifest_file"
 
-err "couldn't find remote installer for '$_arch' in manifest"
+    err "couldn't find remote installer for '$_arch' in manifest"
 }
 
 extract_channel_and_date_from_toolchain() {
-local _toolchain="$1"
+    local _toolchain="$1"
 
-case "$_toolchain" in
-nightly-20[0-9][0-9]-[0-9][0-9]-[0-9][0-9] | \
-beta-20[0-9][0-9]-[0-9][0-9]-[0-9][0-9] | \
-stable-20[0-9][0-9]-[0-9][0-9]-[0-9][0-9] )
-local _channel="$(ensure echo "$_toolchain" | ensure cut -d- -f1)"
-assert_nz "$_channel" "channel"
-local _date="$(ensure echo "$_toolchain" | ensure cut -d- -f2,3,4)"
-assert_nz "$_date" "date"
-RETVAL_CHANNEL="$_channel"
-RETVAL_DATE="$_date"
-;;
+    case "$_toolchain" in
+	nightly-20[0-9][0-9]-[0-9][0-9]-[0-9][0-9] | \
+	beta-20[0-9][0-9]-[0-9][0-9]-[0-9][0-9] | \
+	stable-20[0-9][0-9]-[0-9][0-9]-[0-9][0-9] )
+	    local _channel="$(ensure echo "$_toolchain" | ensure cut -d- -f1)"
+	    assert_nz "$_channel" "channel"
+	    local _date="$(ensure echo "$_toolchain" | ensure cut -d- -f2,3,4)"
+	    assert_nz "$_date" "date"
+	    RETVAL_CHANNEL="$_channel"
+	    RETVAL_DATE="$_date"
+	    ;;
 
-*)
-err "unrecognized toolchain spec: $_toolchain"
-;;
+	*)
+	    err "unrecognized toolchain spec: $_toolchain"
+	    ;;
 
-esac
+    esac
 }
 
 # Tools
 
 # FIXME: Temp names based on pid need to worry about pid recycling
 make_temp_name() {
-local _pid="$$"
-assert_nz "$_pid" "pid"
+    local _pid="$$"
+    assert_nz "$_pid" "pid"
 
-local _tmp_number="${NEXT_TMP_NUMBER-0}"
-local _tmp_name="tmp-$_pid-$_tmp_number"
-NEXT_TMP_NUMBER=$((_tmp_number + 1))
-need_ok "failed to create temp number"
-assert_nz "$NEXT_TMP_NUMBER" "NEXT_TMP_NUMBER"
-RETVAL="$_tmp_name"
+    local _tmp_number="${NEXT_TMP_NUMBER-0}"
+    local _tmp_name="tmp-$_pid-$_tmp_number"
+    NEXT_TMP_NUMBER=$((_tmp_number + 1))
+    need_ok "failed to create temp number"
+    assert_nz "$NEXT_TMP_NUMBER" "NEXT_TMP_NUMBER"
+    RETVAL="$_tmp_name"
 }
 
 make_temp_dir() {
-ensure mkdir -p "$temp_dir"
+    ensure mkdir -p "$temp_dir"
 
-ensure make_temp_name
-local _tmp_name="$temp_dir/$RETVAL"
-ensure mkdir -p "$_tmp_name"
-RETVAL="$_tmp_name"
+    ensure make_temp_name
+    local _tmp_name="$temp_dir/$RETVAL"
+    ensure mkdir -p "$_tmp_name"
+    RETVAL="$_tmp_name"
 }
 
 # Returns 0 on success, like sha256sum
 check_sums() {
-local _sumfile="$1"
+    local _sumfile="$1"
 
-# Hackily edit the sha256 file to workaround a bug in the bots' generation of sums
-make_temp_dir
-local _workdir="$RETVAL"
-assert_nz "$_workdir" "workdir"
+    # Hackily edit the sha256 file to workaround a bug in the bots' generation of sums
+    make_temp_dir
+    local _workdir="$RETVAL"
+    assert_nz "$_workdir" "workdir"
 
-sed s/tmp\\/dist\\/.*\\/final\\/// "$_sumfile" > "$_workdir/tmpsums"
-need_ok "failed to generate temporary checksums"
+    sed s/tmp\\/dist\\/.*\\/final\\/// "$_sumfile" > "$_workdir/tmpsums"
+    need_ok "failed to generate temporary checksums"
 
-local _sumfile_dirname="$(dirname "$_sumfile")"
-assert_nz "$_sumfile_dirname" "sumfile_dirname"
-if command -v "$sha256sum_cmd" > /dev/null 2>&1; then
-(run cd "$_sumfile_dirname" && run "$sha256sum_cmd" -c "$_workdir/tmpsums" > /dev/null)
-elif command -v shasum > /dev/null 2>&1; then
-(run cd "$_sumfile_dirname" && run shasum -c -a 256 "$_workdir/tmpsums" > /dev/null)
-else
-err "need either sha256sum or shasum"
-fi
-local _sum_retval=$?
+    local _sumfile_dirname="$(dirname "$_sumfile")"
+    assert_nz "$_sumfile_dirname" "sumfile_dirname"
+    if command -v "$sha256sum_cmd" > /dev/null 2>&1; then
+	(run cd "$_sumfile_dirname" && run "$sha256sum_cmd" -c "$_workdir/tmpsums" > /dev/null)
+    elif command -v shasum > /dev/null 2>&1; then
+	(run cd "$_sumfile_dirname" && run shasum -c -a 256 "$_workdir/tmpsums" > /dev/null)
+    else
+	err "need either sha256sum or shasum"
+    fi
+    local _sum_retval=$?
 
-run rm -R "$_workdir" || return 1
+    run rm -R "$_workdir" || return 1
 
-return $_sum_retval
+    return $_sum_retval
 }
 
 # Outputs 40-char sum to stdout
 create_sum() {
-local _input="$1"
+    local _input="$1"
 
-local _sum="none"
-if command -v "$sha256sum_cmd" > /dev/null 2>&1; then
-_sum="$(run "$sha256sum_cmd" "$_input" | run head -c 40)"
-elif command -v shasum > /dev/null 2>&1; then
-_sum="$(run shasum -a 256 "$_input" | run head -c 40)"
-else
-err "need either sha256sum or shasum"
-fi
-local _sum_retval=$?
-assert_nz "$_sum" "sum"
+    local _sum="none"
+    if command -v "$sha256sum_cmd" > /dev/null 2>&1; then
+	_sum="$(run "$sha256sum_cmd" "$_input" | run head -c 40)"
+    elif command -v shasum > /dev/null 2>&1; then
+	_sum="$(run shasum -a 256 "$_input" | run head -c 40)"
+    else
+	err "need either sha256sum or shasum"
+    fi
+    local _sum_retval=$?
+    assert_nz "$_sum" "sum"
 
-ensure printf "$_sum"
-return  $_sum_retval
+    ensure printf "$_sum"
+    return  $_sum_retval
 }
 
 need_shasum_cmd() {
-if ! command -v "$sha256sum_cmd" > /dev/null 2>&1; then
-if ! command -v shasum > /dev/null 2>&1; then
-err "need either sha256sum or shasum"
-else
-verbose_say "sha256sum not available. falling back to shasum"
-fi
-fi
+    if ! command -v "$sha256sum_cmd" > /dev/null 2>&1; then
+	if ! command -v shasum > /dev/null 2>&1; then
+	    err "need either sha256sum or shasum"
+	else
+	    verbose_say "sha256sum not available. falling back to shasum"
+	fi
+    fi
 }
 
 get_architecture() {
 
-verbose_say "detecting architecture"
+    verbose_say "detecting architecture"
 
-local _ostype="$(uname -s)"
-local _cputype="$(uname -m)"
+    local _ostype="$(uname -s)"
+    local _cputype="$(uname -m)"
 
-verbose_say "uname -s reports: $_ostype"
-verbose_say "uname -m reports: $_cputype"
+    verbose_say "uname -s reports: $_ostype"
+    verbose_say "uname -m reports: $_cputype"
 
-if [ "$_ostype" = Darwin -a "$_cputype" = i386 ]; then
-# Darwin `uname -s` lies
-if sysctl hw.optional.x86_64 | grep -q ': 1'; then
-local _cputype=x86_64
-fi
-fi
+    if [ "$_ostype" = Darwin -a "$_cputype" = i386 ]; then
+	# Darwin `uname -s` lies
+	if sysctl hw.optional.x86_64 | grep -q ': 1'; then
+	    local _cputype=x86_64
+	fi
+    fi
 
-case "$_ostype" in
+    case "$_ostype" in
 
-Linux)
-local _ostype=unknown-linux-gnu
-;;
+	Linux)
+	    local _ostype=unknown-linux-gnu
+	    ;;
 
-FreeBSD)
-local _ostype=unknown-freebsd
-;;
+	FreeBSD)
+	    local _ostype=unknown-freebsd
+	    ;;
 
-DragonFly)
-local _ostype=unknown-dragonfly
-;;
+	DragonFly)
+	    local _ostype=unknown-dragonfly
+	    ;;
 
-Darwin)
-local _ostype=apple-darwin
-;;
+	Darwin)
+	    local _ostype=apple-darwin
+	    ;;
 
-MINGW* | MSYS*)
-err "unimplemented windows arch detection"
-;;
+	MINGW* | MSYS*)
+	    err "unimplemented windows arch detection"
+	    ;;
 
-*)
-err "unrecognized OS type: $_ostype"
-;;
+	*)
+	    err "unrecognized OS type: $_ostype"
+	    ;;
 
-esac
+    esac
 
-case "$_cputype" in
+    case "$_cputype" in
 
-i386 | i486 | i686 | i786 | x86)
-local _cputype=i686
-;;
+	i386 | i486 | i686 | i786 | x86)
+            local _cputype=i686
+            ;;
 
-xscale | arm)
-local _cputype=arm
-;;
+	xscale | arm)
+	    local _cputype=arm
+            ;;
 
-armv7l)
-local _cputype=arm
-local _ostype="${_ostype}eabihf"
-;;
+	armv7l)
+            local _cputype=arm
+            local _ostype="${_ostype}eabihf"
+            ;;
 
-x86_64 | x86-64 | x64 | amd64)
-local _cputype=x86_64
-;;
+	x86_64 | x86-64 | x64 | amd64)
+            local _cputype=x86_64
+            ;;
 
-*)
-err "unknown CPU type: $CFG_CPUTYPE"
+	*)
+            err "unknown CPU type: $CFG_CPUTYPE"
 
-esac
+    esac
 
-# Detect 64-bit linux with 32-bit userland
-if [ $_ostype = unknown-linux-gnu -a $_cputype = x86_64 ]; then
-# $SHELL does not exist in standard 'sh', so probably only exists
-# if configure is running in an interactive bash shell. /usr/bin/env
-# exists *everywhere*.
-local _bin_to_probe="$SHELL"
-if [ -z "$_bin_to_probe" -a -e "/usr/bin/env" ]; then
-_bin_to_probe="/usr/bin/env"
-fi
-if [ -n "$_bin_to_probe" ]; then
-file -L "$_bin_to_probe" | grep -q "x86[_-]64"
-if [ $? != 0 ]; then
-local _cputype=i686
-fi
-fi
-fi
+    # Detect 64-bit linux with 32-bit userland
+    if [ $_ostype = unknown-linux-gnu -a $_cputype = x86_64 ]; then
+	# $SHELL does not exist in standard 'sh', so probably only exists
+	# if configure is running in an interactive bash shell. /usr/bin/env
+	# exists *everywhere*.
+	local _bin_to_probe="$SHELL"
+	if [ -z "$_bin_to_probe" -a -e "/usr/bin/env" ]; then
+	    _bin_to_probe="/usr/bin/env"
+	fi
+	if [ -n "$_bin_to_probe" ]; then
+	    file -L "$_bin_to_probe" | grep -q "x86[_-]64"
+	    if [ $? != 0 ]; then
+		local _cputype=i686
+	    fi
+	fi
+    fi
 
-local _arch="$_cputype-$_ostype"
-verbose_say "architecture is $_arch"
+    local _arch="$_cputype-$_ostype"
+    verbose_say "architecture is $_arch"
 
-RETVAL="$_arch"
+    RETVAL="$_arch"
 }
 
 check_sig() {
-local _sig_file="$1"
-local _quiet="$2"
+    local _sig_file="$1"
+    local _quiet="$2"
 
-if ! command -v "$gpg_exe" > /dev/null 2>&1; then
-return
-fi
+    if ! command -v "$gpg_exe" > /dev/null 2>&1; then
+	return
+    fi
 
-make_temp_dir
-local _workdir="$RETVAL"
-assert_nz "$_workdir" "workdir"
-verbose_say "sig work dir: $_workdir"
+    make_temp_dir
+    local _workdir="$RETVAL"
+    assert_nz "$_workdir" "workdir"
+    verbose_say "sig work dir: $_workdir"
 
-echo "$gpg_key" > "$_workdir/key.asc"
-need_ok "failed to serialize gpg key"
+    echo "$gpg_key" > "$_workdir/key.asc"
+    need_ok "failed to serialize gpg key"
 
-# Convert the armored key to .gpg format so it works with --keyring
-verbose_say "converting armored key to gpg"
-run "$gpg_exe" --no-permission-warning --dearmor "$_workdir/key.asc"
-if [ $? != 0 ]; then
-ignore rm -R "$_workdir"
-return 1
-fi
+    # Convert the armored key to .gpg format so it works with --keyring
+    verbose_say "converting armored key to gpg"
+    run "$gpg_exe" --no-permission-warning --dearmor "$_workdir/key.asc"
+    if [ $? != 0 ]; then
+	ignore rm -R "$_workdir"
+	return 1
+    fi
 
-verbose_say "verifying signature '$_sig_file'"
-local _output="$("$gpg_exe" --no-permission-warning --keyring "$_workdir/key.asc.gpg" --verify "$_sig_file" 2>&1)"
-if [ $? != 0 ]; then
-ignore echo "$_output"
-say_err "signature verification failed"
-ignore rm -R "$_workdir"
-return 1
-fi
+    verbose_say "verifying signature '$_sig_file'"
+    local _output="$("$gpg_exe" --no-permission-warning --keyring "$_workdir/key.asc.gpg" --verify "$_sig_file" 2>&1)"
+    if [ $? != 0 ]; then
+	ignore echo "$_output"
+	say_err "signature verification failed"
+	ignore rm -R "$_workdir"
+	return 1
+    fi
 
-if [ "$_quiet" = false -o "$flag_verbose" = true ]; then
-ensure echo "$_output"
-fi
+    if [ "$_quiet" = false -o "$flag_verbose" = true ]; then
+	ensure echo "$_output"
+    fi
 
-run rm -R "$_workdir" || return 1
+    run rm -R "$_workdir" || return 1
 }
 
 # Downloads a remote file, its checksum, and signature and verifies them.
@@ -972,199 +1080,234 @@ run rm -R "$_workdir" || return 1
 # A return code of *20* indicates a successful short circuit from the
 # update hash.
 download_and_check() {
-local _remote_name="$1"
-local _quiet="$2"
-local _update_hash_file="$3"
+    local _remote_name="$1"
+    local _quiet="$2"
+    local _update_hash_file="$3"
 
-local _remote_basename="$(basename "$_remote_name")"
+    local _remote_basename="$(basename "$_remote_name")"
 
-make_temp_dir
-local _workdir="$RETVAL"
-assert_nz "$_workdir" "workdir"
-verbose_say "download work dir: $_workdir"
+    make_temp_dir
+    local _workdir="$RETVAL"
+    assert_nz "$_workdir" "workdir"
+    verbose_say "download work dir: $_workdir"
 
-download_checksum_for "$_remote_name" "$_workdir/$_remote_basename"
-if [ $? != 0 ]; then
-ignore rm -R "$_workdir"
-return 1
-fi
+    download_checksum_for "$_remote_name" "$_workdir/$_remote_basename"
+    if [ $? != 0 ]; then
+	ignore rm -R "$_workdir"
+	return 1
+    fi
 
-# This is the unique name of the cache, based on the content hash
-local _cache_name="$(create_sum "$_workdir/$_remote_basename.sha256" | head -c 20)"
-need_ok "failed to name cache name from checksum"
-assert_nz "$_cache_name" "cache_name"
+    # This is the unique name of the cache, based on the content hash
+    local _cache_name="$(create_sum "$_workdir/$_remote_basename.sha256" | head -c 20)"
+    need_ok "failed to name cache name from checksum"
+    assert_nz "$_cache_name" "cache_name"
 
-# If the user already has this rev then don't redownload it
-if [ -n "$_update_hash_file" ]; then
-# NB: May fail if file does not exist
-local _update_hash="$(cat "$_update_hash_file" 2> /dev/null)"
+    # If the user already has this rev then don't redownload it
+    if [ -n "$_update_hash_file" ]; then
+	# NB: May fail if file does not exist
+	local _update_hash="$(cat "$_update_hash_file" 2> /dev/null)"
 
-verbose_say "provided update hash: $_update_hash"
-verbose_say "new update hash: $_cache_name"
+	verbose_say "provided update hash: $_update_hash"
+	verbose_say "new update hash: $_cache_name"
 
-if [ "$_cache_name" = "$_update_hash" ]; then
-run rm -R "$_workdir" || return 1
-# NB: Return code 20 is successful here!
-return 20
-fi
-fi
+	if [ "$_cache_name" = "$_update_hash" ]; then
+	    run rm -R "$_workdir" || return 1
+	    # NB: Return code 20 is successful here!
+	    return 20
+	fi
+    fi
 
-# Create a cache directory under dl_dir for this download, based off the content hash
-local _cache_dir="$dl_dir/$_cache_name"
-verbose_say "cache dir: $_cache_dir"
-run mkdir -p "$_cache_dir"
-if [ $? != 0 ]; then
-say_err "failed to create download directory"
-ignore rm -R "$_workdir"
-return 1
-fi
+    # Create a cache directory under dl_dir for this download, based off the content hash
+    local _cache_dir="$dl_dir/$_cache_name"
+    verbose_say "cache dir: $_cache_dir"
+    run mkdir -p "$_cache_dir"
+    if [ $? != 0 ]; then
+	say_err "failed to create download directory"
+	ignore rm -R "$_workdir"
+	return 1
+    fi
 
-# Move the checksum into the cache. -f because the file may
-# already exist from previous download.
-verbose_say "moving '$_workdir/$_remote_basename.sha256' to '$_cache_dir/$_remote_basename.sha256'"
-run mv -f "$_workdir/$_remote_basename.sha256" "$_cache_dir/$_remote_basename.sha256"
-if [ $? != 0 ]; then
-say_err "failed to move checksum into download cache"
-ignore rm -R "$_workdir"
-ignore rm -R "$_cache_dir"
-return 1
-fi
+    # Move the checksum into the cache. -f because the file may
+    # already exist from previous download.
+    verbose_say "moving '$_workdir/$_remote_basename.sha256' to '$_cache_dir/$_remote_basename.sha256'"
+    run mv -f "$_workdir/$_remote_basename.sha256" "$_cache_dir/$_remote_basename.sha256"
+    if [ $? != 0 ]; then
+	say_err "failed to move checksum into download cache"
+	ignore rm -R "$_workdir"
+	ignore rm -R "$_cache_dir"
+	return 1
+    fi
 
-# Done with the workdir
-run rm -R "$_workdir"
-if [ $? != 0 ]; then
-say_err "couldn't delete workdir '$_workdir'"
-ignore rm -R "$_cache_dir"
-return 1
-fi
+    # Done with the workdir
+    run rm -R "$_workdir"
+    if [ $? != 0 ]; then
+	say_err "couldn't delete workdir '$_workdir'"
+	ignore rm -R "$_cache_dir"
+	return 1
+    fi
 
-download_file_and_sig "$_remote_name" "$_cache_dir" "$_quiet"
-if [ $? != 0 ]; then
-# Leave the cache dir to resume the download later
-return 1
-fi
-check_file_and_sig "$_cache_dir/$_remote_basename" "$_quiet"
-if [ $? != 0 ]; then
-# Whatever's in the cache doesn't add up. Delete it.
-ignore rm -R "$_cache_dir"
-return 1
-fi
+    download_file_and_sig "$_remote_name" "$_cache_dir" "$_quiet"
+    if [ $? != 0 ]; then
+	# Leave the cache dir to resume the download later
+	return 1
+    fi
+    check_file_and_sig "$_cache_dir/$_remote_basename" "$_quiet"
+    if [ $? != 0 ]; then
+	# Whatever's in the cache doesn't add up. Delete it.
+	ignore rm -R "$_cache_dir"
+	return 1
+    fi
 
-RETVAL="$_cache_dir/$_remote_basename"
-RETVAL_CACHE="$_cache_dir"
-RETVAL_UPDATE_HASH="$_cache_name"
+    RETVAL="$_cache_dir/$_remote_basename"
+    RETVAL_CACHE="$_cache_dir"
+    RETVAL_UPDATE_HASH="$_cache_name"
 }
 
 download_checksum_for() {
-local _remote_name="$1"
-local _local_name="$2"
+    local _remote_name="$1"
+    local _local_name="$2"
 
-local _remote_sums="$_remote_name.sha256"
-local _local_sums="$_local_name.sha256"
+    local _remote_sums="$_remote_name.sha256"
+    local _local_sums="$_local_name.sha256"
 
-local _remote_basename="$(basename "$_remote_name")"
-local _remote_sums_basename="$_remote_basename.sha256"
-assert_nz "$_remote_basename" "remote basename"
+    local _remote_basename="$(basename "$_remote_name")"
+    local _remote_sums_basename="$_remote_basename.sha256"
+    assert_nz "$_remote_basename" "remote basename"
 
-make_temp_dir
-local _workdir="$RETVAL"
-assert_nz "$_workdir" "workdir"
-verbose_say "download work dir: $_workdir"
+    make_temp_dir
+    local _workdir="$RETVAL"
+    assert_nz "$_workdir" "workdir"
+    verbose_say "download work dir: $_workdir"
 
-verbose_say "downloading '$_remote_sums' to '$_workdir'"
-(run cd "$_workdir" && run curl -s -f -O "$_remote_sums")
-if [ $? != 0 ]; then
-say_err "couldn't download checksum file '$_remote_sums'"
-ignore rm -R "$_workdir"
-return 1
-fi
+    verbose_say "downloading '$_remote_sums' to '$_workdir'"
+    (run cd "$_workdir" && run curl -s -f -O "$_remote_sums")
+    if [ $? != 0 ]; then
+	say_err "couldn't download checksum file '$_remote_sums'"
+	ignore rm -R "$_workdir"
+	return 1
+    fi
 
-verbose_say "moving '$_workdir/$_remote_sums_basename' to '$_local_sums'"
-run mv -f "$_workdir/$_remote_sums_basename" "$_local_sums"
-if [ $? != 0 ]; then
-say_err "couldn't move '$_workdir/$_remote_sums_basename' to '$_local_sums'"
-ignore rm -R "$_workdir"
-return 1
-fi
+    verbose_say "moving '$_workdir/$_remote_sums_basename' to '$_local_sums'"
+    run mv -f "$_workdir/$_remote_sums_basename" "$_local_sums"
+    if [ $? != 0 ]; then
+	say_err "couldn't move '$_workdir/$_remote_sums_basename' to '$_local_sums'"
+	ignore rm -R "$_workdir"
+	return 1
+    fi
 
-run rm -R "$_workdir"
-if [ $? != 0 ]; then
-say_err "couldn't delete workdir '$_workdir'"
-return 1
-fi
+    run rm -R "$_workdir"
+    if [ $? != 0 ]; then
+	say_err "couldn't delete workdir '$_workdir'"
+	return 1
+    fi
 }
 
 download_file_and_sig() {
-local _remote_name="$1"
-local _local_dirname="$2"
-local _quiet="$3"
+    local _remote_name="$1"
+    local _local_dirname="$2"
+    local _quiet="$3"
 
-local _remote_basename="$(basename "$_remote_name")"
-assert_nz "$_remote_basename" "remote basename"
+    local _remote_basename="$(basename "$_remote_name")"
+    assert_nz "$_remote_basename" "remote basename"
 
-local _local_name="$_local_dirname/$_remote_basename"
+    local _local_name="$_local_dirname/$_remote_basename"
 
-local _remote_sig="$_remote_name.asc"
-local _local_sig="$_local_name.asc"
+    local _remote_sig="$_remote_name.asc"
+    local _local_sig="$_local_name.asc"
 
-# curl -C does not seem to work when the file already exists at 100%,
-# so just delete it and redownload.
-if [ -e "$_local_sig" ]; then
-run rm "$_local_sig"
-if [ $? != 0 ]; then
-say_err "failed to delete existing local signature for '$_remote_name'"
-return 1
-fi
-fi
+    # curl -C does not seem to work when the file already exists at 100%,
+    # so just delete it and redownload.
+    if [ -e "$_local_sig" ]; then
+	run rm "$_local_sig"
+	if [ $? != 0 ]; then
+	    say_err "failed to delete existing local signature for '$_remote_name'"
+	    return 1
+	fi
+    fi
 
-verbose_say "downloading '$_remote_sig' to '$_local_sig'"
-(run cd "$_local_dirname" && run curl -s -C - -f -O "$_remote_sig")
-if [ $? != 0 ]; then
-say_err "couldn't download signature file '$_remote_sig'"
-return 1
-fi
+    verbose_say "downloading '$_remote_sig' to '$_local_sig'"
+    (run cd "$_local_dirname" && run curl -s -C - -f -O "$_remote_sig")
+    if [ $? != 0 ]; then
+	say_err "couldn't download signature file '$_remote_sig'"
+	return 1
+    fi
 
-# Again, because curl -C doesn't like a complete file, short circuit
-# curl by checking the sum.
-local _local_sums_file="$_local_dirname/$_remote_basename.sha256"
-# Throwing away error text since this error is expected.
-check_sums "$_local_sums_file" > /dev/null 2>&1
-if [ $? = 0 ]; then
-return 0
-fi
+    # Again, because curl -C doesn't like a complete file, short circuit
+    # curl by checking the sum.
+    local _local_sums_file="$_local_dirname/$_remote_basename.sha256"
+    # Throwing away error text since this error is expected.
+    check_sums "$_local_sums_file" > /dev/null 2>&1
+    if [ $? = 0 ]; then
+	return 0
+    fi
 
-verbose_say "downloading '$_remote_name' to '$_local_name'"
-# Invoke curl in a way that will resume if necessary
-if [ "$_quiet" = false ]; then
-(run cd "$_local_dirname" && run curl -# -C - -f -O "$_remote_name")
-else
-(run cd "$_local_dirname" && run curl -s -C - -f -O "$_remote_name")
-fi
-if [ $? != 0 ]; then
-say_err "couldn't download '$_remote_name'"
-return 1
-fi
+    verbose_say "downloading '$_remote_name' to '$_local_name'"
+    # Invoke curl in a way that will resume if necessary
+    if [ "$_quiet" = false ]; then
+	(run cd "$_local_dirname" && run curl -# -C - -f -O "$_remote_name")
+    else
+	(run cd "$_local_dirname" && run curl -s -C - -f -O "$_remote_name")
+    fi
+    if [ $? != 0 ]; then
+	say_err "couldn't download '$_remote_name'"
+	return 1
+    fi
 }
 
 check_file_and_sig() {
-local _local_name="$1"
-local _quiet="$2"
+    local _local_name="$1"
+    local _quiet="$2"
 
-local _local_sums="$_local_name.sha256"
-local _local_sig="$_local_name.asc"
+    local _local_sums="$_local_name.sha256"
+    local _local_sig="$_local_name.asc"
 
-verbose_say "verifying checksums for '$_local_name'"
-check_sums "$_local_sums"
-if [ $? != 0 ]; then
-say_err "checksum failed for '$_local_name'"
-return 1
-fi
+    verbose_say "verifying checksums for '$_local_name'"
+    check_sums "$_local_sums"
+    if [ $? != 0 ]; then
+	say_err "checksum failed for '$_local_name'"
+	return 1
+    fi
 
-check_sig "$_local_sig" "$_quiet"
-if [ $? != 0 ]; then
-say_err "signature failed for '$_local_name'"
-return 1
-fi
+    check_sig "$_local_sig" "$_quiet"
+    if [ $? != 0 ]; then
+	say_err "signature failed for '$_local_name'"
+	return 1
+    fi
+}
+
+# Verifies that the terminal can be opened or exits
+check_tty() {
+    # FIXME: This isn't sufficient since it just checks that tty
+    # exists, not that it can be read
+    if [ ! -e /dev/tty ]; then
+	err "running in interactive mode (without -y), but cannot open /dev/tty"
+    fi
+}
+
+# Waits for a y/n response and exits if n
+get_tty_confirmation() {
+    local _yn=""
+    read -p "Continue? (y/N) " _yn < /dev/tty
+    need_ok "failed to read from /dev/tty"
+
+    echo
+
+    if [ "$_yn" != "y" -a "$_yn" != "Y" -a "$_yn" != "yes" ]; then
+	say "cancelling"
+	exit 0
+    fi
+}
+
+maybe_sudo() {
+    local _disable_sudo="$1"
+
+    shift
+
+    if [ "$_disable_sudo" = false ]; then
+	run sudo "$@"
+    else
+	run "$@"
+    fi
 }
 
 # Help
@@ -1175,108 +1318,111 @@ Usage: rustup.sh [--verbose]
 
 Options:
 
---channel=(stable|beta|nightly)   Install from channel (default beta)
---date=<YYYY-MM-DD>               Install from archives
---revision=<version-number>       Install a specific release
---spec=<toolchain-spec>           Install from toolchain spec
---prefix=<path>                   Install to a specific location (default /usr/local)
---uninstall                       Uninstall instead of install
---disable-ldconfig                Do not run ldconfig on Linux
---save                            Save downloads for future reuse
+     --channel=(stable|beta|nightly)   Install from channel (default beta)
+     --date=<YYYY-MM-DD>               Install from archives
+     --revision=<version-number>       Install a specific release
+     --spec=<toolchain-spec>           Install from toolchain spec
+     --prefix=<path>                   Install to a specific location (default /usr/local)
+     --uninstall                       Uninstall instead of install
+     --disable-ldconfig                Do not run ldconfig on Linux
+     --disable-sudo                    Do not run installer under sudo
+     --save                            Save downloads for future reuse
 '
 }
 
 # Standard utilities
 
 say() {
-echo "rustup: $1"
+    echo "rustup: $1"
 }
 
 say_err() {
-say "$1" >&2
+    say "$1" >&2
 }
 
 verbose_say() {
-if [ "$flag_verbose" = true ]; then
-say "$1"
-fi
+    if [ "$flag_verbose" = true ]; then
+	say "$1"
+    fi
 }
 
 err() {
-say "$1" >&2
-exit 1
+    say "$1" >&2
+    exit 1
 }
 
 need_cmd() {
-if ! command -v "$1" > /dev/null 2>&1
-then err "need $1"
-fi
+    if ! command -v "$1" > /dev/null 2>&1
+    then err "need $1"
+    fi
 }
 
 need_ok() {
-if [ $? != 0 ]; then err "$1"; fi
+    if [ $? != 0 ]; then err "$1"; fi
 }
 
 assert_nz() {
-if [ -z "$1" ]; then err "assert_nz $2"; fi
+    if [ -z "$1" ]; then err "assert_nz $2"; fi
 }
 
 # Run a command that should never fail. If the command fails execution
 # will immediately terminate with an error showing the failing
 # command.
 ensure() {
-"$@"
-need_ok "command failed: $*"
+    "$@"
+    need_ok "command failed: $*"
 }
 
 # This is just for indicating that commands' results are being
 # intentionally ignored. Usually, because it's being executed
 # as part of error handling.
 ignore() {
-run "$@"
+    run "$@"
 }
 
 # Runs a command and prints it to stderr if it fails.
 run() {
-"$@"
-local _retval=$?
-if [ $_retval != 0 ]; then
-say_err "command failed: $*"
-fi
-return $_retval
+    "$@"
+    local _retval=$?
+    if [ $_retval != 0 ]; then
+	say_err "command failed: $*"
+    fi
+    return $_retval
 }
 
 # Prints the absolute path of a directory to stdout
 abs_path() {
-local _path="$1"
-# Unset CDPATH because it causes havok: it makes the destination unpredictable
-# and triggers 'cd' to print the path to stdout. Route `cd`'s output to /dev/null
-# for good measure.
-(unset CDPATH && cd "$_path" > /dev/null && pwd)
+    local _path="$1"
+    # Unset CDPATH because it causes havok: it makes the destination unpredictable
+    # and triggers 'cd' to print the path to stdout. Route `cd`'s output to /dev/null
+    # for good measure.
+    (unset CDPATH && cd "$_path" > /dev/null && pwd)
 }
 
 assert_cmds() {
-need_cmd dirname
-need_cmd basename
-need_cmd mkdir
-need_cmd cat
-need_cmd curl
-need_cmd mktemp
-need_cmd rm
-need_cmd egrep
-need_cmd grep
-need_cmd file
-need_cmd uname
-need_cmd tar
-need_cmd sed
-need_cmd sh
-need_cmd mv
-need_cmd awk
-need_cmd cut
-need_cmd sort
-need_cmd date
-need_cmd head
-need_cmd printf
+    need_cmd dirname
+    need_cmd basename
+    need_cmd mkdir
+    need_cmd cat
+    need_cmd curl
+    need_cmd mktemp
+    need_cmd rm
+    need_cmd egrep
+    need_cmd grep
+    need_cmd file
+    need_cmd uname
+    need_cmd tar
+    need_cmd sed
+    need_cmd sh
+    need_cmd mv
+    need_cmd awk
+    need_cmd cut
+    need_cmd sort
+    need_cmd date
+    need_cmd head
+    need_cmd printf
+    need_cmd touch
+    need_cmd id
 }
 
 main "$@"

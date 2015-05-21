@@ -21,10 +21,10 @@ function install_source_code_pro() {
     find ~/.fonts -name "*SourceCodePro*" | grep -q '.' || {
         echo "--SourceCodePro not installed, installing"
         FONT_NAME="SourceCodePro"
-        URL="http://sourceforge.net/projects/sourcecodepro.adobe/files/latest/download"
+        URL="https://github.com/adobe-fonts/source-code-pro/archive/1.017R.zip"
 
-        mkdir /tmp/adodefont
-        cd /tmp/adodefont
+        mkdir  /tmp/adobefont
+        cd /tmp/adobefont
         wget ${URL} -O ${FONT_NAME}.zip
         unzip -o -j ${FONT_NAME}.zip
         mkdir -p ~/.fonts

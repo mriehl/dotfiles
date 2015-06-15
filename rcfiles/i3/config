@@ -182,8 +182,8 @@ for_window [class="claws-mail|Claws-mail" window_role="compose"] floating enable
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
+        status_command i3blocks -c ".i3/i3blocks.conf"
         position top
-        status_command i3status -c "~/.i3/i3status.conf"
 
         colors {
                 background #000000

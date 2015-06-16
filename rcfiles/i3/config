@@ -106,6 +106,8 @@ set $w2 "2: term"
 set $w3 "3: ide"
 set $w4 "4: email"
 
+assign [class="^Firefox$"] → "1: www"
+
 # switch to workspace
 bindsym $mod+1 workspace $w1
 bindsym $mod+2 workspace $w2

@@ -10,8 +10,7 @@ function check_required_libraries() {
     echo "-checking availability of required libraries"
     command -v grealpath >>/dev/null && REALPATH="grealpath"
     command -v realpath >>/dev/null && REALPATH="realpath"
-    [ -z ${REALPATH+x} ] && REALPATH="readlink -f"
-
+    [ -z ${REALPATH+x} ] && REALPATH="readlink -f" || :
 }
 
 function install_source_code_pro() {

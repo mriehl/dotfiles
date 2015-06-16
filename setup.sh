@@ -10,9 +10,7 @@ function check_required_libraries() {
     echo "-checking availability of required libraries"
     command -v grealpath >>/dev/null && REALPATH="grealpath"
     command -v realpath >>/dev/null && REALPATH="realpath"
-    if [ -z REALPATH ]; then
-        fatal "Please install (g)realpath"
-    fi
+    [ -z ${REALPATH+x} ] && REALPATH="readlink -f"
 
 }
 
@@ -51,7 +49,9 @@ function install () {
 }
 
 echo "-pulling in dependencies"
-git submodule update --remote --init --recursive
+git submodule update --remote --init --recursive || {
+    git submodule update --init --recursive
+}
 
 check_required_libraries
 

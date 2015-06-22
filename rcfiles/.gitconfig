@@ -44,6 +44,7 @@
     uff = !sh -c 'git rup && git ffm'
     sur = submodule update --remote
     surr = submodule update --remote --recursive
+    stc = !sh -c 'git stash -k && ./sbt test && git stash pop'
     remote-difflog = "!current_branch=\"$(git rev-parse --abbrev-ref HEAD)\" ;\
                        f() { remote=\"$1\" ;\
                              echo \"$remote:\" ;\

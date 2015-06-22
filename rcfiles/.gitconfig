@@ -72,7 +72,3 @@ defaultToUpstream = 1
 
 [web]
     browser = firefox
-
-[branch "master"]
-    remote = w
-    merge = refs/heads/master

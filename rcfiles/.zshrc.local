@@ -415,6 +415,12 @@ alias fuck='eval $(thefuck $(fc -ln -1))'
 # fuck you nautilus
 alias nautilus='nautilus --no-desktop'
 
+function vimit (){
+    [[ -z "$1" ]] && { echo "wat" && return 1 }
+    WHAT=$(find . -readable -name "*$1*") || { echo "nope" && return 1 }
+    vim "$WHAT"
+}
+
 
 # Environment
 # -------------

@@ -9,4 +9,4 @@ sudo add-apt-repository ppa:niko2040/e19 # terminology
 sudo apt-get update
 
 ## misc packages
-sudo apt-get install oracle-java8-installer realpath acpi xbacklight xmonad xmobar dmenu python-dev curl arandr vim htop git python-pip subversion trayer xloadimage tree firefox libc6:i386 zlib1g:i386 nmap zsh vim fish i3 i3blocks feh terminology
+sudo apt-get install oracle-java8-installer realpath acpi xbacklight xmonad xmobar dmenu python-dev curl arandr vim htop git python-pip subversion trayer xloadimage tree firefox libc6:i386 zlib1g:i386 nmap zsh vim i3 i3blocks feh terminology imagemagick scrot emacs

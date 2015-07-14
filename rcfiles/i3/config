@@ -27,7 +27,7 @@ font pango:DejaVu Sans Mono 10
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec terminology
+bindsym $mod+Return exec gnome-terminal --hide-menubar
 
 ## launch a pad
 #bindsym $mod+p exec xpad
@@ -202,4 +202,4 @@ bar {
 # start some stuff
 exec --no-startup-id nm-applet
 #exec --no-startup-id xpad
-exec --no-startup-id feh --bg-scale ~/Dropbox/Photos/city.jpg
+exec --no-startup-id xsetroot -solid black

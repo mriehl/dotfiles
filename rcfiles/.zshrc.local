@@ -424,6 +424,8 @@ function vimit (){
     vim "$WHAT"
 }
 
+alias osbt='./sbt "set offline := true" shell'
+
 
 # Environment
 # -------------

@@ -54,7 +54,7 @@ inoremap <C-h> <Esc>:tabprevious<CR>i
 inoremap <C-l> <Esc>:tabnext<CR>i
 inoremap <C-t> <Esc>:tabnew<CR>
 
-command KT :%s/\s\+$//e
+command KillTrailing :%s/\s\+$//e
 
 " Racer
 let g:racer_experimental_completer = 1

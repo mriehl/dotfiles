@@ -43,6 +43,9 @@ let g:NERDTreeIgnore = ['\v\.(exe|so|dll|pyc|pyo|a)$']
 " Nerdtree
 nnoremap <C-k> :NERDTree<CR>
 
+" CtrlP CmdPalette
+nnoremap <C-j> :CtrlPCmdPalette<CR>
+
 " Keybindings
 nnoremap <C-h> :tabprevious<CR>
 nnoremap <C-l> :tabnext<CR>

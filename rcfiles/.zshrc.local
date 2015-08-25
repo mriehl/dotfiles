@@ -30,7 +30,7 @@ function virtual_env_prompt () {
     REPLY=${VIRTUAL_ENV+(${VIRTUAL_ENV:t}) }
 }
 grml_theme_add_token  virtual-env -f virtual_env_prompt '%F{magenta}' '%f'
-zstyle ':prompt:grml:left:setup' items rc virtual-env change-root user at host path vcs dollar
+zstyle ':prompt:grml:left:setup' items rc date space time virtual-env change-root user at host path vcs newline gtprompt
 
 ## ZLE tweaks ##
 
@@ -307,10 +307,12 @@ grml_prompt_token_default=(
     path              '%c '
     percent           '%# '
     dollar            '$ '
+    gtprompt          '» '
     rc                '%(?..%? )'
     rc-always         '%?'
     sad-smiley        '%(?..FAIL)'
     shell-level       '%(3L.+ .)'
+    space             ' '
     time              '%D{%H:%M:%S} '
     user              '%n'
     vcs               '0'
@@ -329,6 +331,7 @@ grml_prompt_pre_default=(
     path              '%B'
     percent           ''
     dollar            ''
+    gtprompt          ''
     rc                '%B%F{red}'
     rc-always         ''
     sad-smiley        ''
@@ -351,6 +354,7 @@ grml_prompt_post_default=(
     path              '%b'
     percent           ''
     dollar            ''
+    gtprompt          ''
     rc                '%f%b'
     rc-always         ''
     sad-smiley        ''

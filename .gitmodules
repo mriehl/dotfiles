@@ -34,6 +34,7 @@
 [submodule "rcfiles/.vim/bundle/YouCompleteMe"]
 	path = rcfiles/.vim/bundle/YouCompleteMe
 	url = https://github.com/Valloric/YouCompleteMe
+    ignore = dirty
 [submodule "rcfiles/.vim/bundle/vim-easymotion"]
 	path = rcfiles/.vim/bundle/vim-easymotion
 	url = https://github.com/Lokaltog/vim-easymotion

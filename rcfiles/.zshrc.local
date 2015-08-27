@@ -29,8 +29,12 @@
 function virtual_env_prompt () {
     REPLY=${VIRTUAL_ENV+(${VIRTUAL_ENV:t}) }
 }
+function git_radar () {
+    REPLY=$(git-radar --zsh)
+}
 grml_theme_add_token  virtual-env -f virtual_env_prompt '%F{magenta}' '%f'
-zstyle ':prompt:grml:left:setup' items rc date space time virtual-env change-root user at host path vcs newline gtprompt
+grml_theme_add_token git-radar -f git_radar
+zstyle ':prompt:grml:left:setup' items rc date space time virtual-env change-root user at host path git-radar newline gtprompt
 
 ## ZLE tweaks ##
 

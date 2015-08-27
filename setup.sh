@@ -139,6 +139,10 @@ install /usr/local/bin/i3lock.sh bin/i3lock.sh as_root
 install /usr/local/bin/lein bin/lein as_root
 install /usr/local/bin/pyb-vim bin/pyb-vim as_root
 
+install /usr/local/bin/radar-base.sh deps/git-radar/radar-base.sh as_root
+install /usr/local/bin/prompt.zsh deps/git-radar/prompt.zsh as_root
+install /usr/local/bin/git-radar deps/git-radar/git-radar as_root
+
 #---fonts
 if [[ $(uname) == 'Linux' ]]; then
     install_source_code_pro

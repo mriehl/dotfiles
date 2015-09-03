@@ -15,6 +15,11 @@ filetype plugin indent on
 
 execute pathogen#infect()
 
+if v:version > 703
+    colorscheme lucius
+    LuciusLight
+endif
+
 " Easymotion
 map <Leader> <Plug>(easymotion-prefix)
 

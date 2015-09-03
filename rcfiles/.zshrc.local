@@ -393,6 +393,8 @@ function vimit (){
 
 alias osbt='./sbt "set offline := true" shell'
 
+alias tmux='tmux -2'
+
 
 # Environment
 # -------------

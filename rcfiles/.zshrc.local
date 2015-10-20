@@ -353,6 +353,9 @@ alias osbt='./sbt "set offline := true" shell'
 
 alias tmux='tmux -2'
 
+alias keymap='setxkbmap'
+alias 'keymap?'='setxkbmap -query'
+
 
 # Environment
 # -------------

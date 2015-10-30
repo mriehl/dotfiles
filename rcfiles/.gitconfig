@@ -72,3 +72,5 @@ defaultToUpstream = 1
 
 [web]
     browser = firefox
+[diff]
+	tool = vimdiff

@@ -41,6 +41,7 @@
 [submodule "deps/tpm"]
 	path = deps/tpm
 	url = https://github.com/tmux-plugins/tpm
+    ignore = dirty
 [submodule "rcfiles/.vim/bundle/vim-scala"]
 	path = rcfiles/.vim/bundle/vim-scala
 	url = https://github.com/derekwyatt/vim-scala

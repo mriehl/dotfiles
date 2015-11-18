@@ -66,10 +66,10 @@ install ~/.zshrc.local rcfiles/.zshrc.local
 echo "---fish"
 install ~/.config/fish/config.fish rcfiles/fish/config.fish
 echo "---vim"
-install ~/.vimrc rcfiles/.vimrc
-install ~/.vim/autoload/pathogen.vim rcfiles/.vim/autoload/pathogen.vim
+install ~/.config/nvim/init.vim rcfiles/.vimrc
+install ~/.config/nvim/autoload/pathogen.vim rcfiles/.vim/autoload/pathogen.vim
 echo "----pathogen plugins"
-install ~/.vim/bundle rcfiles/.vim/bundle
+install ~/.config/nvim/bundle rcfiles/.vim/bundle
 echo "---xmonad"
 install ~/.xmobarrc rcfiles/.xmobarrc
 install ~/.xmonad rcfiles/.xmonad

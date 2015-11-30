@@ -12,12 +12,22 @@ au FileType gitcommit set tw=72
 
 filetype plugin indent on
 
-execute pathogen#infect()
-
-if v:version > 703
-    colorscheme lucius
-    LuciusLight
+if has('nvim')
+  call plug#begin('~/.config/nvim/plugged')
+else
+  call plug#begin('~/.vim/plugged')
 endif
+Plug 'scrooloose/nerdtree'
+Plug 'kien/ctrlp.vim'
+Plug 'bling/vim-airline'
+Plug 'fatih/vim-go'
+Plug 'jonathanfilip/vim-lucius'
+Plug 'derekwyatt/vim-scala'
+Plug 'wting/rust.vim'
+call plug#end()
+
+colorscheme lucius
+LuciusLight
 
 " Jedi plugin
 let g:jedi#goto_assignments_command = "<leader>g"

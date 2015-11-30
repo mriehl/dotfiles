@@ -67,7 +67,7 @@ echo "---fish"
 install ~/.config/fish/config.fish rcfiles/fish/config.fish
 echo "---vim"
 install ~/.config/nvim/init.vim rcfiles/.vimrc
-install ~/.config/nvim/autoload/pathogen.vim rcfiles/.vim/autoload/pathogen.vim
+install ~/.config/nvim/autoload/plug.vim rcfiles/.vim/autoload/plug.vim
 echo "----pathogen plugins"
 install ~/.config/nvim/bundle rcfiles/.vim/bundle
 echo "---xmonad"

@@ -1,52 +1,7 @@
-[submodule "rcfiles/.vim/bundle/nerdtree"]
-	path = rcfiles/.vim/bundle/nerdtree
-	url = https://github.com/scrooloose/nerdtree
-[submodule "rcfiles/.vim/bundle/ctrlp.vim"]
-	path = rcfiles/.vim/bundle/ctrlp.vim
-	url = https://github.com/kien/ctrlp.vim
-[submodule "rcfiles/.vim/bundle/rust.vim"]
-	path = rcfiles/.vim/bundle/rust.vim
-	url = https://github.com/wting/rust.vim
-[submodule "rcfiles/.vim/bundle/racer"]
-	path = rcfiles/.vim/bundle/racer
-	url = https://github.com/phildawes/racer
-[submodule "rcfiles/.vim/bundle/vim-airline"]
-	path = rcfiles/.vim/bundle/vim-airline
-	url = https://github.com/bling/vim-airline
-[submodule "rcfiles/.vim/bundle/vimerl"]
-	path = rcfiles/.vim/bundle/vimerl
-	url = https://github.com/jimenezrick/vimerl
-[submodule "rcfiles/.vim/bundle/calendar.vim"]
-	path = rcfiles/.vim/bundle/calendar.vim
-	url = https://github.com/itchyny/calendar.vim
-[submodule "rcfiles/.vim/bundle/clang_complete"]
-	path = rcfiles/.vim/bundle/clang_complete
-	url = https://github.com/Rip-Rip/clang_complete
-[submodule "rcfiles/.vim/bundle/vim-surround"]
-	path = rcfiles/.vim/bundle/vim-surround
-	url = https://github.com/tpope/vim-surround.git
-[submodule "rcfiles/.vim/bundle/vim-javascript"]
-	path = rcfiles/.vim/bundle/vim-javascript
-	url = https://github.com/pangloss/vim-javascript
-[submodule "rcfiles/.vim/bundle/vim-go"]
-	path = rcfiles/.vim/bundle/vim-go
-	url = https://github.com/fatih/vim-go.git
 [submodule "deps/tpm"]
 	path = deps/tpm
 	url = https://github.com/tmux-plugins/tpm
     ignore = dirty
-[submodule "rcfiles/.vim/bundle/vim-scala"]
-	path = rcfiles/.vim/bundle/vim-scala
-	url = https://github.com/derekwyatt/vim-scala
-[submodule "rcfiles/.vim/bundle/vim-ctrlp-cmdpalette"]
-	path = rcfiles/.vim/bundle/vim-ctrlp-cmdpalette
-	url = https://github.com/fisadev/vim-ctrlp-cmdpalette
 [submodule "deps/git-radar"]
 	path = deps/git-radar
 	url = https://github.com/michaeldfallen/git-radar
-[submodule "rcfiles/.vim/bundle/vim-lucius"]
-	path = rcfiles/.vim/bundle/vim-lucius
-	url = https://github.com/jonathanfilip/vim-lucius
-[submodule "rcfiles/.vim/bundle/ensime-vim"]
-	path = rcfiles/.vim/bundle/ensime-vim
-	url = https://github.com/ensime/ensime-vim

@@ -4,6 +4,7 @@ set expandtab
 set tabstop=4
 set switchbuf=usetab,newtab
 set backspace=indent,eol,start
+set mouse-=a
 
 let mapleader=","
 

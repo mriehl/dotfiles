@@ -79,3 +79,14 @@ let $RUST_SRC_PATH="/opt/rust-src/src"
 set listchars=eol:¶,tab:»·,trail:·,extends:»,precedes:«
 
 set omnifunc=syntaxcomplete#Complete
+
+if !exists('g:airline_symbols')
+ let g:airline_symbols = {}
+endif
+
+if !has("win32")
+ " unicode symbols
+ let g:airline_left_sep = '▶'
+ let g:airline_right_sep = '◀'
+ let g:airline_symbols.branch = '⎇'
+endif

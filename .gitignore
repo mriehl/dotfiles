@@ -9,3 +9,6 @@ rcfiles/atom/projects.cson
 rcfiles/atom/.apm
 rcfiles/emacs.d/elpa
 *.swp
+
+# old version of vim plug when using :PlugUpgrade
+rcfiles/.vim/autoload/plug.vim.old

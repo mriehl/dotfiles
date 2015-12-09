@@ -77,3 +77,5 @@ set laststatus=2
 let $RUST_SRC_PATH="/opt/rust-src/src"
 
 set listchars=eol:¶,tab:»·,trail:·,extends:»,precedes:«
+
+set omnifunc=syntaxcomplete#Complete

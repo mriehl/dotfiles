@@ -26,6 +26,8 @@ Plug 'fatih/vim-go'
 Plug 'jonathanfilip/vim-lucius'
 Plug 'derekwyatt/vim-scala'
 Plug 'wting/rust.vim'
+Plug 'pangloss/vim-javascript'
+Plug 'Valloric/YouCompleteMe'
 call plug#end()
 
 colorscheme lucius

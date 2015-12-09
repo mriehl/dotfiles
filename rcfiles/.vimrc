@@ -1,7 +1,9 @@
 syntax on
 set nolist
 set expandtab
-set tabstop=4
+set smarttab
+set shiftwidth=2
+set tabstop=2
 set switchbuf=usetab,newtab
 set backspace=indent,eol,start
 set mouse-=a

@@ -28,6 +28,7 @@ Plug 'derekwyatt/vim-scala'
 Plug 'wting/rust.vim'
 Plug 'pangloss/vim-javascript'
 Plug 'Valloric/YouCompleteMe'
+Plug 'fisadev/vim-ctrlp-cmdpalette'
 call plug#end()
 
 colorscheme lucius

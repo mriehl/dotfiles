@@ -34,14 +34,8 @@ call plug#end()
 colorscheme lucius
 LuciusLight
 
-" Jedi plugin
-let g:jedi#goto_assignments_command = "<leader>g"
-let g:jedi#goto_definitions_command = "<leader>d"
-let g:jedi#documentation_command = "K"
-let g:jedi#usages_command = "<leader>n"
-let g:jedi#completions_command = "<C-Space>"
-let g:jedi#rename_command = "<leader>r"
-let g:jedi#show_call_signatures = "1"
+" Execute cmdpalette commands instead of just completing them
+let g:ctrlp_cmdpalette_execute = 1
 
 " Ctrlp
 let g:ctrlp_custom_ignore = {
@@ -49,7 +43,7 @@ let g:ctrlp_custom_ignore = {
   \ 'file': '\v\.(exe|so|dll|pyc|pyo|a)$',
   \ }
 
-let g:NERDTreeIgnore = ['\v\.(exe|so|dll|pyc|pyo|a)$']
+let g:NERDTreeIgnore = ['\v\.(exe|so|dll|pyc|pyo|a|class)$']
 
 " Nerdtree
 nnoremap <C-k> :NERDTree<CR>

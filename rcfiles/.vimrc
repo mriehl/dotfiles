@@ -29,6 +29,7 @@ Plug 'wting/rust.vim'
 Plug 'pangloss/vim-javascript'
 Plug 'Valloric/YouCompleteMe'
 Plug 'fisadev/vim-ctrlp-cmdpalette'
+Plug 'tpope/vim-fugitive'
 call plug#end()
 
 colorscheme lucius

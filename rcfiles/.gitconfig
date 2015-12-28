@@ -36,6 +36,7 @@
     hist = log --graph --pretty=format:'%Cred%h%Creset -%C(bold yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
     todo =  grep --line-number -I -i --word-regexp TODO
     today = !git log --author=$(git config user.email) --since=yesterday
+    who = log --all --format='%cN <%cE>'
     ls = ls-files
     pulr = pull --rebase
     ru = remote update

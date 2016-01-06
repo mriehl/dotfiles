@@ -228,6 +228,6 @@ exec --no-startup-id nm-applet
 exec --no-startup-id xsetroot -solid black
 
 # nitro-powered input device
-exec --no-startup-id xset m 3 0
+exec --no-startup-id xset m 5 1
 
 exec xautolock -time 5 -locker "sh /usr/local/bin/i3lock.sh" &

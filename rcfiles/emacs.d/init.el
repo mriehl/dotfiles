@@ -4,3 +4,4 @@
 (add-to-list 'load-path (expand-file-name "subconfigs" user-emacs-directory))
 (require 'init-packages)
 (require 'init-evil)
+(require 'init-theme)

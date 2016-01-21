@@ -12,7 +12,7 @@
     default = tracking
 
 [core]
-    editor = vim
+    editor = emacs -nw
     pager = less -R
 
 [status]

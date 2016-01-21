@@ -342,7 +342,7 @@ alias nautilus='nautilus --no-desktop'
 # no X "integration", I'd like to stay in the shell, thanks
 alias emacs='emacs -nw'
 
-alias vim='nvim'
+alias vim='emacs'
 
 function vimit (){
     [[ -z "$1" ]] && { echo "wat" && return 1 }

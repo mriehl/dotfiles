@@ -3,6 +3,7 @@
 
 (menu-bar-mode -1)
 
+(setq make-backup-files nil)
 (add-to-list 'load-path (expand-file-name "subconfigs" user-emacs-directory))
 (require 'init-packages)
 (require 'init-evil)

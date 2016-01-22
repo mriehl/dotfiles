@@ -12,3 +12,6 @@ rcfiles/emacs.d/elpa
 
 # old version of vim plug when using :PlugUpgrade
 rcfiles/.vim/autoload/plug.vim.old
+
+# projectile bookmarks
+rcfiles/emacs.d/projectile-bookmarks.eld

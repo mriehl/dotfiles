@@ -10,3 +10,4 @@
 (require 'init-packages)
 (require 'init-evil)
 (require 'init-theme)
+(require 'init-helm)

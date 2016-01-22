@@ -273,7 +273,7 @@ grml_prompt_post_default=(
 
 if check_com vim && [[ -f /usr/local/bin/vim ]]; then
     vim() {
-        VIM_PLEASE_SET_TITLE='yes' /usr/local/bin/vim ${VIM_OPTIONS} "$@"
+        VIM_PLEASE_SET_TITLE='yes' /usr/bin/emacs -nw ${VIM_OPTIONS} "$@"
     }
 fi
 
@@ -388,3 +388,5 @@ export LESS_TERMCAP_so=$'\E[38;5;246m'
 export LESS_TERMCAP_ue=$'\E[0m'
 export LESS_TERMCAP_us=$'\E[04;38;5;146m'
 export LESS_TERMCAP_so=$'\e[0;31m'
+
+export EDITOR='emacs -nw'

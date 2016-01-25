@@ -11,3 +11,4 @@
 (require 'init-evil)
 (require 'init-theme)
 (require 'init-helm)
+(require 'init-powerline)

@@ -16,4 +16,4 @@ rcfiles/.vim/autoload/plug.vim.old
 # projectile bookmarks
 rcfiles/emacs.d/projectile-bookmarks.eld
 rcfiles/emacs.d/auto-save-list
-emacs.d/ac-comphist.dat 
+rcfiles/emacs.d/ac-comphist.dat

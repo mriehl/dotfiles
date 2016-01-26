@@ -340,14 +340,14 @@ alias fuck='eval $(thefuck $(fc -ln -1))'
 alias nautilus='nautilus --no-desktop'
 
 # no X "integration", I'd like to stay in the shell, thanks
-alias emacs='emacs -nw'
+alias emacs='emacsclient -nw'
 
-alias vim='emacs'
+alias vim='emacsclient -nw'
 
 function vimit (){
     [[ -z "$1" ]] && { echo "wat" && return 1 }
     WHAT=$(find . -readable -name "*$1*") || { echo "nope" && return 1 }
-    vim "$WHAT"
+    emacsclient -nw "$WHAT"
 }
 
 alias osbt='./sbt "set offline := true" shell'
@@ -391,4 +391,5 @@ export LESS_TERMCAP_so=$'\e[0;31m'
 
 export BROWSER="firefox"
 
-export EDITOR='emacs -nw'
+export EDITOR='emacsclient -nw'
+alias emacs='emacsclient -nw'

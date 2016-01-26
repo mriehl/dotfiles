@@ -90,6 +90,8 @@ install ~/.gnupg/gpg-agent.conf rcfiles/gpg-agent.conf
 install ~/.gnupg/gpg.conf rcfiles/gpg.conf
 echo "---emacs"
 install ~/.emacs.d rcfiles/emacs.d
+mkdir -p ~/.config/systemd/user
+cp resources/emacs.service ~/.config/systemd/user/emacs.service
 
 echo "--installing light table config"
 install ~/.config/LightTable/User/user.behaviors light-table/user.behaviors

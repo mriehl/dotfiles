@@ -13,6 +13,7 @@
 (require 'init-helm)
 (require 'init-powerline)
 (require 'init-elscreen)
+(require 'init-auto-complete)
 
 ;; esc quits
 (defun minibuffer-keyboard-quit ()

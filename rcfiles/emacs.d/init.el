@@ -12,6 +12,7 @@
 (require 'init-theme)
 (require 'init-helm)
 (require 'init-powerline)
+(require 'init-elscreen)
 
 ;; esc quits
 (defun minibuffer-keyboard-quit ()

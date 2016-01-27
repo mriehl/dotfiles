@@ -20,4 +20,6 @@
 (require 'evil-visualstar)
 (global-evil-visualstar-mode t)
 
+(setq evil-want-fine-undo 'no)
+
 (provide 'init-evil)

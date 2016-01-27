@@ -5,6 +5,7 @@
 
 (add-to-list 'load-path (expand-file-name "subconfigs" user-emacs-directory))
 (require 'init-packages)
+(require 'init-undo-tree)
 (require 'init-evil)
 (require 'init-theme)
 (require 'init-helm)
@@ -47,7 +48,7 @@
        :group 'linum)
 
      (defun linum-format-func (line)
-       (let ((w (max 2(length
+       (let ((w (max 2 (length
                  (number-to-string (count-lines (point-min) (point-max)))))))
          (concat
           (propertize (make-string (- w (length (number-to-string line))) ?0)

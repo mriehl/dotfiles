@@ -11,6 +11,7 @@
 (require 'init-powerline)
 (require 'init-elscreen)
 (require 'init-auto-complete)
+(require 'init-ensime)
 
 (setq make-backup-files nil)
 (setq create-lockfiles nil)

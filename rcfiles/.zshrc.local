@@ -393,3 +393,4 @@ export BROWSER="firefox"
 
 export EDITOR='emacsclient -nw'
 alias emacs='emacsclient -nw'
+alias reconfigureEmacs='/usr/bin/emacsclient --eval "(load-file \"~/.emacs.d/init.el\")"'

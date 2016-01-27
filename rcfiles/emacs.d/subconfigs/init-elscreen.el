@@ -5,8 +5,8 @@
 (global-set-key (kbd "C-c t a b e") 'elscreen-create)
 (global-set-key (kbd "C-c t a b d") 'elscreen-kill)
 
-(global-set-key (kbd "C-h") 'elscreen-previous)
-(global-set-key (kbd "C-l") 'elscreen-next)
+(global-set-key (kbd "M-h") 'elscreen-previous)
+(global-set-key (kbd "M-l") 'elscreen-next)
 
 (elscreen-start)
 (provide 'init-elscreen)

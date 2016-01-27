@@ -7,12 +7,12 @@
 (require 'init-packages)
 (require 'init-undo-tree)
 (require 'init-evil)
+(require 'init-ensime)
 (require 'init-theme)
 (require 'init-helm)
 (require 'init-powerline)
 (require 'init-elscreen)
 (require 'init-auto-complete)
-(require 'init-ensime)
 
 (setq make-backup-files nil)
 (setq create-lockfiles nil)
@@ -134,6 +134,7 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (define-key minibuffer-local-isearch-map [escape] 'minibuffer-keyboard-quit)
 
 (global-set-key [escape] 'evil-exit-emacs-state)
+
 
 ;; follow those pesky simlinks
 (setq vc-follow-symlinks t)

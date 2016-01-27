@@ -19,11 +19,10 @@
 (define-key ensime-mode-map (kbd "M-e") 'ensime-print-errors-at-point)
 (define-key ensime-mode-map (kbd "M-E") 'ensime-show-all-errors-and-warnings)
 (define-key ensime-mode-map (kbd "M-d") 'ensime-edit-definition)
-(define-key ensime-mode-map (kbd "C-@") 'ensime-company-complete-or-indent)
-
-;; TODO, these do not work
-(define-key ensime-mode-map (kbd "C-n") 'forward-button)
-(define-key ensime-mode-map (kbd "C-p") 'previous-button)
+(define-key ensime-mode-map (kbd "TAB") 'ensime-company-complete-or-indent)
+(define-key ensime-mode-map (kbd "C-n") 'company-select-next)
+(define-key ensime-mode-map (kbd "C-p") 'company-select-previous)
+(define-key ensime-mode-map (kbd "M-i") 'ensime-import-type-at-point)
 
 (setq ensime-completion-style 'company)
 

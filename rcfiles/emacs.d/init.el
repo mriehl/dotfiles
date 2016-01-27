@@ -138,3 +138,15 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 
 ;; follow those pesky simlinks
 (setq vc-follow-symlinks t)
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(ensime-implicit-gutter-icons nil))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(ensime-implicit-highlight ((t (:foreground "color-177")))))

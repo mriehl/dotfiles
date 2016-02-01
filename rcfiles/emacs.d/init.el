@@ -11,7 +11,6 @@
 (require 'init-theme)
 (require 'init-helm)
 (require 'init-powerline)
-(require 'init-elscreen)
 (require 'init-auto-complete)
 
 (setq make-backup-files nil)

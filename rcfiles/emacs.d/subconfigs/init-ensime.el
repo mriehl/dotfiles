@@ -21,6 +21,8 @@
 (evil-define-key 'insert ensime-mode-map (kbd "C-p") 'company-select-previous)
 (evil-define-key 'normal ensime-mode-map (kbd "M-d") 'ensime-edit-definition)
 
+(evil-define-key 'normal evil-jumper-mode-map (kbd "C-M-h") 'evil-jump-backward)
+
 (setq ensime-completion-style 'company)
 
 (provide 'init-ensime)

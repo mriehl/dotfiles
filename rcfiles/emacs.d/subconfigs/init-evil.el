@@ -22,4 +22,10 @@
 
 (setq evil-want-fine-undo 'no)
 
+
+(require-package 'evil-jumper)
+(require 'evil-jumper)
+
+(global-evil-jumper-mode 1)
+
 (provide 'init-evil)

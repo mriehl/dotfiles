@@ -5,3 +5,6 @@
 [submodule "deps/git-radar"]
 	path = deps/git-radar
 	url = https://github.com/michaeldfallen/git-radar
+[submodule "rcfiles/emacs.d/subconfigs"]
+	path = rcfiles/emacs.d/subconfigs
+	url = https://github.com/brocode/emacs_subconfigs

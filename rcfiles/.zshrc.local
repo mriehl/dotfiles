@@ -350,6 +350,15 @@ function vimit (){
     emacsclient -nw "$WHAT"
 }
 
+function ediff() {
+    if [ "X${2}" = "X" ]; then
+        echo "USAGE: ediff <FILE 1> <FILE 2>"
+    else
+        # The --eval flag takes lisp code and evaluates it with EMACS
+        emacsclient -nw --eval "(ediff-files \"$1\" \"$2\")"
+    fi
+}
+
 alias osbt='./sbt "set offline := true" shell'
 
 alias tmux='tmux -2'

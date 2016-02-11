@@ -74,4 +74,5 @@ defaultToUpstream = 1
 [web]
     browser = firefox
 [diff]
-	tool = vimdiff
+	tool = ediff
+  algorithm = histogram

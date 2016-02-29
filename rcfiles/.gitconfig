@@ -76,3 +76,7 @@ defaultToUpstream = 1
 [diff]
 	tool = ediff
   algorithm = histogram
+
+# Local Variables:
+# mode: conf
+# End:

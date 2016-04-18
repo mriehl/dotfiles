@@ -403,4 +403,7 @@ export BROWSER="firefox"
 export EDITOR='emacsclient -nw'
 alias emacs='emacsclient -nw'
 alias reconfigureEmacs='/usr/bin/emacsclient --eval "(load-file \"~/.emacs.d/init.el\")"'
+alias estart='systemctl --user start emacs.service'
+alias estop='systemctl --user stop emacs.service'
+alias erestart='estop && estart'
 alias uemacs='/usr/bin/emacs'

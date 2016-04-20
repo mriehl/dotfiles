@@ -4,8 +4,6 @@
 (add-to-list 'load-path (expand-file-name "subconfigs" user-emacs-directory))
 (require 'init-subconfigs)
 
-(setq projectile-enable-caching t)
-
 ; display line numbers
 (add-hook 'prog-mode-hook 'line-number-mode t)
 (add-hook 'prog-mode-hook 'column-number-mode t)

@@ -21,3 +21,5 @@ rcfiles/emacs.d/savehist
 rcfiles/emacs.d/saveplace
 rcfiles/emacs.d/ensime
 rcfiles/emacs.d/projectile.cache
+rcfiles/emacs.d/.cask
+rcfiles/emacs.d/company-statistics-cache.el

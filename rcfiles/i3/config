@@ -228,9 +228,9 @@ bar {
 
 set $mode_key us (u), (i) us intl, (d) de
 mode "$mode_key" {
-  bindsym u exec --no-startup-id setxkbmap us && pkill -RTMIN+1 i3blocks, mode "default"
-  bindsym d exec --no-startup-id setxkbmap de && pkill -RTMIN+1 i3blocks, mode "default"
-  bindsym i exec --no-startup-id setxkbmap us -variant intl && pkill -RTMIN+1 i3blocks, mode "default"
+  bindsym u exec --no-startup-id setxkbmap us && pkill -RTMIN+1 i3blocks && setxkbmap -option "caps:none", mode "default"
+  bindsym d exec --no-startup-id setxkbmap de && pkill -RTMIN+1 i3blocks && setxkbmap -option "caps:none", mode "default"
+  bindsym i exec --no-startup-id setxkbmap us -variant intl && pkill -RTMIN+1 i3blocks && setxkbmap -option "caps:none", mode "default"
 
   bindsym Return mode "default"
   bindsym Escape mode "default"
@@ -244,4 +244,6 @@ exec --no-startup-id xsetroot -solid black
 # nitro-powered input device
 exec --no-startup-id xset m 5 1
 
-exec xautolock -time 5 -locker "sh /usr/local/bin/i3lock.sh" &
+exec --no-startup-id xautolock -time 5 -locker "sh /usr/local/bin/i3lock.sh" &
+
+exec --no-startup-id setxkbmap -option "caps:none" &

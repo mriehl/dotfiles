@@ -1,3 +1,7 @@
+## Local Variables:
+## mode: shell-script
+## End:  
+
 function virtual_env_prompt () {
     REPLY=${VIRTUAL_ENV+(${VIRTUAL_ENV:t}) }
 }
@@ -400,7 +404,8 @@ export LESS_TERMCAP_so=$'\e[0;31m'
 
 export BROWSER="firefox"
 
-export EDITOR='emacsclient -nw'
+export EDITOR='nvim'
+export SUDO_EDITOR='emacsclient -nw'
 alias emacs='emacsclient -nw'
 alias reconfigureEmacs='/usr/bin/emacsclient --eval "(load-file \"~/.emacs.d/init.el\")"'
 alias estart='systemctl --user start emacs.service'

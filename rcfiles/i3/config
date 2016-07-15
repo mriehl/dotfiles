@@ -214,26 +214,23 @@ for_window [class="Gnome-terminal"] border toggle
 bar {
   status_command i3blocks -c ".i3/i3blocks.conf"
   position top
-
   colors {
-    #  background $transparent
-    background #2B2C2B
-    statusline #F9FAF9
-    separator  #454947
-
-    focused_workspace  #F9FAF9 #16A085 #FDF6E3
-    active_workspace   #595B5B #353836 #FDF6E3
-    inactive_workspace #595B5B #353836 #EEE8D5
-    urgent_workspace   #16A085 #FDF6E3 #E5201D
+    separator #dc322f
+    background #002b36
+    statusline #268bd2
+    focused_workspace #fdf6e3 #859900 #fdf6e3
+    active_workspace #fdf6e3 #6c71c4 #fdf6e3
+    inactive_workspace #586e75 #93a1a1 #002b36
+    urgent_workspace #d33682 #d33682 #fdf6e3
   }
 }
 
-client.focused          #808280 #808280 #80FFF9 #FDF6E3
-client.focused_inactive #434745 #434745 #16A085 #454948
-client.unfocused        #434745 #434745 #16A085 #454948
-client.urgent           #CB4B16 #FDF6E3 #16A085 #268BD2
 client.placeholder      #000000 #0c0c0c #ffffff #000000 #0c0c0c
 client.background       #2B2C2B
+client.focused #859900 #859900 #fdf6e3 #859900
+client.focused_inactive #073642 #073642 #eee8d5 #6c71c4
+client.unfocused #073642 #073642 #93a1a1 #586e75
+client.urgent #d33682 #d33682 #fdf6e3 #dc322f
 
 set $mode_key us (u), (i) us intl, (d) de
 mode "$mode_key" {
@@ -248,10 +245,7 @@ bindsym $mod+Shift+T mode "$mode_key"
 
 
 exec --no-startup-id nm-applet
-exec --no-startup-id xsetroot -solid black
-
-# nitro-powered input device
-exec --no-startup-id xset m 5 1
+exec --no-startup-id fbsetroot -gradient pipecross -from black -to blue
 
 exec --no-startup-id xautolock -time 5 -locker "sh /usr/local/bin/i3lock.sh" &
 

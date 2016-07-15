@@ -245,7 +245,7 @@ bindsym $mod+Shift+T mode "$mode_key"
 
 
 exec --no-startup-id nm-applet
-exec --no-startup-id fbsetroot -gradient pipecross -from black -to blue
+exec --no-startup-id fbsetroot -gradient pipecross -from darkblue -to lightgreen
 
 exec --no-startup-id xautolock -time 5 -locker "sh /usr/local/bin/i3lock.sh" &
 

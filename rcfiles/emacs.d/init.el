@@ -33,3 +33,5 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
  ;; If there is more than one, they won't work right.
  '(ensime-implicit-highlight ((t (:foreground "color-177"))))
  )
+
+(set-default-font "Source Code Pro 12")

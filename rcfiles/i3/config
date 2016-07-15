@@ -184,14 +184,14 @@ mode "$mode_system" {
 }
 bindsym $mod+Shift+Q mode "$mode_system"
 
-set $mode_apps Apps (n) nautilus, (f) firefox, (m) claws-mail, (i) idea, (x) arandr, (e) freemind, (g) gimp, (o) libreoffice, (w) mysql
+set $mode_apps Apps (n) nautilus, (f) firefox, (m) claws-mail, (i) idea, (x) arandr, (e) emacs, (g) gimp, (o) libreoffice, (w) mysql
 mode "$mode_apps" {
     bindsym n exec --no-startup-id /usr/bin/nautilus --no-desktop, mode "default"
     bindsym f exec --no-startup-id /usr/bin/firefox, mode "default"
     bindsym m exec --no-startup-id /usr/bin/claws-mail, mode "default"
     bindsym i exec --no-startup-id /usr/local/bin/idea, mode "default"
     bindsym x exec --no-startup-id /usr/bin/arandr, mode "default"
-    bindsym e exec --no-startup-id /usr/bin/freemind, mode "default"
+    bindsym e exec --no-startup-id /usr/bin/emacs, mode "default"
     bindsym g exec --no-startup-id /usr/bin/gimp, mode "default"
     bindsym o exec --no-startup-id /usr/bin/libreoffice, mode "default"
     bindsym w exec --no-startup-id /usr/bin/mysql-workbench, mode "default"

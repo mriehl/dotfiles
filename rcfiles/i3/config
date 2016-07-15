@@ -114,6 +114,8 @@ set $w4 "4: email"
 assign [class="^Firefox$"] → "1: www"
 assign [class="^jetbrains-idea$"] → "3: ide"
 
+assign [class="chromium-browser" window_role="browser"] 9
+
 # switch to workspace
 bindsym $mod+1 workspace $w1
 bindsym $mod+2 workspace $w2

@@ -215,22 +215,22 @@ bar {
   status_command i3blocks -c ".i3/i3blocks.conf"
   position top
   colors {
-    separator #002b36
-    background #002b36
-    statusline #268bd2
-    focused_workspace #fdf6e3 #859900 #fdf6e3
-    active_workspace #fdf6e3 #6c71c4 #fdf6e3
-    inactive_workspace #586e75 #93a1a1 #002b36
-    urgent_workspace #d33682 #d33682 #fdf6e3
+    separator #515151
+    background #2d2d2d
+    statusline #cccccc
+    focused_workspace #99cc99 #99cc99 #000000
+    active_workspace #333333 #333333 #ffffff
+    inactive_workspace #2d2d2d #2d2d2d #999999
+    urgent_workspace #f2777a #f2777a #ffffff
   }
 }
 
 client.placeholder      #000000 #0c0c0c #ffffff #000000 #0c0c0c
 client.background       #2B2C2B
-client.focused #859900 #859900 #fdf6e3 #859900
-client.focused_inactive #073642 #073642 #eee8d5 #6c71c4
-client.unfocused #073642 #073642 #93a1a1 #586e75
-client.urgent #d33682 #d33682 #fdf6e3 #dc322f
+client.focused #99cc99 #99cc99 #000000 #2d2d2d
+client.focused_inactive #393939 #393939 #888888 #292d2e
+client.unfocused #2d2d2d #2d2d2d #999999 #292d2e
+client.urgent #2f343a #900000 #ffffff #900000
 
 set $mode_key us (u), (i) us intl, (d) de
 mode "$mode_key" {
@@ -245,7 +245,7 @@ bindsym $mod+Shift+T mode "$mode_key"
 
 
 exec --no-startup-id nm-applet
-exec --no-startup-id fbsetroot -gradient pipecross -from darkblue -to lightgreen
+exec --no-startup-id xsetroot -solid black
 
 exec --no-startup-id xautolock -time 5 -locker "sh /usr/local/bin/i3lock.sh" &
 

@@ -243,6 +243,9 @@ mode "$mode_key" {
 }
 bindsym $mod+Shift+T mode "$mode_key"
 
+# screen backlight
+bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 10
+bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 10
 
 exec --no-startup-id nm-applet
 exec --no-startup-id xsetroot -solid black

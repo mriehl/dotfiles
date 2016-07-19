@@ -406,7 +406,7 @@ export BROWSER="firefox"
 
 export EDITOR='nvim'
 export SUDO_EDITOR='emacsclient -nw'
-alias emacs='emacsclient -nw'
+alias emacs='emacsclient -n -nw'
 alias reconfigureEmacs='/usr/bin/emacsclient --eval "(load-file \"~/.emacs.d/init.el\")"'
 alias estart='systemctl --user start emacs.service'
 alias estop='systemctl --user stop emacs.service'

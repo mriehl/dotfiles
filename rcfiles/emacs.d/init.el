@@ -9,6 +9,27 @@
 (add-hook 'prog-mode-hook 'column-number-mode t)
 (global-linum-mode 0)
 
+
+
+(require 'cl)
+(defun kill-nonserver-buffers ()
+  (interactive)
+  (setq server-buffers nil)
+  (let ((original-buffer (current-buffer)))
+    (loop for buf in (buffer-list)
+          do
+          (progn
+            (switch-to-buffer buf)
+            (if (not(and
+                 server-buffer-clients
+                 (buffer-live-p buf)))
+                (kill-buffer buf))))
+    (switch-to-buffer original-buffer)
+))
+
+(define-key evil-normal-state-map (kbd "C-k") 'kill-nonserver-buffers)
+
+
 ;; esc quits
 (defun minibuffer-keyboard-quit ()
     "Abort recursive edit.

@@ -113,7 +113,6 @@ set $w4 "4: email"
 
 assign [class="^Firefox$"] → "1: www"
 assign [class="^jetbrains-idea$"] → "3: ide"
-
 assign [class="chromium-browser" window_role="browser"] 9
 
 # switch to workspace
@@ -244,8 +243,8 @@ mode "$mode_key" {
 bindsym $mod+Shift+T mode "$mode_key"
 
 # screen backlight
-bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 10
-bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 10
+bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 5
+bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 5
 
 exec --no-startup-id nm-applet
 exec --no-startup-id xsetroot -solid black

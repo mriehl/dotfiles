@@ -140,6 +140,7 @@ install /usr/local/bin/drm bin/drm as_root
 install /usr/local/bin/i3lock.sh bin/i3lock.sh as_root
 install /usr/local/bin/lein bin/lein as_root
 install /usr/local/bin/pyb-vim bin/pyb-vim as_root
+install /usr/local/bin/toggle-touchpad bin/toggle-touchpad.sh as_root
 
 install /usr/local/bin/radar-base.sh deps/git-radar/radar-base.sh as_root
 install /usr/local/bin/prompt.zsh deps/git-radar/prompt.zsh as_root

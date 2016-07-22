@@ -212,6 +212,7 @@ for_window [window_role="pop-up"] floating enable,move absolute center
 for_window [class="claws-mail|Claws-mail" window_role="compose"] floating enable,move absolute center
 for_window [class="^jetbrains-idea$"] border toggle
 for_window [class="Gnome-terminal"] border toggle
+for_window [class="Franz"] border toggle
 
 bar {
   status_command i3blocks -c ".i3/i3blocks.conf"

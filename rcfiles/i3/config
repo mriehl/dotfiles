@@ -110,9 +110,11 @@ set $w1 "1: www"
 set $w2 "2: term"
 set $w3 "3: ide"
 set $w4 "4: email"
+set $w5 "5: msg"
 
 assign [class="^Firefox$"] → "1: www"
 assign [class="^jetbrains-idea$"] → "3: ide"
+assign [class="Franz"] → "5: msg"
 assign [class="chromium-browser" window_role="browser"] 9
 
 # switch to workspace
@@ -120,7 +122,7 @@ bindsym $mod+1 workspace $w1
 bindsym $mod+2 workspace $w2
 bindsym $mod+3 workspace $w3
 bindsym $mod+4 workspace $w4
-bindsym $mod+5 workspace 5
+bindsym $mod+5 workspace $w5
 bindsym $mod+6 workspace 6
 bindsym $mod+7 workspace 7
 bindsym $mod+8 workspace 8
@@ -183,7 +185,7 @@ mode "$mode_system" {
 }
 bindsym $mod+Shift+Q mode "$mode_system"
 
-set $mode_apps Apps (n) nautilus, (f) firefox, (m) claws-mail, (i) idea, (x) arandr, (e) emacs, (g) gimp, (o) libreoffice, (w) mysql
+set $mode_apps Apps (n) nautilus, (f) firefox, (m) claws-mail, (i) idea, (x) arandr, (e) emacs, (g) gimp, (o) libreoffice, (w) mysql, (s) franz
 mode "$mode_apps" {
     bindsym n exec --no-startup-id /usr/bin/nautilus --no-desktop, mode "default"
     bindsym f exec --no-startup-id /usr/bin/firefox, mode "default"
@@ -194,6 +196,7 @@ mode "$mode_apps" {
     bindsym g exec --no-startup-id /usr/bin/gimp, mode "default"
     bindsym o exec --no-startup-id /usr/bin/libreoffice, mode "default"
     bindsym w exec --no-startup-id /usr/bin/mysql-workbench, mode "default"
+    bindsym s exec --no-startup-id ~/programs/franz/Franz, mode "default"
 
     # back to normal: Enter or Escape
     bindsym Return mode "default"

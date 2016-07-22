@@ -210,9 +210,10 @@ bindsym $mod+Shift+A mode "$mode_apps"
 for_window [class="xpad"] floating enable
 for_window [window_role="pop-up"] floating enable,move absolute center
 for_window [class="claws-mail|Claws-mail" window_role="compose"] floating enable,move absolute center
-for_window [class="^jetbrains-idea$"] border toggle
-for_window [class="Gnome-terminal"] border toggle
-for_window [class="Franz"] border toggle
+
+new_window none
+hide_edge_borders both
+
 
 bar {
   status_command i3blocks -c ".i3/i3blocks.conf"

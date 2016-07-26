@@ -56,3 +56,5 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
  )
 
 (set-default-font "Source Code Pro 12")
+
+(setq x-select-enable-clipboard t)

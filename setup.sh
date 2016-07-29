@@ -146,6 +146,7 @@ install /usr/local/bin/radar-base.sh deps/git-radar/radar-base.sh as_root
 install /usr/local/bin/prompt.zsh deps/git-radar/prompt.zsh as_root
 install /usr/local/bin/git-radar deps/git-radar/git-radar as_root
 install /usr/local/bin/key_layout bin/key_layout as_root
+install /usr/local/bin/brightness-i3 bin/brightness-i3 as_root
 
 #---fonts
 if [[ $(uname) == 'Linux' ]]; then

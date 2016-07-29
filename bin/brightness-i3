@@ -1,0 +1,3 @@
+#!/bin/bash
+
+xbacklight | dbar -w 10

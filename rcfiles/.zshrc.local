@@ -380,8 +380,6 @@ export PYTHONSTARTUP
 export GOPATH=~/go
 export PATH=$PATH:$GOPATH/bin
 
-export JAVA_HOME=$(readlink -f /usr/bin/java | sed "s:bin/java::")
-
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 

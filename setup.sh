@@ -60,6 +60,7 @@ echo "-installing dotfiles"
 echo "--installing rcfiles"
 echo "---mjolnir"
 install ~/.mjolnir rcfiles/mjolnir
+install ~/.hammerspoon rcfiles/hammerspoon
 echo "---zsh"
 install ~/.zshrc rcfiles/.zshrc
 install ~/.zshrc.local rcfiles/.zshrc.local
@@ -121,6 +122,7 @@ echo "----java"
 install ~/.config/sublime-text-3/Packages/User/mvn.sublime-build sublime/mvn.sublime-build
 echo "----js"
 install ~/.config/sublime-text-3/Packages/User/nodejs-single-file.sublime-build sublime/nodejs-single-file.sublime-build
+
 
 #---scripts
 echo "--installing scripts"

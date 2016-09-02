@@ -1,8 +1,16 @@
 aspell
 coreutils
 emacs
+ffmpeg
 htop
+imagemagick
+maven
+nmap
+node
+python3
 sbt
+ssh-copy-id
 tig
 tmux
+wget
 zsh

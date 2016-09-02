@@ -12,7 +12,7 @@
     default = tracking
 
 [core]
-    editor = emacsclient -nw
+    editor = emacs -nw
     pager = less -R
 
 [status]

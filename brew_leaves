@@ -11,6 +11,7 @@ maven
 nmap
 node
 python3
+ranger
 sbt
 ssh-copy-id
 tig

@@ -1,7 +1,10 @@
 aspell
+awscli
 coreutils
+curl
 emacs
 ffmpeg
+gnupg2
 htop
 imagemagick
 maven

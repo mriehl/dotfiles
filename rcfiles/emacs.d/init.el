@@ -48,3 +48,5 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (set-keyboard-coding-system nil)
 (setq mac-option-modifier 'meta)
 (setq mac-escape-modifier nil)
+
+(setq custom-file "/dev/null")

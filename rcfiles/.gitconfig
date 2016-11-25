@@ -12,7 +12,7 @@
     default = tracking
 
 [core]
-    editor = emacs -nw
+    editor = emacsclient -nw
     pager = less -R
 
 [status]
@@ -80,3 +80,5 @@ defaultToUpstream = 1
 # Local Variables:
 # mode: conf
 # End:
+[pull]
+	rebase = true

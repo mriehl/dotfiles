@@ -60,6 +60,7 @@ echo "-installing dotfiles"
 echo "--installing rcfiles"
 echo "---sbt"
 install ~/.sbt/0.13/global.sbt rcfiles/global.sbt
+install ~/.sbt/0.13/plugins/plugins.sbt rcfiles/plugins.sbt
 echo "---mjolnir"
 install ~/.mjolnir rcfiles/mjolnir
 install ~/.hammerspoon rcfiles/hammerspoon

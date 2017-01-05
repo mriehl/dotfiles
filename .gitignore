@@ -24,3 +24,5 @@ rcfiles/emacs.d/projectile.cache
 rcfiles/emacs.d/.cask
 rcfiles/emacs.d/company-statistics-cache.el
 rcfiles/emacs.d/distel
+
+.python-environments

@@ -1,5 +1,7 @@
 #!/bin/bash
+ACTIVATOR_FALLBACK="bin/activator"
 SBT="./sbt" # prefer portable sbt due to custom settings if it exists
-[[ -f $SBT ]] || SBT="sbt"
+[[ -f "$ACTIVATOR_FALLBACK" ]] && SBT="$ACTIVATOR_FALLBACK"
+[[ -f "$SBT" ]] || SBT="sbt"
 echo using $SBT
 rm -rf .ensime .ensime_cache && $SBT test:compile ensimeConfig

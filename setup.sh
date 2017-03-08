@@ -96,6 +96,7 @@ echo "---emacs"
 install ~/.emacs.d rcfiles/emacs.d
 mkdir -p ~/.config/systemd/user
 cp resources/emacs.service ~/.config/systemd/user/emacs.service
+cp resources/ssh-agent.service ~/.config/systemd/user/ssh-agent.service
 
 echo "--installing light table config"
 install ~/.config/LightTable/User/user.behaviors light-table/user.behaviors

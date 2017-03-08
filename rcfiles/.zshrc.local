@@ -412,3 +412,4 @@ alias erestart='estop && estart'
 alias uemacs='/usr/bin/emacs'
 alias docker-killall='docker kill $(docker ps -q)'
 alias docker-be-gone='docker rmi -f $(docker images -a -q); docker rm -f $(docker ps -a -q)'
+alias export-local-ip="export HOSTNAME=$(ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1' | grep -v '172.')"

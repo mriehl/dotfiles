@@ -95,7 +95,7 @@ set_globals() {
     default_channel="stable"
 
     # Set up the rustup data dir
-    rustup_dir="${RUSTUP_HOME-$HOME/.rustup}"
+    rustup_dir="${RUSTUP_HOME-$HOME/.rustup.sh}"
     assert_nz "$rustup_dir" "rustup_dir"
 
     # Install prefix can be set by the environment
@@ -217,7 +217,7 @@ Mve696B5tlHyc1KxjHR6w9GRsh4=
     fi
 }
 
-# Ensuresthat ~/.rustup exists and uses the correct format
+# Ensuresthat ~/.rustup.sh exists and uses the correct format
 initialize_metadata() {
     local _disable_sudo="$1"
 
@@ -236,9 +236,9 @@ initialize_metadata() {
     fi
 
     # Oh, my. We used to encourage people running this script as root,
-    # and that resulted in users' ~/.rustup directories being owned by
+    # and that resulted in users' ~/.rustup.sh directories being owned by
     # root (running `sudo sh` doesn't change $HOME apparently). Now
-    # that we're not running as root, we can't touch our ~/.rustup
+    # that we're not running as root, we can't touch our ~/.rustup.sh
     # directory. Try to fix that.
     if [ -e "$version_file" ]; then
         local _can_write=true
@@ -306,14 +306,16 @@ handle_command_line_args() {
 
     local _arg
     for _arg in "$@"; do
-        case "$_arg" in
+        case "${_arg%%=*}" in
             --save )
                 _save=true
                 ;;
+
             --uninstall )
                 _uninstall=true
                 ;;
-            --help )
+
+            -h | --help )
                 _help=true
                 ;;
 
@@ -335,44 +337,84 @@ handle_command_line_args() {
                 flag_yes=true
                 ;;
 
-	    --list-available-targets)
-		_list_targets=true
-		;;
+            --list-available-targets)
+                _list_targets=true
+                ;;
 
             --version)
                 echo "rustup.sh $version"
                 exit 0
                 ;;
 
+            --prefix)
+                if is_value_arg "$_arg" "prefix"; then
+                    _prefix="$(get_value_arg "$_arg")"
+                fi
+                ;;
+
+            --channel)
+                if is_value_arg "$_arg" "channel"; then
+                  _channel="$(get_value_arg "$_arg")"
+                fi
+                ;;
+
+            --date)
+                if is_value_arg "$_arg" "date"; then
+                  _date="$(get_value_arg "$_arg")"
+                fi
+                ;;
+
+            --revision)
+                if is_value_arg "$_arg" "revision"; then
+                  _revision="$(get_value_arg "$_arg")"
+                fi
+                ;;
+
+            --spec)
+                if is_value_arg "$_arg" "spec"; then
+                  _spec="$(get_value_arg "$_arg")"
+                fi
+                ;;
+
+            --update-hash-file)
+                if is_value_arg "$_arg" "update-hash-file"; then
+                  # This option is used by multirust to short-circuit reinstalls
+                  # when the channel has not been updated by examining a content
+                  # hash in the update-hash-file
+                  _update_hash_file="$(get_value_arg "$_arg")"
+                fi
+                ;;
+
+            --with-target)
+                if is_value_arg "$_arg" "with-target"; then
+                  local _next_extra_target="$(get_value_arg "$_arg")"
+                  _extra_targets="$_extra_targets $_next_extra_target"
+                fi
+                ;;
+
+            --add-target)
+                if is_value_arg "$_arg" "add-target"; then
+                    _add_target="$(get_value_arg "$_arg")"
+                fi
+                ;;
+
+            *)
+                echo "Unknown argument '$_arg', displaying usage:"
+                echo ${_arg%%=*}
+                _help=true
+                ;;
+
         esac
 
-        if is_value_arg "$_arg" "prefix"; then
-            _prefix="$(get_value_arg "$_arg")"
-        elif is_value_arg "$_arg" "channel"; then
-            _channel="$(get_value_arg "$_arg")"
-        elif is_value_arg "$_arg" "date"; then
-            _date="$(get_value_arg "$_arg")"
-        elif is_value_arg "$_arg" "revision"; then
-            _revision="$(get_value_arg "$_arg")"
-        elif is_value_arg "$_arg" "spec"; then
-            _spec="$(get_value_arg "$_arg")"
-        elif is_value_arg "$_arg" "update-hash-file"; then
-            # This option is used by multirust to short-circuit reinstalls
-            # when the channel has not been updated by examining a content
-            # hash in the update-hash-file
-            _update_hash_file="$(get_value_arg "$_arg")"
-        elif is_value_arg "$_arg" "with-target"; then
-            local _next_extra_target="$(get_value_arg "$_arg")"
-            _extra_targets="$_extra_targets $_next_extra_target"
-	elif is_value_arg "$_arg" "add-target"; then
-	    _add_target="$(get_value_arg "$_arg")"
-        fi
     done
 
     if [ "$_help" = true ]; then
         print_help
         exit 0
     fi
+
+    # Try to run `any` command with `sudo` to check we have enough rights
+    ensure maybe_sudo "$_disable_sudo" true
 
     # Make sure either rust256sum or shasum exists
     need_shasum_cmd
@@ -448,11 +490,11 @@ handle_command_line_args() {
 
     # --add-target is non-interactive
     if [ -n "$_add_target" ]; then
-	flag_yes=true
+        flag_yes=true
     fi
     # --list-targets is non-interactive
     if [ -n "$_list_targets" ]; then
-	flag_yes=true
+        flag_yes=true
     fi
 
     if [ "$flag_yes" = false ]; then
@@ -465,8 +507,8 @@ handle_command_line_args() {
         get_tty_confirmation
     fi
 
-    # All work is done in the ~/.rustup dir, which will be deleted
-    # afterward if the user doesn't pass --save. *If* ~/.rustup
+    # All work is done in the ~/.rustup.sh dir, which will be deleted
+    # afterward if the user doesn't pass --save. *If* ~/.rustup.sh
     # already exists and they *did not* pass --save, we'll pretend
     # they did anyway to avoid deleting their data.
     local _preserve_rustup_dir="$_save"
@@ -481,15 +523,15 @@ handle_command_line_args() {
     # OK, time to do the things
     local _succeeded=true
     if [ "$_list_targets" = true ]; then
-	list_targets "$_prefix"
-	if [ $? != 0 ]; then
-	    _succeeded=false
-	fi
+        list_targets "$_prefix"
+        if [ $? != 0 ]; then
+            _succeeded=false
+        fi
     elif [ -n "$_add_target" ]; then
-	add_target_to_install "$_prefix" "$_add_target" "$_save" "$_disable_sudo"
-	if [ $? != 0 ]; then
-	    _succeeded=false
-	fi
+        add_target_to_install "$_prefix" "$_add_target" "$_save" "$_disable_sudo"
+        if [ $? != 0 ]; then
+            _succeeded=false
+        fi
     elif [ "$_uninstall" = false ]; then
         install_toolchain_from_dist "$_toolchain" "$_prefix" "$_save" "$_update_hash_file" \
                                     "$_disable_ldconfig" "$_disable_sudo" "$_extra_targets"
@@ -672,8 +714,8 @@ install_toolchain_from_dist() {
         local _manifest="$RETVAL"
         assert_nz "$_manifest" "manifest"
 
-	# We'll save the manifest in the install folder for future modifications
-	_manifest_to_stash="$_manifest"
+        # We'll save the manifest in the install folder for future modifications
+        _manifest_to_stash="$_manifest"
 
         validate_manifest_v2 "$_manifest"
         if [ $? != 0 ]; then
@@ -749,7 +791,7 @@ install_toolchain_from_dist() {
     # NB: Splitting $_extra_remote_installers on space by not quoting
     local _extra_remote_installer
     for _extra_remote_installer in $_extra_remote_installers; do
-	install_extra_component "$_prefix" "$_extra_remote_installer" "$_disable_sudo" "$_save"
+        install_extra_component "$_prefix" "$_extra_remote_installer" "$_disable_sudo" "$_save"
     done
 
     # Write the update hash of the rust toolchain to file so that,
@@ -764,15 +806,15 @@ install_toolchain_from_dist() {
 
     # Install the manifest for future updates
     if [ "$_manifest_to_stash" != "" ]; then
-	# Fix for rust-lang/rust#32154. Somehow rustup.sh managed
-	# until today to exist without escaping ~ in prefix. Probably
-	# because it's only ultimately used by the install script,
-	# which is called via sh. This command here though will fail
-	# if prefix contains ~ so run it through `sh` to escape it.
-	local _prefix="$(sh -c "printf '%s' $_prefix")"
-	local _manifest_stash="$_prefix/lib/rustlib/channel-manifest.toml"
-	ensure printf "%s" "$_manifest_to_stash" | \
-	    ensure maybe_sudo "$_disable_sudo" sh -c "cat > \"$_manifest_stash\""
+        # Fix for rust-lang/rust#32154. Somehow rustup.sh managed
+        # until today to exist without escaping ~ in prefix. Probably
+        # because it's only ultimately used by the install script,
+        # which is called via sh. This command here though will fail
+        # if prefix contains ~ so run it through `sh` to escape it.
+        local _prefix="$(sh -c "printf '%s' $_prefix")"
+        local _manifest_stash="$_prefix/lib/rustlib/channel-manifest.toml"
+        ensure printf "%s" "$_manifest_to_stash" | \
+            ensure maybe_sudo "$_disable_sudo" sh -c "cat > \"$_manifest_stash\""
     fi
 }
 
@@ -799,19 +841,19 @@ merge_existing_extra_targets() {
                 ignore printf "%s" "$_extra_targets" | grep -q "$_arch"
                 if [ $? = 0 ]; then
                     verbose_say "already installing extra std component: $_arch"
-		else
-		    # See if it's the primary target
-		    ignore printf "%s" "$_primary_arch" | grep -q "$_arch"
-		    if [ $? = 0 ]; then
-			verbose_say "already installing extra std component: $_arch"
-		    else
-			verbose_say "found extra std component: $_arch"
-			_extra_targets="$_extra_targets $_arch"
-		    fi
+                else
+                    # See if it's the primary target
+                    ignore printf "%s" "$_primary_arch" | grep -q "$_arch"
+                    if [ $? = 0 ]; then
+                        verbose_say "already installing extra std component: $_arch"
+                    else
+                        verbose_say "found extra std component: $_arch"
+                        _extra_targets="$_extra_targets $_arch"
+                    fi
                 fi
-		;;
+                ;;
             *)
-		;;
+                ;;
         esac
     done < "$_components_file"
 
@@ -922,8 +964,8 @@ add_target_to_install() {
     local _manifest_file="$_prefix/lib/rustlib/channel-manifest.toml"
 
     if [ ! -e "$_manifest_file" ]; then
-	say_err "no channel manifest at '$_manifest_file'"
-	return 1
+        say_err "no channel manifest at '$_manifest_file'"
+        return 1
     fi
 
     local _manifest="$(cat "$_manifest_file")"
@@ -942,23 +984,23 @@ list_targets() {
     local _manifest_file="$_prefix/lib/rustlib/channel-manifest.toml"
 
     if [ ! -e "$_manifest_file" ]; then
-	say_err "no channel manifest at '$_manifest_file'"
-	return 1
+        say_err "no channel manifest at '$_manifest_file'"
+        return 1
     fi
 
     local _manifest="$(cat "$_manifest_file")"
 
     toml_find_package_triples  "$_manifest" rust-std
     if [ $? != 0 ]; then
-	say_err "error searching manifest for targets"
-	return 1
+        say_err "error searching manifest for targets"
+        return 1
     fi
     local _all_stds="$RETVAL"
 
     # NB: Not quoting to split on space
     local _std
     for _std in $_all_stds; do
-	printf "%s\n" "$_std"
+        printf "%s\n" "$_std"
     done
 }
 
@@ -1165,14 +1207,14 @@ toml_find_package_triples() {
     local _triples=""
     local _line
     while read _line; do
-	case "$_line" in
-	    *"[pkg.$_package.target".*"]"*)
-		verbose_say "found $_package in manifest"
-		local _triple="$(ensure printf "%s" "$_line" | ensure sed "s/.*pkg\.$_package\.target\.\(.*\)]/\1/")"
-		verbose_say "triple: $_triple"
-		_triples="$_triples $_triple"
-	    ;;
-	esac
+        case "$_line" in
+            *"[pkg.$_package.target".*"]"*)
+                verbose_say "found $_package in manifest"
+                local _triple="$(ensure printf "%s" "$_line" | ensure sed "s/.*pkg\.$_package\.target\.\(.*\)]/\1/")"
+                verbose_say "triple: $_triple"
+                _triples="$_triples $_triple"
+            ;;
+        esac
     done < "$_tmpfile"
 
     ensure rm -R "$_workdir"
@@ -1819,9 +1861,9 @@ maybe_sudo() {
 
     local _is_windows=false
     case "$_arch" in
-	*windows*)
-	    _is_windows=true
-	    ;;
+        *windows*)
+            _is_windows=true
+            ;;
     esac
 
     if [ "$_disable_sudo" = false -a "$_is_windows" = false ]; then
@@ -1852,6 +1894,7 @@ Options:
      --disable-sudo                    Do not run installer under sudo
      --save                            Save downloads for future reuse
      --yes, -y                         Disable the interactive mode
+     --help, -h                        Display usage information
 '
 }
 

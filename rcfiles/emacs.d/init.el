@@ -1,3 +1,5 @@
+(package-initialize)
+
 (setq user-full-name "Maximilien Riehl")
 (setq user-mail-address "max@riehl.io")
 

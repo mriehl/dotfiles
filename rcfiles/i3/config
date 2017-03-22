@@ -252,6 +252,8 @@ bindsym $mod+Shift+T mode "$mode_key"
 # screen backlight
 bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 5
 bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 5
+bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -D pulse sset Master 5%+
+bindsym XF86AudioLowerVolume exec --no-startup-id amixer -D pulse sset Master 5%-
 
 exec --no-startup-id nm-applet
 exec --no-startup-id xsetroot -solid black

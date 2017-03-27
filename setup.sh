@@ -127,6 +127,7 @@ install ~/.config/sublime-text-3/Packages/User/mvn.sublime-build sublime/mvn.sub
 echo "----js"
 install ~/.config/sublime-text-3/Packages/User/nodejs-single-file.sublime-build sublime/nodejs-single-file.sublime-build
 
+install ~/.rustfmt.toml rcfiles/.rustfmt.toml
 
 #---scripts
 echo "--installing scripts"

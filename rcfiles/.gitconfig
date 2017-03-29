@@ -82,3 +82,6 @@ defaultToUpstream = 1
 # End:
 [pull]
 	rebase = true
+
+[url "git@github.com:"]
+	insteadOf = https://github.com/

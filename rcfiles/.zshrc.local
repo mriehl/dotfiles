@@ -418,3 +418,12 @@ alias sbt='sbt -J-Xms512M -J-Xmx1024M -J-Xss1M -J-XX:+CMSClassUnloadingEnabled'
 
 export NVM_DIR="$HOME/.nvm"
 alias nvm-source="source $NVM_DIR/nvm.sh"
+
+workon () {
+  SCRIPT="$(~/.cargo/bin/fw gen-workon $@)"
+  if [ $? -eq 0 ]; then
+    eval "$SCRIPT"
+  else
+    printf "$SCRIPT\n"
+  fi
+}

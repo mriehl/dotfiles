@@ -420,7 +420,7 @@ export NVM_DIR="$HOME/.nvm"
 alias nvm-source="source $NVM_DIR/nvm.sh"
 
 workon () {
-  SCRIPT="$(~/.cargo/bin/fw gen-workon $@)"
+  SCRIPT="$(~/.cargo/bin/fw -q gen-workon $@)"
   if [ $? -eq 0 ]; then
     eval "$SCRIPT"
   else

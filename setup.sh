@@ -142,7 +142,6 @@ install /usr/local/bin/pwn-docker bin/pwn-docker as_root
 install /usr/local/bin/render-wireless bin/render_wireless as_root
 install /usr/local/bin/passme bin/passme as_root
 install /usr/local/bin/byepass bin/byepass as_root
-install /usr/local/bin/rustup bin/rustup.sh as_root
 install /usr/local/bin/drm bin/drm as_root
 install /usr/local/bin/i3lock.sh bin/i3lock.sh as_root
 install /usr/local/bin/lein bin/lein as_root

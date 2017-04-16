@@ -428,6 +428,8 @@ alias sbt='sbt -J-Xms512M -J-Xmx1024M -J-Xss1M -J-XX:+CMSClassUnloadingEnabled'
 export NVM_DIR="$HOME/.nvm"
 alias nvm-source="source $NVM_DIR/nvm.sh"
 
+alias back-to-master='git checkout master && git uff && git branch --merged | egrep -v "(^\*|master|dev)" | xargs git branch -d'
+
 workon () {
   SCRIPT="$(~/.cargo/bin/fw -q gen-workon $@)"
   if [ $? -eq 0 ]; then
@@ -445,4 +447,5 @@ nworkon () {
     printf "$SCRIPT\n"
   fi
 }
+
 

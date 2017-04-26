@@ -430,22 +430,11 @@ alias nvm-source="source $NVM_DIR/nvm.sh"
 
 alias back-to-master='git checkout master && git uff && git branch --merged | egrep -v "(^\*|master|dev)" | xargs git branch -d'
 
-workon () {
-  SCRIPT="$(~/.cargo/bin/fw -q gen-workon $@)"
-  if [ $? -eq 0 ]; then
-    eval "$SCRIPT"
-  else
-    printf "$SCRIPT\n"
-  fi
-}
 
-nworkon () {
-  SCRIPT="$(~/.cargo/bin/fw -q gen-workon -x $@)"
-  if [ $? -eq 0 ]; then
-    eval "$SCRIPT"
-  else
-    printf "$SCRIPT\n"
-  fi
-}
-
+#+BEGIN_SRC shell-script
+if [[ -x "$(command -v fw)" ]];
+then
+  eval $(fw print-zsh-setup 2>/dev/null);
+fi;
+#+END_SRC
 

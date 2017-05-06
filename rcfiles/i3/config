@@ -196,7 +196,7 @@ mode "$mode_apps" {
     bindsym e exec --no-startup-id /usr/bin/emacs, mode "default"
     bindsym g exec --no-startup-id /usr/bin/gimp, mode "default"
     bindsym o exec --no-startup-id /usr/bin/libreoffice, mode "default"
-    bindsym w exec --no-startup-id /usr/bin/mysql-workbench, mode "default"
+    bindsym w exec --no-startup-id /usr/local/bin/camunda-modeler, mode "default"
     bindsym s exec --no-startup-id ~/programs/franz/Franz, mode "default"
     bindsym c exec --no-startup-id /usr/bin/chromium-browser, mode "default"
 

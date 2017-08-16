@@ -191,7 +191,7 @@ mode "$mode_apps" {
     bindsym n exec --no-startup-id /usr/bin/nautilus --no-desktop, mode "default"
     bindsym f exec --no-startup-id /usr/bin/firefox, mode "default"
     bindsym m exec --no-startup-id /usr/bin/claws-mail, mode "default"
-    bindsym i exec --no-startup-id /usr/local/bin/idea, mode "default"
+    bindsym i exec --no-startup-id /usr/bin/idea.sh, mode "default"
     bindsym x exec --no-startup-id /usr/bin/arandr, mode "default"
     bindsym e exec --no-startup-id /usr/bin/emacs, mode "default"
     bindsym g exec --no-startup-id /usr/bin/gimp, mode "default"

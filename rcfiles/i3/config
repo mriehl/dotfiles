@@ -261,3 +261,5 @@ exec --no-startup-id xsetroot -solid black
 exec --no-startup-id xautolock -time 5 -locker "sh /usr/local/bin/i3lock.sh" &
 
 exec --no-startup-id setxkbmap -option "caps:none" &
+
+exec --no-startup-id dunst -conf /home/mriehl/.dunstrc

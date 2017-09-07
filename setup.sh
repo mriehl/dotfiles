@@ -129,6 +129,8 @@ install ~/.config/sublime-text-3/Packages/User/nodejs-single-file.sublime-build 
 
 install ~/.rustfmt.toml rcfiles/.rustfmt.toml
 
+install ~/.dunstrc rcfiles/dunstrc
+
 #---scripts
 echo "--installing scripts"
 install /usr/local/bin/statusbar bin/statusbar as_root

@@ -131,6 +131,9 @@ install ~/.rustfmt.toml rcfiles/.rustfmt.toml
 
 install ~/.dunstrc rcfiles/dunstrc
 
+install ~/.xsession rcfiles/xsession
+install ~/.xsessionrc rcfiles/xsessionrc
+
 #---scripts
 echo "--installing scripts"
 install /usr/local/bin/statusbar bin/statusbar as_root

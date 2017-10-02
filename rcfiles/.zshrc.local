@@ -436,3 +436,5 @@ then
   eval $(fw print-zsh-setup -f 2>/dev/null);
 fi;
 
+
+export AWS_PROFILE=21re

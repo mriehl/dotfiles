@@ -85,3 +85,5 @@ defaultToUpstream = 1
 
 [url "git@github.com:"]
 	insteadOf = https://github.com/
+[magit]
+	hideCampaign = true

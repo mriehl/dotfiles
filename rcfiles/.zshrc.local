@@ -389,6 +389,7 @@ export PYTHONSTARTUP
 export GOPATH=~/go
 export PATH=$PATH:$GOPATH/bin
 export PATH=$PATH:~/.cargo/bin
+export PATH=$PATH:~/bin
 
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
@@ -410,7 +411,7 @@ export LESS_TERMCAP_ue=$'\E[0m'
 export LESS_TERMCAP_us=$'\E[04;38;5;146m'
 export LESS_TERMCAP_so=$'\e[0;31m'
 
-export BROWSER="firefox"
+export BROWSER="firefox-developer"
 
 export EDITOR='emacsclient -nw'
 export SUDO_EDITOR='emacsclient -nw'
@@ -438,3 +439,5 @@ fi;
 
 
 export AWS_PROFILE=21re
+
+export SBT_OPTS="-XX:+CMSClassUnloadingEnabled -XX:MaxMetaspaceSize=512M -XX:MetaspaceSize=256M -Xms512M -Xmx2G -XX:+UseG1GC"

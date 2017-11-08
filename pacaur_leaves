@@ -82,7 +82,6 @@ firefox-developer
 fish
 flashplugin
 flex
-flowblade
 fwupd
 fzf
 gawk
@@ -421,11 +420,6 @@ xine-ui
 xloadimage
 xmobar
 xmonad-contrib
-xorg-server
-xorg-server-utils
-xorg-twm
-xorg-utils
-xorg-xinit
 xorg-xkill
 xsel
 yakuake

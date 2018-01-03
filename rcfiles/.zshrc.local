@@ -424,7 +424,6 @@ alias uemacs='/usr/bin/emacs'
 alias docker-killall='docker kill $(docker ps -q)'
 alias docker-be-gone='docker rmi -f $(docker images -a -q); docker rm -f $(docker ps -a -q)'
 alias export-dm='eval $(docker-machine env devel); export HOSTNAME="$(docker-machine ip devel)"; export BIND_HOST=$HOSTNAME'
-alias sbt='sbt -J-Xms512M -J-Xmx1024M -J-Xss1M -J-XX:+UseG1GC'
 
 export NVM_DIR="$HOME/.nvm"
 alias nvm-source="source $NVM_DIR/nvm.sh"
@@ -440,4 +439,4 @@ fi;
 
 export AWS_PROFILE=21re
 
-export SBT_OPTS="-XX:+CMSClassUnloadingEnabled -XX:MaxMetaspaceSize=512M -XX:MetaspaceSize=256M -Xms512M -Xmx2G -XX:+UseG1GC"
+export SBT_OPTS="-XX:+CMSClassUnloadingEnabled -XX:MaxMetaspaceSize=512M -XX:MetaspaceSize=256M -Xms512M -Xmx2G -XX:+UseG1GC -Xss4096K"

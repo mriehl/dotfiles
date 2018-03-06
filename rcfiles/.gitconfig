@@ -1,6 +1,6 @@
 [user]
     name = Maximilien Riehl
-    email = max@flatmap.ninja
+    email = max@riehl.io
 
 [color]
     diff = auto
@@ -87,3 +87,5 @@ defaultToUpstream = 1
 	insteadOf = https://github.com/
 [magit]
 	hideCampaign = true
+[commit]
+	gpgsign = true

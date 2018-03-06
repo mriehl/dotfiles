@@ -3321,3 +3321,5 @@ zrclocal
 # mode: sh
 # End:
 
+
+export NVM_DIR="$HOME/.nvm"

@@ -440,3 +440,5 @@ fi;
 export AWS_PROFILE=21re
 
 export SBT_OPTS="-XX:+CMSClassUnloadingEnabled -XX:MaxMetaspaceSize=512M -XX:MetaspaceSize=256M -Xms512M -Xmx2G -XX:+UseG1GC -Xss4096K"
+
+alias fbjenkins="fw ls | fzf | xargs fw inspect -j | jq -r '.git' | cut -d : -f 2 | sed 's/\.git$//g' | sed 's/\(.*\)\/\(.*\)/https:\/\/jenkins.21re.works\/job\/\1\/job\/\2\/job\/master\//g' | xargs xdg-open"

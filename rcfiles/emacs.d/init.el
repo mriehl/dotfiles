@@ -54,3 +54,4 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (setq custom-file "/dev/null")
 
 (setq helm-grep-ag-command "rg --smart-case --no-heading --line-number %s %s %s")
+

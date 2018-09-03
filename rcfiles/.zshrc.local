@@ -5,9 +5,21 @@
 function virtual_env_prompt () {
     REPLY=${VIRTUAL_ENV+(${VIRTUAL_ENV:t}) }
 }
-function git_radar () {
-    REPLY=$(git-radar --zsh)
+
+function git_hud () {
+  if [[ -x "$(command -v githud)" ]];
+  then
+    REPLY=$(githud zsh)
+    if [[ ! -z "$REPLY" ]];
+    then
+      REPLY=" ($REPLY) "
+    fi
+  else
+    REPLY=""
+  fi
 }
+
+
 function current_node_version () {
     if [ -n "$NVM_BIN" ];
     then
@@ -17,9 +29,9 @@ function current_node_version () {
     fi;
 }
 grml_theme_add_token  virtual-env -f virtual_env_prompt '%F{magenta}' '%f'
-grml_theme_add_token git-radar -f git_radar
+grml_theme_add_token git-hud -f git_hud
 grml_theme_add_token node_version -f current_node_version
-zstyle ':prompt:grml:left:setup' items rc date space time virtual-env change-root user at host path git-radar node_version newline gtprompt
+zstyle ':prompt:grml:left:setup' items rc date space time virtual-env change-root user at host path git-hud node_version newline gtprompt
 
 ## use the vi navigation keys (hjkl) besides cursor keys in menu completion
 bindkey -M menuselect 'h' vi-backward-char        # left

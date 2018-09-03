@@ -81,6 +81,7 @@ echo "---i3"
 install ~/.i3 rcfiles/i3
 echo "---git"
 install ~/.gitconfig rcfiles/.gitconfig
+install ~/.githudrc rcfiles/githudrc
 echo "---tmux"
 install ~/.tmux.conf rcfiles/.tmux.conf
 install ~/.tmux/plugins/tpm deps/tpm
@@ -153,9 +154,6 @@ install /usr/local/bin/lein bin/lein as_root
 install /usr/local/bin/pyb-vim bin/pyb-vim as_root
 install /usr/local/bin/toggle-touchpad bin/toggle-touchpad.sh as_root
 
-install /usr/local/bin/radar-base.sh deps/git-radar/radar-base.sh as_root
-install /usr/local/bin/prompt.zsh deps/git-radar/prompt.zsh as_root
-install /usr/local/bin/git-radar deps/git-radar/git-radar as_root
 install /usr/local/bin/key_layout bin/key_layout as_root
 install /usr/local/bin/brightness-i3 bin/brightness-i3 as_root
 install /usr/local/bin/ensime bin/ensime as_root

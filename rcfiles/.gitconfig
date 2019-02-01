@@ -19,6 +19,7 @@
     submoduleSummary = true
 
 [alias]
+    gcallthethings = -c gc.reflogExpire=0 -c gc.reflogExpireUnreachable=0 -c gc.rerereresolved=0 -c gc.rerereunresolved=0 -c gc.pruneExpire=now gc
     st = status -uall -b
     ci = commit
     br = branch -va
@@ -83,9 +84,16 @@ defaultToUpstream = 1
 [pull]
 	rebase = true
 
-[url "git@github.com:"]
-	insteadOf = https://github.com/
+#[url "git@github.com:"]
+#	insteadOf = https://github.com/
+
 [magit]
 	hideCampaign = true
 [commit]
 	gpgsign = true
+
+[filter "lfs"]
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f

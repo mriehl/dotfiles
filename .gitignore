@@ -26,5 +26,6 @@ rcfiles/emacs.d/company-statistics-cache.el
 rcfiles/emacs.d/distel
 rcfiles/emacs.d/eshell/
 rcfiles/emacs.d/transient/history.el
+rcfiles/emacs.d/.lsp-session-v1
 
 .python-environments

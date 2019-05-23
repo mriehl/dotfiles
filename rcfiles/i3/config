@@ -189,7 +189,7 @@ bindsym $mod+Shift+Q mode "$mode_system"
 set $mode_apps Apps (n) nautilus, (f) firefox, (m) claws-mail, (i) idea, (x) arandr, (e) emacs, (g) gimp, (o) libreoffice, (w) mysql, (s) franz, (c) chrome
 mode "$mode_apps" {
     bindsym n exec --no-startup-id /usr/bin/nautilus, mode "default"
-    bindsym f exec --no-startup-id /usr/bin/firefox-developer-edition, mode "default"
+    bindsym f exec --no-startup-id /usr/bin/firefox, mode "default"
     bindsym m exec --no-startup-id /usr/bin/claws-mail, mode "default"
     bindsym i exec --no-startup-id /usr/bin/idea.sh, mode "default"
     bindsym x exec --no-startup-id /usr/bin/arandr, mode "default"

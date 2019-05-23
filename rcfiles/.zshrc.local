@@ -420,7 +420,7 @@ export LESS_TERMCAP_ue=$'\E[0m'
 export LESS_TERMCAP_us=$'\E[04;38;5;146m'
 export LESS_TERMCAP_so=$'\e[0;31m'
 
-export BROWSER="firefox-developer-edition"
+export BROWSER="firefox"
 
 export EDITOR='emacsclient -nw'
 export SUDO_EDITOR='emacsclient -nw'
@@ -453,3 +453,7 @@ alias fullstack.="git remote get-url origin | cut -d : -f 2 | sed 's/\.git$//g' 
 alias fuckjira="fbjira issue list-open TRADE TEAS | fzf --preview \"echo {} | cut -d' ' -f1 | xargs fbjira issue summary\" | cut -d ' ' -f1 | xargs -I {} xdg-open 'https://21real.atlassian.net/browse/{}'"
 alias isTestbedFucked="pdsh -g testbed docker network inspect internal | grep 'IPv4Address' | cut -d '\"'  -f4 | sort | uniq -c | grep -v ' 1 '"
 alias deplall='for S in testbed staging live promo; do echo stage $S >&2; deploy-control --stage $S service ls; done'
+
+function github_search() {
+ echo "$@" | sed 's/ /\+/g' | xargs -I {} xdg-open 'https://github.com/search?q=org%3A21re+{}&type=Code'
+}

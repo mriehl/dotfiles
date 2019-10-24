@@ -84,8 +84,8 @@ defaultToUpstream = 1
 [pull]
 	rebase = true
 
-#[url "git@github.com:"]
-#	insteadOf = https://github.com/
+[url "git@github.com:"]
+	insteadOf = https://github.com/
 
 [magit]
 	hideCampaign = true

@@ -115,7 +115,6 @@ set $w9 "9: chrome"
 
 assign [class="^Firefox$"] → "1: www"
 assign [class="^jetbrains-idea$"] → "3: ide"
-assign [class="Franz"] → "5: msg"
 assign [class="chromium-browser" window_role="browser"] → "9: chrome"
 
 # switch to workspace
@@ -186,7 +185,7 @@ mode "$mode_system" {
 }
 bindsym $mod+Shift+Q mode "$mode_system"
 
-set $mode_apps Apps (n) nautilus, (f) firefox, (m) claws-mail, (i) idea, (x) arandr, (e) emacs, (g) gimp, (o) libreoffice, (w) mysql, (s) franz, (c) chrome
+set $mode_apps Apps (n) nautilus, (f) firefox, (m) claws-mail, (i) idea, (x) arandr, (e) emacs, (g) gimp, (o) libreoffice, (w) mysql, (s) scale hiDPI, (c) chrome
 mode "$mode_apps" {
     bindsym n exec --no-startup-id /usr/bin/nautilus, mode "default"
     bindsym f exec --no-startup-id /usr/bin/firefox, mode "default"
@@ -197,7 +196,7 @@ mode "$mode_apps" {
     bindsym g exec --no-startup-id /usr/bin/gimp, mode "default"
     bindsym o exec --no-startup-id /usr/bin/libreoffice, mode "default"
     bindsym w exec --no-startup-id /usr/local/bin/camunda-modeler, mode "default"
-    bindsym s exec --no-startup-id ~/programs/franz/Franz, mode "default"
+    bindsym s exec --no-startup-id ~/scale.sh, mode "default"
     bindsym c exec --no-startup-id /usr/bin/chromium-browser, mode "default"
 
     # back to normal: Enter or Escape

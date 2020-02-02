@@ -457,3 +457,5 @@ alias deplall='for S in testbed staging live promo; do echo stage $S >&2; deploy
 function github_search() {
  echo "$@" | sed 's/ /\+/g' | xargs -I {} xdg-open 'https://github.com/search?q=org%3A21re+{}&type=Code'
 }
+
+export SSH_AUTH_SOCK=/run/user/1000/ssh-agent.socket

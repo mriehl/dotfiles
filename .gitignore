@@ -27,5 +27,7 @@ rcfiles/emacs.d/distel
 rcfiles/emacs.d/eshell/
 rcfiles/emacs.d/transient/history.el
 rcfiles/emacs.d/.lsp-session-v1
+rcfiles/emacs.d/workspace
+rcfiles/emacs.d/.cache
 
 .python-environments

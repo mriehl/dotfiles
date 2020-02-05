@@ -15,9 +15,11 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+echo -n " "
 setxkbmap -query | awk '/layout/{print $2}' | tr -d '\n'
 variant=$(setxkbmap -query | awk '/variant/{print $2}')
 if [[ ! -z $variant ]]; then
   echo " $variant"
 fi
+echo ""
 

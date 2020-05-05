@@ -130,7 +130,7 @@ install ~/.config/sublime-text-3/Packages/User/nodejs-single-file.sublime-build 
 
 install ~/.rustfmt.toml rcfiles/.rustfmt.toml
 
-install ~/.dunstrc rcfiles/dunstrc
+install ~/.config/dunst/dunstrc rcfiles/dunstrc
 
 install ~/.xsession rcfiles/xsession
 install ~/.xsessionrc rcfiles/xsessionrc

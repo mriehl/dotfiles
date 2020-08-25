@@ -132,6 +132,8 @@ install ~/.rustfmt.toml rcfiles/.rustfmt.toml
 
 install ~/.config/dunst/dunstrc rcfiles/dunstrc
 
+install ~/.config/starship.toml rcfiles/starship.toml
+
 install ~/.xsession rcfiles/xsession
 install ~/.xsessionrc rcfiles/xsessionrc
 

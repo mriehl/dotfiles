@@ -133,6 +133,7 @@ install ~/.rustfmt.toml rcfiles/.rustfmt.toml
 install ~/.config/dunst/dunstrc rcfiles/dunstrc
 
 install ~/.config/starship.toml rcfiles/starship.toml
+install ~/.config/alacritty.yml rcfiles/alacritty.yml
 
 install ~/.xsession rcfiles/xsession
 install ~/.xsessionrc rcfiles/xsessionrc

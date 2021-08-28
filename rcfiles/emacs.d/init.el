@@ -1,5 +1,3 @@
-(package-initialize)
-
 (setq user-full-name "Maximilien Riehl")
 (setq user-mail-address "max@riehl.io")
 
@@ -43,7 +41,7 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
       (when (get-buffer "*Completions*") (delete-windows-on "*Completions*"))
       (abort-recursive-edit)))
 
-(set-default-font "Source Code Pro 12")
+(set-frame-font "Source Code Pro 12" t t)
 
 (setq x-select-enable-clipboard t)
 

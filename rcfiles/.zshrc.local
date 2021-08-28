@@ -205,4 +205,9 @@ function github_search() {
 
 export SSH_AUTH_SOCK=/run/user/1000/ssh-agent.socket
 
+
+export JAVA_HOME=$(readlink -f /usr/bin/java | sed "s:bin/java::")
+export JDK_HOME=$(readlink -f /usr/bin/javac | sed "s:bin/javac::")
+
+prompt off
 eval "$(starship init zsh)"

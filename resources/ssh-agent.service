@@ -4,6 +4,7 @@ Description=SSH key agent
 [Service]
 Type=forking
 Environment=SSH_AUTH_SOCK=%t/ssh-agent.socket
+Environment=SSH_ASKPASS=/usr/lib/ssh/x11-ssh-askpass
 ExecStart=/usr/bin/ssh-agent -a $SSH_AUTH_SOCK
 
 [Install]

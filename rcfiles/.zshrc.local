@@ -211,3 +211,5 @@ export JDK_HOME=$(readlink -f /usr/bin/javac | sed "s:bin/javac::")
 
 prompt off
 eval "$(starship init zsh)"
+
+SSH_ASKPASS=/usr/lib/ssh/x11-ssh-askpass

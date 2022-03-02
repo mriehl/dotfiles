@@ -1,42 +1,42 @@
 actions:
 - action: file.link
   from: zshrc
-  to: /home/mriehl/.zshrc
+  to: {{ user.home_dir }}/.zshrc
 
 - action: file.link
   from: zshrc.local
-  to: /home/mriehl/.zshrc.local
+  to: {{ user.home_dir }}/.zshrc.local
 
 - action: file.link
   from: i3
-  to: /home/mriehl/.i3
+  to: {{ user.home_dir }}/.i3
 
 - action: file.link
   from: gitconfig
-  to: /home/mriehl/.gitconfig
+  to: {{ user.home_dir }}/.gitconfig
 
 - action: file.link
   from: tmux.conf
-  to: /home/mriehl/.tmux.conf
+  to: {{ user.home_dir }}/.tmux.conf
 
 - action: file.link
   from: pythonrc.py
-  to: /home/mriehl/.pythonrc.py
+  to: {{ user.home_dir }}/.pythonrc.py
 
 - action: file.link
   from: gpg-agent.conf
-  to: /home/mriehl/.gnupg/gpg-agent.conf
+  to: {{ user.home_dir }}/.gnupg/gpg-agent.conf
 
 - action: file.link
   from: gpg.conf
-  to: /home/mriehl/.gnupg/gpg.conf
+  to: {{ user.home_dir }}/.gnupg/gpg.conf
 
 - action: file.link
   from: emacs.d
-  to: /home/mriehl/.emacs.d
+  to: {{ user.home_dir }}/.emacs.d
 
 - action: command.run
-  dir: /home/mriehl/.emacs.d
+  dir: {{ user.home_dir }}/.emacs.d
   command: git
   args:
   - clone
@@ -45,40 +45,40 @@ actions:
 
 - action: file.copy
   from: emacs.service
-  to: /home/mriehl/.config/systemd/user/emacs.service
+  to: {{ user.home_dir }}/.config/systemd/user/emacs.service
 
 - action: file.copy
   from: ssh-agent.service
-  to: /home/mriehl/.config/systemd/user/ssh-agent.service
+  to: {{ user.home_dir }}/.config/systemd/user/ssh-agent.service
 
 - action: file.link
   from: rustfmt.toml
-  to: /home/mriehl/.rustfmt.toml
+  to: {{ user.home_dir }}/.rustfmt.toml
 
 - action: file.link
   from: dunstrc
-  to: /home/mriehl/.config/dunst/dunstrc
+  to: {{ user.home_dir }}/.config/dunst/dunstrc
 
 - action: file.link
   from: starship.toml
-  to: /home/mriehl/.config/starship.toml
+  to: {{ user.home_dir }}/.config/starship.toml
 
 - action: file.link
   from: alacritty.yml
-  to: /home/mriehl/.config/alacritty.yml
+  to: {{ user.home_dir }}/.config/alacritty.yml
 
 - action: file.link
   from: xsession
-  to: /home/mriehl/.xsession
+  to: {{ user.home_dir }}/.xsession
 
 - action: file.link
   from: xsessionrc
-  to: /home/mriehl/.xsessionrc
+  to: {{ user.home_dir }}/.xsessionrc
 
 - action: file.link
   from: i3lock.sh
-  to: /home/mriehl/scripts/i3lock.sh
+  to: {{ user.home_dir }}/scripts/i3lock.sh
 
 - action: file.link
   from: key_layout
-  to: /home/mriehl/scripts/key_layout
+  to: {{ user.home_dir }}/scripts/key_layout

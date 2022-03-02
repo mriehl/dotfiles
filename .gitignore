@@ -48,3 +48,6 @@ manifests/files/emacs.d/transient/history.el
 manifests/files/emacs.d/.lsp-session-v1
 manifests/files/emacs.d/workspace
 manifests/files/emacs.d/.cache
+manifests/files/emacs.d/elpa
+
+manifests/files/emacs.d/subconfigs/

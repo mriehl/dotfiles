@@ -36,7 +36,7 @@ bindsym $mod+Return exec alacritty
 #bindsym $mod+p exec xpad
 
 # lock the screen
-bindsym $mod+z exec /usr/local/bin/i3lock.sh
+bindsym $mod+z exec /home/mriehl/scripts/i3lock.sh
 
 # kill focused window
 bindsym $mod+Shift+c kill
@@ -181,7 +181,7 @@ bindsym $mod+r mode "resize"
 
 set $mode_system System (l) lock, (e) exit i3
 mode "$mode_system" {
-    bindsym l exec --no-startup-id /usr/local/bin/i3lock.sh, mode "default"
+    bindsym l exec --no-startup-id /home/mriehl/scripts/i3lock.sh, mode "default"
     bindsym e exec --no-startup-id /usr/bin/i3-msg exit, mode "default"
 
     # back to normal: Enter or Escape
@@ -265,6 +265,6 @@ bindsym XF86AudioLowerVolume exec --no-startup-id amixer -D pulse sset Master 5%
 exec --no-startup-id nm-applet
 exec --no-startup-id xsetroot -solid black
 
-exec --no-startup-id xautolock -time 30 -locker "sh /usr/local/bin/i3lock.sh" &
+exec --no-startup-id xautolock -time 30 -locker "sh /home/mriehl/scripts/i3lock.sh" &
 
 exec --no-startup-id setxkbmap -option "caps:none" &

@@ -188,3 +188,6 @@ prompt off
 eval "$(starship init zsh)"
 
 SSH_ASKPASS=/usr/lib/ssh/x11-ssh-askpass
+
+alias pwn-docker='docker rm -f $(docker ps -a -q)'
+alias byepass='echo -n "no" | xsel -b'

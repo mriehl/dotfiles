@@ -111,3 +111,4 @@ actions:
   - pkg-config
   - s-tui
   - visual-studio-code-bin
+  - make

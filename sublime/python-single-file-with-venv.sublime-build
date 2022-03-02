@@ -1,4 +1,0 @@
-{
-    "cmd": ["venv/bin/python", "$file"],
-    "working_dir": "${project_path}"
-}

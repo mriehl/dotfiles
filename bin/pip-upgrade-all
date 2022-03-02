@@ -1,6 +1,0 @@
-#!/usr/bin/env python
-import pip
-from subprocess import call
-
-for distribution in pip.get_installed_distributions():
-    call("pip install --upgrade " + distribution.project_name, shell=True)

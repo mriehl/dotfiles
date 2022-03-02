@@ -1,7 +1,3 @@
-[submodule "deps/tpm"]
-	path = deps/tpm
-	url = https://github.com/tmux-plugins/tpm
-    ignore = dirty
 [submodule "rcfiles/emacs.d/subconfigs"]
 	path = rcfiles/emacs.d/subconfigs
 	url = https://github.com/brocode/emacs_subconfigs

@@ -77,10 +77,6 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 
 alias insecssh='ssh -o "StrictHostKeyChecking=no" -o "UserKnownHostsFile=/dev/null" -o "PreferredAuthentications=keyboard-interactive"'
 
-alias lst='tyls -m'
-
-alias lla='exa -haligS -s name'
-
 # pstop -- ps with top-like output
 # from http://chneukirchen.org/dotfiles/.zshrc
 pstop() {
@@ -90,21 +86,11 @@ pstop() {
 
 alias ex='simple-extract'
 
-# n -- fast note taker
-# also from http://chneukirchen.org/dotfiles/.zshrc
-n() {
-  [[ $# == 0 ]] && tail ~/Dropbox/notes || echo "$(date +'%F %R'): $*" >>~/Dropbox/notes
-}
-alias n=' noglob n'
-
 alias pacman-autoremove='sudo pacman -Rns $(pacman -Qqtd)'
 
 alias targzlook='tar -ztvf'
 
 alias targzcomp='tar -zcvf'
-
-# https://github.com/nvbn/thefuck
-alias fuck='eval $(thefuck $(fc -ln -1))'
 
 # no X "integration", I'd like to stay in the shell, thanks
 alias emacs='emacsclient -nw'
@@ -191,17 +177,6 @@ then
 fi;
 
 export SBT_OPTS="-XX:+CMSClassUnloadingEnabled -XX:MaxMetaspaceSize=512M -XX:MetaspaceSize=256M -Xms512M -Xmx2G -XX:+UseG1GC -Xss4096K"
-
-alias fbjenkins="fw ls | fzf | xargs fw inspect -j | jq -r '.git' | cut -d : -f 2 | sed 's/\.git$//g' | sed 's/\(.*\)\/\(.*\)/https:\/\/jenkins.21re.works\/job\/\1\/job\/\2\/job\/master\//g' | xargs xdg-open"
-alias fbjenkins.='git remote get-url origin | cut -d : -f 2 | sed "s/\.git$//g" | sed "s/\(.*\)\/\(.*\)/https:\/\/jenkins.21re.works\/job\/\1\/job\/\2\/job\/$(git rev-parse --abbrev-ref HEAD)\//g" | xargs xdg-open'
-alias fullstack.="git remote get-url origin | cut -d : -f 2 | sed 's/\.git$//g' | sed 's/\(.*\)\/\(.*\)/https:\/\/github.com\/\1\/\2\/settings\/branches\/master\//g' | xargs xdg-open"
-alias fuckjira="fbjira issue list-open TRADE TEAS | fzf --preview \"echo {} | cut -d' ' -f1 | xargs fbjira issue summary\" | cut -d ' ' -f1 | xargs -I {} xdg-open 'https://21real.atlassian.net/browse/{}'"
-alias isTestbedFucked="pdsh -g testbed docker network inspect internal | grep 'IPv4Address' | cut -d '\"'  -f4 | sort | uniq -c | grep -v ' 1 '"
-alias deplall='for S in testbed staging live promo; do echo stage $S >&2; deploy-control --stage $S service ls; done'
-
-function github_search() {
- echo "$@" | sed 's/ /\+/g' | xargs -I {} xdg-open 'https://github.com/search?q=org%3A21re+{}&type=Code'
-}
 
 export SSH_AUTH_SOCK=/run/user/1000/ssh-agent.socket
 

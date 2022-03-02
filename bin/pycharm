@@ -1,3 +1,0 @@
-#!/bin/bash
-
-wmname LG3D && ~/programs/pycharm/bin/pycharm.sh

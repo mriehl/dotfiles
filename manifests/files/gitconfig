@@ -1,6 +1,7 @@
 [user]
     name = Maximilien Riehl
     email = max@riehl.io
+    signingkey = D4CA3700EDBF4193C33D5DB99B0645EDB075625E
 
 [color]
     diff = auto

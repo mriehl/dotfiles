@@ -1,5 +1,5 @@
 depends:
-- pkg.yaml
+- pkg
 
 actions:
 - action: command.run

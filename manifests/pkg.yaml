@@ -1,6 +1,8 @@
 actions:
 - action: package.install
   provider: yay
+  extra_args:
+  - --needed
   list:
   - acpi
   - alacritty

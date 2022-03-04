@@ -52,10 +52,6 @@ actions:
   to: {{ user.home_dir }}/.config/systemd/user/ssh-agent.service
 
 - action: file.link
-  from: rustfmt.toml
-  to: {{ user.home_dir }}/.rustfmt.toml
-
-- action: file.link
   from: dunstrc
   to: {{ user.home_dir }}/.config/dunst/dunstrc
 

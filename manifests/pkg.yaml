@@ -1,8 +1,6 @@
 actions:
 - action: package.install
   provider: yay
-  extra_args:
-  - --needed
   list:
   - acpi
   - alacritty
@@ -107,12 +105,10 @@ actions:
   - starship
   - fd
   - openssl
-  - pkg-config
+  - pkgconf
   - s-tui
   - make
-
-# install separately because intellij upgrades will conflict with pkg installation
-- action: package.install
-  provider: yay
-  list:
+  - visual-studio-code-bin
+  - i3blocks-contrib
+  - nerd-fonts-fira-code
   - intellij-idea-community-edition

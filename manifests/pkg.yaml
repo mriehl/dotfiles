@@ -34,7 +34,6 @@ actions:
   - i3lock
   - i3status
   - inkscape
-  - intellij-idea-community-edition
   - inxi
   - iotop
   - iproute2
@@ -102,13 +101,16 @@ actions:
   - xsel
   - yay
   - zsh
-  - i3blocks-contrib
-  - nerd-fonts-fira-code
   - fprintd
   - starship
   - fd
   - openssl
   - pkg-config
   - s-tui
-  - visual-studio-code-bin
   - make
+
+# install separately because intellij upgrades will conflict with pkg installation
+- action: package.install
+  provider: yay
+  list:
+  - intellij-idea-community-edition

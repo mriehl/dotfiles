@@ -112,15 +112,17 @@ set $w3 "3: ide"
 set $w4 "4: email"
 set $w5 "5: msg"
 set $w8 "8: useless"
-set $w9 "9: chrome"
 
-assign [class="^X2GoAgent$"] → "3: ide"
 assign [class="^x2goclient$"] → "8: useless"
 assign [class="^Wfica$"] → "8: useless"
 
 assign [class="^Firefox$"] → "1: www"
+assign [class="chromium-browser" window_role="browser"] → "1: www"
+assign [class="google-chrome"] → "1: www"
+
 assign [class="^jetbrains-idea$"] → "3: ide"
-assign [class="chromium-browser" window_role="browser"] → "9: chrome"
+assign [class="^Code$"] → "3: ide"
+assign [class="^X2GoAgent$"] → "3: ide"
 
 # switch to workspace
 bindsym $mod+1 workspace $w1

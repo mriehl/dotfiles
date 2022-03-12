@@ -95,7 +95,7 @@ actions:
   - visualvm
   - wget
   - which
-  - xorg-xbacklight
+  - acpilight
   - xorg-xkill
   - xorg-xsetroot
   - xsel

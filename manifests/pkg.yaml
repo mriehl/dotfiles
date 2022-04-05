@@ -115,3 +115,5 @@ actions:
   - steam-manjaro
   - steam-native
   - linux-steam-integration
+  - wireguard-tools
+  - kotlin

@@ -117,3 +117,4 @@ actions:
   - linux-steam-integration
   - wireguard-tools
   - kotlin
+  - mariadb

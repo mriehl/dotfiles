@@ -118,3 +118,5 @@ actions:
   - wireguard-tools
   - kotlin
   - mariadb
+  - azure-cli-bin
+  - openlens-bin

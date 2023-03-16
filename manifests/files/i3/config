@@ -222,9 +222,10 @@ for_window [class="claws-mail|Claws-mail" window_role="compose"] floating enable
 for_window [title="Microsoft Teams Notification"] floating enable
 no_focus [title="Microsoft Teams Notification"]
 
-new_window none
+for_window [class="Alacritty"] border none
 hide_edge_borders both
-
+default_border none
+default_floating_border none
 
 bar {
   status_command i3blocks -c ".i3/i3blocks.conf"

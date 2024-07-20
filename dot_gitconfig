@@ -1,7 +1,7 @@
 [user]
     name = Maximilien Riehl
     email = max@riehl.io
-    signingkey = D4CA3700EDBF4193C33D5DB99B0645EDB075625E
+    #signingkey = D4CA3700EDBF4193C33D5DB99B0645EDB075625E
 
 [color]
     diff = auto
@@ -91,7 +91,7 @@ defaultToUpstream = 1
 [magit]
 	hideCampaign = true
 [commit]
-	gpgsign = true
+	#gpgsign = true
 
 [filter "lfs"]
 	process = git-lfs filter-process

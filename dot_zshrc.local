@@ -86,14 +86,6 @@ alias targzlook='tar -ztvf'
 
 alias targzcomp='tar -zcvf'
 
-function vimit (){
-    [[ -z "$1" ]] && { echo "wat" && return 1 }
-    WHAT=$(find . -readable -name "*$1*") || { echo "nope" && return 1 }
-    vim "$WHAT"
-}
-
-alias osbt='./sbt "set offline := true" shell'
-
 alias tmux='tmux -2'
 
 alias keymap='setxkbmap'
@@ -102,9 +94,6 @@ alias 'keymap?'='setxkbmap -query'
 
 # Environment
 # -------------
-
-PYTHONSTARTUP=~/.pythonrc.py
-export PYTHONSTARTUP
 
 export GOPATH=~/go
 export PATH=$PATH:$GOPATH/bin
@@ -131,22 +120,8 @@ export LESS_TERMCAP_ue=$'\E[0m'
 export LESS_TERMCAP_us=$'\E[04;38;5;146m'
 export LESS_TERMCAP_so=$'\e[0;31m'
 
-export BROWSER="firefox"
-
 export EDITOR='vim'
 export SUDO_EDITOR='vim'
-alias emacs='vim'
-alias reconfigureEmacs='/usr/bin/emacsclient --eval "(load-file \"~/.emacs.d/init.el\")"'
-alias estart='systemctl --user start emacs.service'
-alias estop='systemctl --user stop emacs.service'
-alias erestart='estop && estart'
-alias uemacs='/usr/bin/emacs'
-alias docker-killall='docker kill $(docker ps -q)'
-alias docker-be-gone='docker rmi -f $(docker images -a -q); docker rm -f $(docker ps -a -q)'
-alias export-dm='eval $(docker-machine env devel); export HOSTNAME="$(docker-machine ip devel)"; export BIND_HOST=$HOSTNAME'
-
-export NVM_DIR="$HOME/.nvm"
-alias nvm-source="source $NVM_DIR/nvm.sh"
 
 alias back-to-master='git checkout master && git uff && git branch --merged | egrep -v "(^\*|master|dev)" | xargs git branch -d'
 
@@ -156,7 +131,6 @@ then
   eval $(fw print-zsh-setup -f 2>/dev/null);
 fi;
 
-export SBT_OPTS="-XX:+CMSClassUnloadingEnabled -XX:MaxMetaspaceSize=512M -XX:MetaspaceSize=256M -Xms512M -Xmx2G -XX:+UseG1GC -Xss4096K"
 
 export SSH_AUTH_SOCK=/run/user/1000/ssh-agent.socket
 
@@ -171,5 +145,3 @@ eval "$(starship init zsh)"
 SSH_ASKPASS=/usr/lib/ssh/x11-ssh-askpass
 
 alias pwn-docker='docker rm -f $(docker ps -a -q)'
-alias byepass='echo -n "no" | xsel -b'
-source /usr/share/nvm/init-nvm.sh

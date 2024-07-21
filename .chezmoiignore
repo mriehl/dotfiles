@@ -1,0 +1,9 @@
+README.md
+{{ if eq .chezmoi.os "darwin" -}}
+executable_dot_xsession
+executable_dot_xsessionrc
+dot_i3
+dot_config/dunst
+dot_config/systemd
+{{ else if eq .chezmoi.os "linux" -}}
+{{- end }}

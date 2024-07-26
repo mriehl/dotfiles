@@ -5,17 +5,17 @@ TERM = "xterm-256color"
 size = 12.0
 
 [shell]
-program = "/usr/bin/zsh"
+program = {{ .shellAbs | quote }}
 args = []
 
 [window]
 decorations = "Buttonless"
 
 [font.bold]
-#family = "FiraCode Nerd Font Mono"
+family = {{ .font | quote }}
 
 [font.italic]
-#family = "FiraCode Nerd Font Mono"
+family = {{ .font | quote }}
 
 [font.normal]
-#family = "FiraCode Nerd Font Mono"
+family = {{ .font | quote }}

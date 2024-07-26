@@ -1,0 +1,12 @@
+{{ $email := promptStringOnce . "email" "E-Mail" "max@riehl.io" -}}
+{{ $fullname := promptStringOnce . "fullname" "Full Name" "Maximilien Riehl" -}}
+
+pager = "less -R"
+
+[data]
+    email = {{ $email | quote }}
+    fullname = {{ $fullname | quote }}
+    gpgSign = false
+    browser = "google-chrome-stable"
+    font = "JetBrainsMono Nerd Font"
+    shellAbs = "/usr/bin/zsh" # TODO brew

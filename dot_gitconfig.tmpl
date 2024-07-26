@@ -1,7 +1,9 @@
 [user]
-    name = Maximilien Riehl
-    email = max@riehl.io
-    #signingkey = D4CA3700EDBF4193C33D5DB99B0645EDB075625E
+    name = {{ .fullname | quote }}
+    email = {{ .email | quote }}
+    {{- if .gpgSign }}
+    signingkey = "D4CA3700EDBF4193C33D5DB99B0645EDB075625E"
+    {{- end}}
 
 [color]
     diff = auto
@@ -68,16 +70,15 @@
 defaultToUpstream = 1
 
 [help]
-    autocorrect = 1
+autocorrect = 1
 
 [rerere]
-    enabled = 1
+enabled = 1
 
 [web]
-    browser = firefox
+browser = {{ .browser }}
 [diff]
-	tool = ediff
-  algorithm = histogram
+algorithm = histogram
 
 # Local Variables:
 # mode: conf
@@ -91,7 +92,9 @@ defaultToUpstream = 1
 [magit]
 	hideCampaign = true
 [commit]
-	#gpgsign = true
+        {{- if .gpgSign }}
+	gpgsign = true
+        {{- end}}
 
 [filter "lfs"]
 	process = git-lfs filter-process

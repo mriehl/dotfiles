@@ -1,0 +1,57 @@
+packages:
+  darwin:
+    brew:
+      formulae: []
+      casks: []
+
+  linux:
+    arch:
+      pacman:
+        - gcc
+        - i3-wm
+        - ttf-jetbrains-mono-nerd
+        - kotlin
+        - acpi
+        - arandr
+        - ark
+        - bind
+        - binutils
+        - coreutils
+        - dmenu
+        - dmidecode
+        - docker
+        - docker-compose
+        - evince
+        - feh
+        - findutils
+        - fwupd
+        - go
+        - htop
+        - hugo
+        - i3-wm
+        - i3blocks
+        - i3lock
+        - i3status
+        - kubectl
+        - maven
+        - minikube
+        - nautilus
+        - net-tools
+        - noto-fonts
+        - noto-fonts-emoji
+        - ripgrep
+        - rsync
+        - scrot
+        - smartmontools
+        - strace
+        - tig
+        - xorg-xkill
+        - xorg-xsetroot
+        - fd
+        - pkgconf
+        - intellij-idea-community-edition
+      aur:
+        - google-chrome
+        - kind
+        - visual-studio-code-bin
+        - i3blocks-contrib

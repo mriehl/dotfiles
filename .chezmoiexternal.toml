@@ -1,4 +1,4 @@
 [".zshrc"]
     type = "file"
-    url = "https://raw.githubusercontent.com/grml/grml-etc-core/master/etc/zsh/zshrc"
+    url = "https://git.grml.org/f/grml-etc-core/etc/zsh/zshrc"
     refreshPeriod = "168h"

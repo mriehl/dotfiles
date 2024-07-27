@@ -50,6 +50,9 @@ packages:
         - fd
         - pkgconf
         - intellij-idea-community-edition
+        - tealdeer
+        - fzf
+        - rustup
       aur:
         - google-chrome
         - kind

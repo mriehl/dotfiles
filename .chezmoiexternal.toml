@@ -3,7 +3,7 @@
     url = "https://git.grml.org/f/grml-etc-core/etc/zsh/zshrc"
     refreshPeriod = "168h"
 
-[".config/alacritty/themes/github-dark-dimmed.toml"]
+[".config/alacritty/themes/solarized-dark.toml"]
     type = "file"
-    url = "https://raw.githubusercontent.com/alacritty/alacritty-theme/master/themes/github_dark_dimmed.toml"
+    url = "https://raw.githubusercontent.com/alacritty/alacritty-theme/master/themes/solarized_dark.toml"
     refreshPeriod = "168h"

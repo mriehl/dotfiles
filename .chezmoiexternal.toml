@@ -2,3 +2,8 @@
     type = "file"
     url = "https://git.grml.org/f/grml-etc-core/etc/zsh/zshrc"
     refreshPeriod = "168h"
+
+[".config/alacritty/themes/themes/github-dark.toml"]
+    type = "file"
+    url = "https://raw.githubusercontent.com/alacritty/alacritty-theme/master/themes/github_dark.toml"
+    refreshPeriod = "168h"

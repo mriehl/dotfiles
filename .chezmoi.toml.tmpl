@@ -7,6 +7,11 @@ pager = "less -R"
     email = {{ $email | quote }}
     fullname = {{ $fullname | quote }}
     gpgSign = false
-    browser = "google-chrome-stable"
     font = "JetBrainsMono Nerd Font"
+    {{- if eq .chezmoi.os "darwin" }}
+    browser = "open"
+    shellAbs = "/bin/zsh"
+    {{- else }}
+    browser = "google-chrome-stable"
     shellAbs = "/usr/bin/zsh" # TODO brew
+    {{- end }}

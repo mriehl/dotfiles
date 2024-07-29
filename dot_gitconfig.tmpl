@@ -5,6 +5,9 @@
     signingkey = "D4CA3700EDBF4193C33D5DB99B0645EDB075625E"
     {{- end}}
 
+[rebase]
+    instructionFormat="(%an) %s"
+
 [color]
     diff = auto
     status = auto
@@ -51,34 +54,35 @@
     surr = submodule update --remote --recursive
     stc = !sh -c 'git stash -k && ./sbt test && git stash pop'
     remote-difflog = "!current_branch=\"$(git rev-parse --abbrev-ref HEAD)\" ;\
-                       f() { remote=\"$1\" ;\
-                             echo \"$remote:\" ;\
-                             log=\"$(git log --format=\" %h %s\" \
-                                     $remote/$current_branch..$current_branch)\" ;\
-                             if [ -z \"$log\" ] ; then\
-                                 echo \" uptodate\" ;\
-                             else \
-                                 echo \"$log\" ;\
-                             fi \
-                       } ;\
-                       for remote in $(git remote) ; do \
-                           f $remote ;\
-                       done;"
+        f() { remote=\"$1\" ;\
+                echo \"$remote:\" ;\
+                log=\"$(git log --format=\" %h %s\" \
+                        $remote/$current_branch..$current_branch)\" ;\
+                if [ -z \"$log\" ] ; then\
+                    echo \" uptodate\" ;\
+                else \
+                    echo \"$log\" ;\
+                fi \
+        } ;\
+        for remote in $(git remote) ; do \
+            f $remote ;\
+        done;"
     rdf = !git remote-difflog
 
 [merge]
-defaultToUpstream = 1
+    defaultToUpstream = 1
 
 [help]
-autocorrect = 1
+    autocorrect = 1
 
 [rerere]
-enabled = 1
+    enabled = 1
 
 [web]
-browser = {{ .browser }}
+    browser = {{ .browser }}
+
 [diff]
-algorithm = histogram
+    algorithm = histogram
 
 # Local Variables:
 # mode: conf
@@ -101,3 +105,6 @@ algorithm = histogram
 	required = true
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
+
+[trim]
+    bases = develop,master,main

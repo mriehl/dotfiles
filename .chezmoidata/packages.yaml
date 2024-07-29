@@ -1,8 +1,53 @@
 packages:
   darwin:
     brew:
-      formulae: []
-      casks: []
+      formulae:
+        - "ast-grep"
+        - "openssl@3"
+        - "aws-cdk"
+        - "awscli"
+        - "bat"
+        - "chezmoi"
+        - "fzf"
+        - "gitleaks"
+        - "go"
+        - "openjdk@21"
+        - "gradle"
+        - "graphviz"
+        - "helm"
+        - "htop"
+        - "jq"
+        - "kotlin"
+        - "stern"
+        - "maven"
+        - "mkcert"
+        - "nvm"
+        - "openshift-cli"
+        - "pgcli"
+        - "pkg-config"
+        - "pre-commit"
+        - "riff"
+        - "rustup"
+        - "tig"
+        - "tmux"
+        - "tree"
+        - "typst"
+        - "watch"
+        - "yq"
+
+      casks:
+        - "alacritty"
+        - "alt-tab"
+        - "bitwarden"
+        - "flameshot"
+        - "font-jetbrains-mono-nerd-font"
+        - "karabiner-elements"
+        - "obsidian"
+        - "raycast"
+        - "rectangle"
+        - "visual-studio-code"
+        - "visualvm"
+
 
   linux:
     arch:

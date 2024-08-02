@@ -9,9 +9,11 @@ bindkey -M menuselect 'l' vi-forward-char         # right
 bindkey -M menuselect 'j' vi-down-line-or-history # bottom
 
 bindkey -M isearch . self-insert
-bindkey -v
 
 setopt interactivecomments
+setopt vi
+bindkey '^P' history-search-backward
+bindkey '^N' history-search-forward
 
 # get top 10 shell commands:
 alias top10='print -l ${(o)history%% *} | uniq -c | sort -nr | head -n 10'
@@ -50,19 +52,6 @@ hex() {
 # -------------
 ## ctrl-s will no longer freeze the terminal.
 stty erase "^?"
-
-
-fancy-ctrl-z () {
-  if [[ $#BUFFER -eq 0 ]]; then
-    BUFFER="fg"
-    zle accept-line
-  else
-    zle push-input
-    zle clear-screen
-  fi
-}
-zle -N fancy-ctrl-z
-bindkey '^Z' fancy-ctrl-z
 
 cdpath=(~/workspace)
 

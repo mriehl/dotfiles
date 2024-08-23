@@ -106,5 +106,12 @@
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
 
+[pager]
+	diff = riff
+	show = riff
+	log = riff
+[interactive]
+	diffFilter = riff --color=on
+
 [trim]
     bases = develop,master,main

@@ -103,3 +103,4 @@ packages:
         - kind
         - visual-studio-code-bin
         - i3blocks-contrib
+        - riffdiff

@@ -34,6 +34,7 @@ packages:
         - "typst"
         - "watch"
         - "yq"
+        - "neovim"
 
       casks:
         - "alacritty"

@@ -183,8 +183,7 @@ alias keymap='setxkbmap'
 alias 'keymap?'='setxkbmap -query'
 {{- end }}
 
-
-
+[[ -f ~/.credentials ]] && source ~/.credentials
 
 prompt off
 eval "$(starship init zsh)"

@@ -1,4 +1,5 @@
 vim.g.mapleader = " "
+vim.g.maplocalleader = '\\'
 
 -- Enable highlighting for lua HERE doc inside vim script
 vim.g.vimsyn_embed = "l"
@@ -10,17 +11,17 @@ vim.o.encoding = "utf-8"
 
 vim.o.autoread = true
 vim.api.nvim_create_autocmd("FocusGained", {
-    pattern = "*",
-    command = "checktime",
+	pattern = "*",
+	command = "checktime",
 })
 
 vim.opt.fillchars = {
-    foldopen = "",
-    foldclose = "",
-    fold = "⸱",
-    foldsep = " ",
-    diff = "╱",
-    eob = " ",
+	foldopen = "",
+	foldclose = "",
+	fold = "⸱",
+	foldsep = " ",
+	diff = "╱",
+	eob = " ",
 }
 
 vim.o.foldcolumn = "0"
@@ -37,12 +38,18 @@ vim.o.updatetime = 500
 
 vim.o.swapfile = false
 
-vim.opt.cursorline = true -- Enable highlighting of the current line
+vim.o.cursorline = true -- Enable highlighting of the current line
 
 vim.o.guicursor =
-    "n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50,a:blinkwait700-blinkoff800-blinkon500-Cursor/lCursor,sm:block-blinkwait175-blinkoff150-blinkon175"
+"n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50,a:blinkwait700-blinkoff800-blinkon500-Cursor/lCursor,sm:block-blinkwait175-blinkoff150-blinkon175"
 --vim.o.guifont = "Monaspace Neon,Noto Sans Mono:h12"
 vim.g.neovide_hide_mouse_when_typing = true
+vim.g.neovide_floating_shadow = false
+vim.g.neovide_padding_top = 2
+vim.g.neovide_padding_bottom = 2
+vim.g.neovide_padding_right = 2
+vim.g.neovide_padding_left = 2
+
 -- vim.o.linespace=-1
 
 vim.o.wildignore = "*.o,*.obj,*.dylib,*.bin,*.dll,*.exe,*/.git/*,*/.svn/*,*/__pycache__/*,*/build/**"
@@ -56,15 +63,13 @@ vim.o.backupskip = vim.o.wildignore
 vim.o.backup = true
 vim.o.backupcopy = "yes"
 
-vim.o.tabstop = 4
-vim.o.softtabstop = 4
-vim.o.shiftwidth = 4
+vim.o.tabstop = 2
+vim.o.softtabstop = 2
+vim.o.shiftwidth = 2
 vim.o.expandtab = true
 
-if not vim.g.vscode then
-    vim.opt.spelllang = "en_us"
-    vim.opt.spell = false
-end
+vim.o.spelllang = "en_us"
+vim.o.spell = false
 
 vim.o.nu = true
 
@@ -81,11 +86,8 @@ vim.o.showbreak = "↪"
 
 vim.o.wildmode = "list:longest"
 
-vim.o.scrolloff = 5
-
-if not vim.g.neovide then
-    vim.o.mouse = ""
-end
+vim.o.scrolloff = 8
+vim.o.sidescrolloff = 8
 
 vim.o.fileformats = "unix,dos"
 
@@ -103,12 +105,11 @@ vim.o.autowrite = true
 
 vim.o.undofile = true
 
-vim.o.shortmess = vim.o.shortmess .. "c"
 
 vim.o.showmatch = true
 
+vim.o.shortmess = vim.o.shortmess .. "c"
 vim.o.shortmess = vim.o.shortmess .. "S"
-
 vim.o.shortmess = vim.o.shortmess .. "I"
 
 vim.o.completeopt = "menuone"
@@ -126,13 +127,11 @@ vim.o.formatoptions = vim.o.formatoptions .. "mM"
 
 vim.o.tildeop = false
 
-vim.o.synmaxcol = 250
-
 vim.o.startofline = false
 
 if vim.fn.executable("rg") then
-    vim.o.grepprg = "rg --vimgrep --no-heading --smart-case"
-    vim.o.grepformat = "%f:%l:%c:%m"
+	vim.o.grepprg = "rg --vimgrep --no-heading --smart-case"
+	vim.o.grepformat = "%f:%l:%c:%m"
 end
 
 vim.o.termguicolors = true
@@ -146,8 +145,23 @@ vim.o.ruler = false
 vim.o.showmode = false
 
 vim.filetype.add({
-    extension = {
-        templ = "templ",
-    },
+	extension = {
+		templ = "templ",
+	},
 })
 
+-- Enable the title setting
+vim.o.title = true
+
+-- Set the title to the current directory name
+vim.o.titlestring = "%{fnamemodify(getcwd(), ':t')}"
+
+
+vim.api.nvim_create_autocmd("TextYankPost", {
+	pattern = "*",
+	callback = function()
+		vim.highlight.on_yank({ higroup = 'IncSearch', timeout = 300 })
+	end
+})
+
+vim.o.smoothscroll = true

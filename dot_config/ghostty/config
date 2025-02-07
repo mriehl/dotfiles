@@ -1,0 +1,15 @@
+theme = rose-pine-dawn
+
+font-family = "JetBrains Mono"
+font-size = 14
+font-feature = "calt"
+font-feature = "zero"
+
+selection-background = #dfdad9
+
+window-decoration = false
+
+mouse-hide-while-typing = true
+
+app-notifications = false
+

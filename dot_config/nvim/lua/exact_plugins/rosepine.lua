@@ -7,7 +7,7 @@ return {
 		priority = 1000, -- make sure to load this before all the other start plugins
 		config = function()
 			require("rose-pine").setup({
-				variant = "moon",
+				variant = "dawn",
 				-- highlight_groups = {
 				-- 	MiniCursorword = { underline = false, bg = "highlight_med" },
 				-- 	MiniCursorwordCurrent = {  underline = false },

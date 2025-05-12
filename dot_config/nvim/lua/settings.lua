@@ -28,6 +28,7 @@ vim.o.foldcolumn = "0"
 vim.o.foldlevel = 99
 vim.o.foldlevelstart = 99
 vim.o.foldenable = true
+vim.o.foldtext = ""
 
 vim.o.splitbelow = true
 vim.o.splitright = true
@@ -146,6 +147,7 @@ vim.o.showmode = false
 
 vim.filetype.add({
 	extension = {
+		http = "http",
 		templ = "templ",
 	},
 })
@@ -165,3 +167,24 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 })
 
 vim.o.smoothscroll = true
+
+vim.diagnostic.config({
+	virtual_text = false,
+	virtual_lines = {
+		current_line = true,
+	},
+	signs = {
+		text = {
+			[vim.diagnostic.severity.ERROR] = '',
+			[vim.diagnostic.severity.WARN] = '',
+			[vim.diagnostic.severity.HINT] = '',
+			[vim.diagnostic.severity.INFO] = '',
+		},
+		linehl = {
+		},
+		numhl = {
+			[vim.diagnostic.severity.ERROR] = 'ErrorMsg',
+			[vim.diagnostic.severity.WARN] = 'WarningMsg',
+		},
+	},
+})

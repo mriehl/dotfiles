@@ -16,26 +16,32 @@
     "cpu",
     "load",
     "privacy",
+    "battery",
     "clock"
   ],
   "cpu": {
     "format": " {usage}%",
     "max-length": 10,
-    "interval": 1
+    "interval": 30
   },
   "load": {
     "format": "Load: {}",
-    "interval": 1
+    "interval": 30
   },
   "memory": {
     "format": "🐏 {}%",
     "max-length": 20,
-    "interval": 1
+    "interval": 30
+  },
+  "battery": {
+    "format": "🔋 {}%",
+    "max-length": 20,
+    "interval": 60
   },
   "clock": {
     "format": "{:%d.%m.%Y %H:%M:%S}",
     "tooltip": false,
-    "interval": 1
+    "interval": 30
   },
   "privacy": {
     "icon-spacing": 4,

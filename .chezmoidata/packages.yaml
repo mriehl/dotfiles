@@ -103,7 +103,6 @@ packages:
         - fuzzel
         - niri
         - waybar
-        - swaylock
         - xwayland-satellite
         - hyprlock
       aur:

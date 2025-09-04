@@ -249,9 +249,8 @@ layout {
 // which may be more convenient to use.
 // See the binds section below for more spawn examples.
 
-spawn-at-startup "waybar" "-c" "/home/mriehl/.config/waybar/config"
-spawn-at-startup "nm-applet"
-spawn-at-startup "xwayland-satellite"
+spawn-sh-at-startup "waybar -c ~/.config/waybar/config"
+spawn-sh-at-startup "nm-applet"
 
 environment {
   DISPLAY ":0"

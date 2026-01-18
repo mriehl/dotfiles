@@ -103,8 +103,8 @@ packages:
         - fuzzel
         - niri
         - waybar
-        - xwayland-satellite
         - hyprlock
+        - bluez-utils
       aur:
         - google-chrome
         - kind
@@ -112,3 +112,4 @@ packages:
         - i3blocks-contrib
         - riffdiff
         - wdisplays
+        - noctalia-shell

@@ -249,7 +249,7 @@ layout {
 // which may be more convenient to use.
 // See the binds section below for more spawn examples.
 
-spawn-sh-at-startup "waybar -c ~/.config/waybar/config"
+spawn-at-startup "qs" "-c" "noctalia-shell"
 spawn-sh-at-startup "nm-applet"
 
 environment {
@@ -328,8 +328,11 @@ binds {
 
   // Suggested binds for running programs: terminal, app launcher, screen locker.
   Mod+Return hotkey-overlay-title="Open a Terminal" { spawn "ghostty"; }
-  Mod+D hotkey-overlay-title="Run an Application: fuzzel" { spawn "fuzzel"; }
-  Ctrl+Alt+L hotkey-overlay-title="Lock the Screen: hyprlock" { spawn "hyprlock"; }
+  Mod+D hotkey-overlay-title="Toggle launcher" { spawn "sh" "-c" "qs -c noctalia-shell ipc call launcher toggle"; }
+  Mod+S hotkey-overlay-title="Toggle control panel" { spawn "sh" "-c" "qs -c noctalia-shell ipc call controlCenter toggle"; }
+
+
+  Ctrl+Alt+L hotkey-overlay-title="Lock the Screen: hyprlock" { spawn "sh" "-c" "	qs -c noctalia-shell ipc call lockScreen lock"; }
 
   // You can also use a shell. Do this if you need pipes, multiple commands, etc.
   // Note: the entire command goes as a single argument in the end.
@@ -655,4 +658,13 @@ gestures {
   hot-corners {
     off
   }
+}
+
+debug {
+  // Allows notification actions and window activation from Noctalia.
+  honor-xdg-activation-with-invalid-serial
+}
+
+overview {
+  backdrop-color "#6e6a86"
 }
